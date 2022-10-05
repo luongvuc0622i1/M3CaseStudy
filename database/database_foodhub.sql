@@ -192,4 +192,4 @@ INSERT INTO		bill_detail 	(bill_id, food_id, quantity, price, status)
 VALUES
 								(1, 1, 1, 50000, 1);
 
-USE foodhub;
+-- USE foodhub;
