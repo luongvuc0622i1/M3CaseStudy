@@ -13,10 +13,6 @@ import java.util.List;
 
 public class ClientService implements IClientService {
     private static final String FIND_ALL_CLIENT = "SELECT * FROM client;";
-<<<<<<< HEAD
-    private static final String DELETE_CLIENT_SQL="DELETE FROM client WHERE client_id=?";
-=======
->>>>>>> ed5347bd4fa90529c02b9a720896e0b9a5fe6f95
     private Connection c = ConnectionCMS.getConnection();
     @Override
     public List<Client> fillAll() {
