@@ -36,36 +36,31 @@ public class HomeServlet extends HttpServlet {
         }
     }
 
+    private void showHome(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+
+//        request.setAttribute("deals",dealService.fillAll());
+//        request.setAttribute("tags",categoryService.fillAll());
+//        request.setAttribute("shops",shopService.fillAll());
+//        request.setAttribute("foods",foodService.fillAll());
+//        request.setAttribute("services",serviceService.fillAll());
+        dispatcher.forward(request,response);
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
         }
-        try {
-            switch (action) {
-                case "showByCategory":
-//                    showByCategory(request, response);
-                    break;
-                default:
-                    showHome(request, response);
-                    break;
-            }
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        switch (action) {
+            case "...":
+//                    ...(request, response);
+                break;
+            default:
+//                    showHome(request, response);
+                break;
         }
-    }
-
-    private void showHome(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/home.jsp");
-
-//        request.setAttribute("deals",dealService.fillAll());
-//        request.setAttribute("categories",categoryService.fillAll());
-//        request.setAttribute("shops",shopService.fillAll());
-//        request.setAttribute("items",itemService.fillAll());
-        dispatcher.forward(request,response);
     }
 }
