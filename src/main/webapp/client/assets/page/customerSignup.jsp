@@ -34,41 +34,41 @@
                 <div class="card card-registration my-4">
                     <div class="row g-0">
                         <div class="col-xl-6 d-none d-xl-block">
-                            <img src="luisa-brimble-vIm26fn_QKg-unsplash.jpg"
+                             <img src="<c:url value='/img/login1.jpg'/>"
                                  alt="Sample photo" class="img-fluid"
                                  style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;"/>
                         </div>
-                        <div class="col-xl-6"><img src="logo.png" alt="logo" class="rounded float-left" width="70px"
+                        <div class="col-xl-6"><img src="<c:url value='/img/favicon.png'/>" alt="logo" class="rounded float-left" width="70px"
                                                    height="70px" style="margin-top: 20px;margin-left: 10px">
                             <div class="card-body p-md-5 text-black">
                                 <h3 class="mb-5 text-uppercase text-center">Đăng ký người dùng mới</h3>
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="account" class="form-control form-control-md"/>
+                                    <input type="text" placeholder="Nhập tên tài khoản" id="account" class="form-control form-control-md"/>
                                     <label class="form-label" for="account">Tên tài khoản</label>
                                 </div>
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="name" class="form-control form-control-md"/>
+                                    <input type="text" placeholder="Nhập họ và tên" id="name" class="form-control form-control-md"/>
                                     <label class="form-label" for="name">Họ và tên</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="phone" class="form-control form-control-md"/>
+                                    <input type="text" placeholder="Nhập số điện thoại" id="phone" class="form-control form-control-md"/>
                                     <label class="form-label" for="phone">Số điện thoại</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="address" class="form-control form-control-md"/>
+                                    <input type="text" placeholder="Nhập địa chỉ" id="address" class="form-control form-control-md"/>
                                     <label class="form-label" for="address">Địa chỉ</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="email" class="form-control form-control-md"/>
+                                    <input type="text" placeholder="VD: 'abc123@gmail.com'" id="email" class="form-control form-control-md"/>
                                     <label class="form-label" for="email">Email</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="password" class="form-control form-control-md"/>
+                                    <input type="password" placeholder="Nhập mật khẩu" id="password" class="form-control form-control-md"/>
                                     <label class="form-label" for="password">Mật khẩu</label>
                                 </div>
 
