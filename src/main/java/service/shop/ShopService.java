@@ -34,11 +34,11 @@ public class ShopService implements IShopService {
                 Service service = null;
                 String description = rs.getString("shop_description");
                 int status = rs.getInt("status");
-                for (Service s : services) {
-                    if (s.getId() == service_id) {
-                        service = s;
-                    }
-                }
+//                for (Service s : services) {
+//                    if (s.getId() == service_id) {
+//                        service = s;
+//                    }
+//                }
                 Shop shop = new Shop(id, status, open, close, code, name, email, phone, address, account, password, image, description, service);
                 shops.add(shop);
             }
