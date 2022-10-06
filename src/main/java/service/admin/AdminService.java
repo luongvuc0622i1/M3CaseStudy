@@ -25,8 +25,8 @@ public class AdminService implements IAdminService {
                 String name= rs.getString("admin_name");
                 String account= rs.getString("admin_account");
                 String password= rs.getString("admin_password");
-                String email= rs.getString("admin_email");
-                Admin admin = new Admin(id, name, account, password, email);
+                String image= rs.getString("admin_image");
+                Admin admin = new Admin(id, name, account, password, image);
                 admins.add(admin);
             }
         } catch (SQLException e) {

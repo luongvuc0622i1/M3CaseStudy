@@ -1,6 +1,7 @@
 package controller;
 
 import model.Admin;
+import model.Shop;
 import service.admin.AdminService;
 import service.admin.IAdminService;
 import service.deal.DealService;
@@ -15,7 +16,9 @@ import java.util.List;
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
     private IAdminService adminService = new AdminService();
-    static boolean checkLogin = false;
+//    private IShopService shopService = new ShopService();
+    private static String account ="";
+    private static boolean checkLogin = false;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,22 +52,34 @@ public class LoginServlet extends HttpServlet {
 
     private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Admin> admins = adminService.fillAll();
+//        List<Shop> shops = shopService.fillAll();
         String account = request.getParameter("account");
-//        LoginServlet.account = account;
+        LoginServlet.account = account;
         String password = request.getParameter("password");
-//        RequestDispatcher dispatcher;
+        RequestDispatcher dispatcher;
 //        request.setAttribute("deals",dealService.fillAll());
 //        request.setAttribute("categories",categoryService.fillAll());
 //        request.setAttribute("shops",shopService.fillAll());
 //        request.setAttribute("items",itemService.fillAll());
-//        request.setAttribute("message","Hoặc đăng nhập bằng tài khoản của bạn");
+        request.setAttribute("message","Hoặc đăng nhập bằng tài khoản của bạn");
         for (Admin admin: admins) {
             if (admin.getAccount().equals(account) && admin.getPassword().equals(password)) {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/admin/adminHome.jsp");
+                dispatcher = request.getRequestDispatcher("adminHome.jsp");
                 LoginServlet.checkLogin = true;
-                dispatcher.forward(request,response);
+                dispatcher.forward(request, response);
                 return;
             }
+        }
+//        for (Shop shop: shops) {
+//            if (shop.getAccount().equals(account) && shop.getPassword().equals(password)) {
+//
+//                dispatcher = request.getRequestDispatcher("/client/assets/page/shop/shopHome.jsp");
+//                LoginServlet.checkLogin = true;
+//                dispatcher.forward(request, response);
+//                return;
+//            }
+//        }
+
 //            if (customers.get(i).getCustomer_account().equals(account)
 //                    && customers.get(i).getCustomer_password().equals(password)){
 //                LoginServlet.USER_ACCOUNT = account;
@@ -74,9 +89,8 @@ public class LoginServlet extends HttpServlet {
 //                dispatcher.forward(request,response);
 //                return;
 //            }
-        }
-//        request.setAttribute("message","Sai tài khoản hoặc mật khẩu!!");
-//        dispatcher = request.getRequestDispatcher("client/assets/page/login.jsp");
-//        dispatcher.forward(request,response);
+        request.setAttribute("message","Sai tài khoản hoặc mật khẩu!!");
+        dispatcher = request.getRequestDispatcher("login.jsp");
+        dispatcher.forward(request,response);
     }
 }
