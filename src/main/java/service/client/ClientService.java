@@ -29,7 +29,7 @@ public class ClientService implements IClientService {
                 String email = rs.getString("client_email");
                 String account = rs.getString("client_account");
                 String password = rs.getString("client_password");
-                int status = rs.getInt("client_status");
+                int status = rs.getInt("status");
                 Client client = new Client(id, code, name, phone, address, email, account, password, status);
                 clients.add(client);
             }

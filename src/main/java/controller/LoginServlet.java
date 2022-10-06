@@ -90,14 +90,14 @@ public class LoginServlet extends HttpServlet {
         for (Client client : clients) {
             if (client.getAccount().equals(account) && client.getPassword().equals(password)) {
                 request.setAttribute("account", account);
-                dispatcher = request.getRequestDispatcher("/client/assets/page/client/clientHome.jsp");
+                dispatcher = request.getRequestDispatcher("/client/assets/page/customer/customerHome.jsp");
                 LoginServlet.checkLogin = true;
                 dispatcher.forward(request, response);
                 return;
             }
         }
         request.setAttribute("message","Sai tài khoản hoặc mật khẩu!!");
-        dispatcher = request.getRequestDispatcher("login.jsp");
+        dispatcher = request.getRequestDispatcher("/client/assets/page/login.jsp");
         dispatcher.forward(request,response);
     }
 }
