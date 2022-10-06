@@ -13,6 +13,7 @@ import java.util.List;
 
 public class ClientService implements IClientService {
     private static final String FIND_ALL_CLIENT = "SELECT * FROM client;";
+    private static final String DELETE_CLIENT_SQL="DELETE FROM client WHERE client_id=?";
     private Connection c = ConnectionCMS.getConnection();
     @Override
     public List<Client> fillAll() {
@@ -51,7 +52,13 @@ public class ClientService implements IClientService {
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return false;
+        boolean rowDeleted;
+        try(Connection connection=ConnectionCMS.getConnection();
+            PreparedStatement statement=connection.prepareStatement(DELETE_CLIENT_SQL);){
+            statement.setInt(1,id);
+            rowDeleted=statement.executeUpdate()>0;
+        }
+        return rowDeleted;
     }
 
     @Override

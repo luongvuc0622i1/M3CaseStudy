@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ShopService implements IShopService {
     private static final String FIND_ALL_SHOP = "SELECT * FROM shop;";
+
     private Connection c = ConnectionCMS.getConnection();
     @Override
     public List<Shop> fillAll() {
@@ -61,7 +62,7 @@ public class ShopService implements IShopService {
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return false;
+       return false;
     }
 
     @Override
