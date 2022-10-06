@@ -87,7 +87,7 @@ CREATE TABLE	social (
 CREATE TABLE client (
 
 	client_id 		INT 			AUTO_INCREMENT PRIMARY KEY,
-	client_code 	nVARCHAR(150) 	UNIQUE,
+	client_code 	nVARCHAR(150),
 	client_name 	nVARCHAR(150),
 	client_phone 	nVARCHAR(150) 	UNIQUE NOT NULL,
 	client_address 	nVARCHAR(150)	NOT NULL,
