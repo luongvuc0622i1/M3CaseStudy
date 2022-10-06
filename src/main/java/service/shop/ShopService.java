@@ -15,6 +15,7 @@ public class ShopService implements IShopService {
     @Override
     public List<Shop> fillAll() {
         List<Shop> shops = new ArrayList<>();
+        List<Service> services = new ArrayList<>();
         try {
             PreparedStatement ps= c.prepareStatement(FIND_ALL_SHOP);
             ResultSet rs= ps.executeQuery();

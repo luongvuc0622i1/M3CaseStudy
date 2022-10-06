@@ -1,7 +1,8 @@
-package service.admin;
+package service.client;
 
 import connection.ConnectionCMS;
 import model.Admin;
+import model.Client;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,37 +11,41 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminService implements IAdminService {
-    private static final String FIND_ALL_ADMIN = "SELECT * FROM admin;";
+public class ClientService implements IClientService {
+    private static final String FIND_ALL_CLIENT = "SELECT * FROM client;";
     private Connection c = ConnectionCMS.getConnection();
     @Override
-    public List<Admin> fillAll() {
-        List<Admin> admins = new ArrayList<>();
+    public List<Client> fillAll() {
+        List<Client> clients = new ArrayList<>();
         try {
-            PreparedStatement ps= c.prepareStatement(FIND_ALL_ADMIN);
+            PreparedStatement ps= c.prepareStatement(FIND_ALL_CLIENT);
             ResultSet rs= ps.executeQuery();
             while (rs.next()){
-                int id= rs.getInt("admin_id");
-                String name= rs.getString("admin_name");
-                String account= rs.getString("admin_account");
-                String password= rs.getString("admin_password");
-                String image= rs.getString("admin_image");
-                Admin admin = new Admin(id, name, account, password, image);
-                admins.add(admin);
+                int id = rs.getInt("client_id");
+                String code = rs.getString("client_code");
+                String name = rs.getString("client_name");
+                String phone = rs.getString("client_phone");
+                String address = rs.getString("client_address");
+                String email = rs.getString("client_email");
+                String account = rs.getString("client_account");
+                String password = rs.getString("client_password");
+                int status = rs.getInt("client_status");
+                Client client = new Client(id, code, name, phone, address, email, account, password, status);
+                clients.add(client);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return admins;
+        return clients;
     }
 
     @Override
-    public Admin findById(int id) {
+    public Client findById(int id) {
         return null;
     }
 
     @Override
-    public void insert(Admin p) {
+    public void insert(Client p) {
 
     }
 
@@ -50,7 +55,7 @@ public class AdminService implements IAdminService {
     }
 
     @Override
-    public boolean edit(int id, Admin t) throws SQLException {
+    public boolean edit(int id, Client t) throws SQLException {
         return false;
     }
 

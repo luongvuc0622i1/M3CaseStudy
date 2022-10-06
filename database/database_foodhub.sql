@@ -1,5 +1,5 @@
 
-DROP DATABASE foodhub;
+-- DROP DATABASE foodhub;
 CREATE DATABASE foodhub;
 
 USE foodhub;

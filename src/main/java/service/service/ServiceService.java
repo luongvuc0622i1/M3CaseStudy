@@ -1,7 +1,8 @@
-package service.admin;
+package service.service;
 
 import connection.ConnectionCMS;
-import model.Admin;
+import model.Client;
+import model.Service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,37 +11,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminService implements IAdminService {
-    private static final String FIND_ALL_ADMIN = "SELECT * FROM admin;";
+public class ServiceService implements IServiceService {
+    private static final String FIND_ALL_SERVICE = "SELECT * FROM service;";
     private Connection c = ConnectionCMS.getConnection();
     @Override
-    public List<Admin> fillAll() {
-        List<Admin> admins = new ArrayList<>();
+    public List<Service> fillAll() {
+        List<Service> services = new ArrayList<>();
         try {
-            PreparedStatement ps= c.prepareStatement(FIND_ALL_ADMIN);
+            PreparedStatement ps= c.prepareStatement(FIND_ALL_SERVICE);
             ResultSet rs= ps.executeQuery();
             while (rs.next()){
-                int id= rs.getInt("admin_id");
-                String name= rs.getString("admin_name");
-                String account= rs.getString("admin_account");
-                String password= rs.getString("admin_password");
-                String image= rs.getString("admin_image");
-                Admin admin = new Admin(id, name, account, password, image);
-                admins.add(admin);
+                int id = rs.getInt("client_id");
+                int price = rs.getInt("client_code");
+                String name = rs.getString("client_name");
+                String description = rs.getString("client_phone");
+                Service service = new Service(id, price, name, description);
+                services.add(service);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return admins;
+        return services;
     }
 
     @Override
-    public Admin findById(int id) {
+    public Service findById(int id) {
         return null;
     }
 
     @Override
-    public void insert(Admin p) {
+    public void insert(Service p) {
 
     }
 
@@ -50,7 +50,7 @@ public class AdminService implements IAdminService {
     }
 
     @Override
-    public boolean edit(int id, Admin t) throws SQLException {
+    public boolean edit(int id, Service t) throws SQLException {
         return false;
     }
 
