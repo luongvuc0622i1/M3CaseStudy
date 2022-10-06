@@ -23,53 +23,67 @@
 
         .card-registration .select-arrow {
             top: 13px;
-        }</style>
+        }
 
+        body {
+            background: rgb(253, 118, 45);
+        }</style>
 </head>
 <body>
-<section class="h-100" style="background: rgb(253,118,45)">
+<section class="h-100">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col">
                 <div class="card card-registration my-4">
                     <div class="row g-0">
                         <div class="col-xl-6 d-none d-xl-block">
-                             <img src="<c:url value='/img/login1.jpg'/>"
+                            <img src="<c:url value='/img/login1.jpg'/>"
                                  alt="Sample photo" class="img-fluid"
                                  style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;"/>
                         </div>
-                        <div class="col-xl-6"><img src="<c:url value='/img/favicon.png'/>" alt="logo" class="rounded float-left" width="70px"
+                        <div class="col-xl-6"><img src="<c:url value='/img/favicon.png'/>" alt="logo"
+                                                   class="rounded float-left" width="70px"
                                                    height="70px" style="margin-top: 20px;margin-left: 10px">
                             <div class="card-body p-md-5 text-black">
                                 <h3 class="mb-5 text-uppercase text-center">Đăng ký người dùng mới</h3>
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" placeholder="Nhập tên tài khoản" id="account" class="form-control form-control-md"/>
                                     <label class="form-label" for="account">Tên tài khoản</label>
+                                    <input type="text" placeholder="Nhập tên tài khoản" id="account" name="account"
+                                           class="form-control form-control-md"/>
                                 </div>
                                 <div class="form-outline mb-4">
-                                    <input type="text" placeholder="Nhập họ và tên" id="name" class="form-control form-control-md"/>
                                     <label class="form-label" for="name">Họ và tên</label>
+                                    <input type="text" placeholder="Nhập họ và tên" id="name" name="name"
+                                           class="form-control form-control-md"/>
+
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" placeholder="Nhập số điện thoại" id="phone" class="form-control form-control-md"/>
                                     <label class="form-label" for="phone">Số điện thoại</label>
+                                    <input type="text" placeholder="Nhập số điện thoại" id="phone" name="phone"
+                                           class="form-control form-control-md"/>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" placeholder="Nhập địa chỉ" id="address" class="form-control form-control-md"/>
                                     <label class="form-label" for="address">Địa chỉ</label>
+                                    <input type="text" placeholder="Nhập địa chỉ" id="address" name="address"
+                                           class="form-control form-control-md"/>
+
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" placeholder="VD: 'abc123@gmail.com'" id="email" class="form-control form-control-md"/>
                                     <label class="form-label" for="email">Email</label>
+                                    <input type="text" placeholder="VD: 'abc123@gmail.com'" id="email" name="email"
+                                           class="form-control form-control-md"/>
+
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" placeholder="Nhập mật khẩu" id="password" class="form-control form-control-md"/>
                                     <label class="form-label" for="password">Mật khẩu</label>
+                                    <input type="password" placeholder="Nhập mật khẩu" id="password" name="password"
+                                           class="form-control form-control-md"/>
+
                                 </div>
 
                                 <div class="d-flex justify-content-end pt-3">

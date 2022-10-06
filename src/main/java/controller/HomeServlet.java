@@ -40,7 +40,7 @@ public class HomeServlet extends HttpServlet {
 
     private void showHome(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/home.jsp");
 
         request.setAttribute("deals",dealService.fillAll());
         request.setAttribute("tags",tagService.fillAll());
