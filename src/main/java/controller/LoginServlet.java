@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void showLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/login.jsp");
         request.setAttribute("message","Hoặc đăng nhập bằng tài khoản của bạn");
         dispatcher.forward(request,response);
     }

@@ -11,8 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.sun.beans.introspect.PropertyInfo.Name.description;
-
 public class ServiceService implements IServiceService {
     private static final String FIND_ALL_SERVICE = "SELECT * FROM service;";
     private Connection c = ConnectionCMS.getConnection();
