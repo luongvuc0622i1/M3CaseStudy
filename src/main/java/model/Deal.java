@@ -9,6 +9,8 @@ public class Deal {
     private String code, name, description, image;
     private Date startDate, endDate;
 
+
+
     public Deal() {
     }
 

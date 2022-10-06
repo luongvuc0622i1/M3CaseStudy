@@ -34,6 +34,15 @@ public class Bill {
         this.status = status;
     }
 
+    public Bill(String code, Date date, double totalCost, int client_id, int shop_id, int status) {
+        this.code = code;
+        this.date = date;
+        this.totalCost = totalCost;
+        this.client_id = client_id;
+        this.shop_id = shop_id;
+        this.status = status;
+    }
+
     public int getId() {
         return id;
     }

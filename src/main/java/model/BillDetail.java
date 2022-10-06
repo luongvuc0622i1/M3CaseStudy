@@ -21,6 +21,14 @@ public class BillDetail {
         this.status = status;
     }
 
+    public BillDetail(int bill_id, int food_id, int quantity, double price, int status) {
+        this.bill_id = bill_id;
+        this.food_id = food_id;
+        this.quantity = quantity;
+        this.price = price;
+        this.status = status;
+    }
+
     public int getId() {
         return id;
     }
