@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TagService implements ITagService {
-    private static final String FIND_ALL_TAG = "select * from category;";
+    private static final String FIND_ALL_TAG = "select * from tags;";
     private Connection c = ConnectionCMS.getConnection();
     @Override
     public List<Tag> fillAll() {
@@ -21,10 +21,10 @@ public class TagService implements ITagService {
             PreparedStatement ps= c.prepareStatement(FIND_ALL_TAG);
             ResultSet rs= ps.executeQuery();
             while (rs.next()){
-                int id= rs.getInt(1);
-                String code= rs.getString(2);
-                String name= rs.getString(3);
-                String description= rs.getString(4);
+                int id= rs.getInt("tags_id");
+                String code= rs.getString("tags_code");
+                String name= rs.getString("tags_name");
+                String description= rs.getString("tags_description");
                 Tag tag = new Tag(id, code, name, description);
                 tags.add(tag);
             }

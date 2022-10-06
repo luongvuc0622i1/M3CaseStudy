@@ -2,6 +2,8 @@ package controller;
 
 import service.deal.DealService;
 import service.deal.IDealService;
+import service.tag.ITagService;
+import service.tag.TagService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -11,6 +13,7 @@ import java.io.IOException;
 @WebServlet(name = "HomeServlet", value = "/home")
 public class HomeServlet extends HttpServlet {
     IDealService dealService = new DealService();
+    ITagService tagService = new TagService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,7 +43,7 @@ public class HomeServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 
         request.setAttribute("deals",dealService.fillAll());
-//        request.setAttribute("tags",tagService.fillAll());
+        request.setAttribute("tags",tagService.fillAll());
 //        request.setAttribute("shops",shopService.fillAll());
 //        request.setAttribute("foods",foodService.fillAll());
 //        request.setAttribute("services",serviceService.fillAll());

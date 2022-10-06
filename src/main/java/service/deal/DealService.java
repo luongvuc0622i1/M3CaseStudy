@@ -21,11 +21,11 @@ public class DealService implements IDealService {
             PreparedStatement ps= c.prepareStatement(FIND_ALL_DEAL);
             ResultSet rs= ps.executeQuery();
             while (rs.next()){
-                int id= rs.getInt(1);
-                String code= rs.getString(2);
-                String name= rs.getString(3);
-                String description= rs.getString(4);
-                String image= rs.getString(5);
+                int id= rs.getInt("deal_id");
+                String code= rs.getString("deal_code");
+                String name= rs.getString("deal_name");
+                String description= rs.getString("deal_description");
+                String image= rs.getString("deal_image");
                 Deal deal = new Deal(id, code, name, description, image);
                 deals.add(deal);
             }
