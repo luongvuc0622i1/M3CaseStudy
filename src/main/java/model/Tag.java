@@ -29,7 +29,11 @@ public class Tag {
         this.description = description;
     }
 
-
+    public Tag(String code, String name, String description) {
+        this.code = code;
+        this.name = name;
+        this.description = description;
+    }
 
     public int getId() {
         return id;

@@ -87,7 +87,7 @@ CREATE TABLE	social (
 CREATE TABLE client (
 
 	client_id 		INT 			AUTO_INCREMENT PRIMARY KEY,
-	client_code 	nVARCHAR(150) 	UNIQUE,
+	client_code 	nVARCHAR(150),
 	client_name 	nVARCHAR(150),
 	client_phone 	nVARCHAR(150) 	UNIQUE NOT NULL,
 	client_address 	nVARCHAR(150)	NOT NULL,
@@ -191,5 +191,15 @@ VALUES
 INSERT INTO		bill_detail 	(bill_id, food_id, quantity, price, status)
 VALUES
 								(1, 1, 1, 50000, 1);
+					
+CREATE TABLE food_tags (
+	food_id			INT,
+    tags_id			INT,
+    FOREIGN KEY	(food_id)		REFERENCES		food (food_id),
+    FOREIGN KEY	(tags_id)		REFERENCES		tags (tags_id)
+);
+
+INSERT INTO food_tags (food_id, tags_id) VALUES (1,1), (1,2), (2,2);
+											
 
 -- USE foodhub;

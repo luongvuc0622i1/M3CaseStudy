@@ -97,7 +97,7 @@ public class LoginServlet extends HttpServlet {
             }
         }
         request.setAttribute("message","Sai tài khoản hoặc mật khẩu!!");
-        dispatcher = request.getRequestDispatcher("login.jsp");
+        dispatcher = request.getRequestDispatcher("/client/assets/page/login.jsp");
         dispatcher.forward(request,response);
     }
 }
