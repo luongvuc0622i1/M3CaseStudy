@@ -12,8 +12,8 @@ import java.io.IOException;
 
 @WebServlet(name = "HomeServlet", value = "/home")
 public class HomeServlet extends HttpServlet {
-    IDealService dealService = new DealService();
-    ITagService tagService = new TagService();
+    private IDealService dealService = new DealService();
+    private ITagService tagService = new TagService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,7 +1,7 @@
-package service.tag;
+package service.admin;
 
 import connection.ConnectionCMS;
-import model.Deal;
+import model.Admin;
 import model.Tag;
 
 import java.sql.Connection;
@@ -11,36 +11,37 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TagService implements ITagService {
-    private static final String FIND_ALL_TAG = "SELECT * FROM tags;";
+public class AdminService implements IAdminService {
+    private static final String FIND_ALL_ADMIN = "SELECT * FROM admin;";
     private Connection c = ConnectionCMS.getConnection();
     @Override
-    public List<Tag> fillAll() {
-        List<Tag> tags = new ArrayList<>();
+    public List<Admin> fillAll() {
+        List<Admin> admins = new ArrayList<>();
         try {
-            PreparedStatement ps= c.prepareStatement(FIND_ALL_TAG);
+            PreparedStatement ps= c.prepareStatement(FIND_ALL_ADMIN);
             ResultSet rs= ps.executeQuery();
             while (rs.next()){
-                int id= rs.getInt("tags_id");
-                String code= rs.getString("tags_code");
-                String name= rs.getString("tags_name");
-                String description= rs.getString("tags_description");
-                Tag tag = new Tag(id, code, name, description);
-                tags.add(tag);
+                int id= rs.getInt("admin_id");
+                String name= rs.getString("admin_name");
+                String account= rs.getString("admin_account");
+                String password= rs.getString("admin_password");
+                String email= rs.getString("admin_email");
+                Admin admin = new Admin(id, name, account, password, email);
+                admins.add(admin);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return tags;
+        return admins;
     }
 
     @Override
-    public Tag findById(int id) {
+    public Admin findById(int id) {
         return null;
     }
 
     @Override
-    public void insert(Tag p) {
+    public void insert(Admin p) {
 
     }
 
@@ -50,7 +51,7 @@ public class TagService implements ITagService {
     }
 
     @Override
-    public boolean edit(int id, Tag t) throws SQLException {
+    public boolean edit(int id, Admin t) throws SQLException {
         return false;
     }
 
