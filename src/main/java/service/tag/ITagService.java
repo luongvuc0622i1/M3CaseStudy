@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ITagService extends IService<Tag> {
 
-
+    List<Tag> findAllByFoodId(int id);
 
 }
