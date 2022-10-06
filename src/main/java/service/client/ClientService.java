@@ -13,6 +13,7 @@ import java.util.List;
 
 public class ClientService implements IClientService {
     private static final String FIND_ALL_CLIENT = "SELECT * FROM client;";
+    private static final String INSERT_USERS_SQL = "INSERT INTO client (client_name, client_phone, client_address, client_email, client_account, client_password) VALUES (?,?,?,?,?,?);";
     private Connection c = ConnectionCMS.getConnection();
     @Override
     public List<Client> fillAll() {
@@ -45,8 +46,19 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public void insert(Client p) {
-
+    public void insert(Client client) {
+        try {
+            PreparedStatement preparedStatement = c.prepareStatement(INSERT_USERS_SQL);
+            preparedStatement.setString(1, client.getName());
+            preparedStatement.setString(2, client.getPhone());
+            preparedStatement.setString(3, client.getAddress());
+            preparedStatement.setString(4, client.getEmail());
+            preparedStatement.setString(5, client.getAccount());
+            preparedStatement.setString(6, client.getPassword());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
     }
 
     @Override
@@ -55,7 +67,7 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public boolean edit(int id, Client t) throws SQLException {
+    public boolean edit(int id, Client client) throws SQLException {
         return false;
     }
 
