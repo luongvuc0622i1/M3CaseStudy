@@ -22,8 +22,8 @@ public class HomeServlet extends HttpServlet {
 
         try {
             switch (action) {
-                case "showByCategory":
-//                    showByCategory(request, response);
+                case "showByTag":
+//                    showByTag(request, response);
                     break;
                 default:
                     showHome(request, response);

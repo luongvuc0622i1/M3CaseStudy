@@ -1,12 +1,12 @@
 package model;
 
-public class Services {
+public class Social {
 
 private int food_id;
 private int views = 100;
 private int orderr = 200;
 
-    public Services(int food_id, int views, int orderr) {
+    public Social(int food_id, int views, int orderr) {
         this.food_id = food_id;
         this.views = views;
         this.orderr = orderr;
