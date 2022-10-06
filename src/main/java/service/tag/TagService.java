@@ -1,7 +1,8 @@
-package service.deal;
+package service.tag;
 
 import connection.ConnectionCMS;
 import model.Deal;
+import model.Tag;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,38 +11,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DealService implements IDealService {
-    private static final String FIND_ALL_DEAL = "SELECT deal_id,deal_code,deal_name,deal_description,deal_image FROM deal;";
+public class TagService implements ITagService {
+    private static final String FIND_ALL_TAG = "select * from category;";
     private Connection c = ConnectionCMS.getConnection();
-
     @Override
-    public List<Deal> fillAll() {
-        List<Deal> deals = new ArrayList<>();
+    public List<Tag> fillAll() {
+        List<Tag> tags = new ArrayList<>();
         try {
-            PreparedStatement ps= c.prepareStatement(FIND_ALL_DEAL);
+            PreparedStatement ps= c.prepareStatement(FIND_ALL_TAG);
             ResultSet rs= ps.executeQuery();
             while (rs.next()){
                 int id= rs.getInt(1);
                 String code= rs.getString(2);
                 String name= rs.getString(3);
                 String description= rs.getString(4);
-                String image= rs.getString(5);
-                Deal deal = new Deal(id, code, name, description, image);
-                deals.add(deal);
+                Tag tag = new Tag(id, code, name, description);
+                tags.add(tag);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return deals;
+        return tags;
     }
 
     @Override
-    public Deal findById(int id) {
+    public Tag findById(int id) {
         return null;
     }
 
     @Override
-    public void insert(Deal p) {
+    public void insert(Tag p) {
 
     }
 
@@ -51,7 +50,7 @@ public class DealService implements IDealService {
     }
 
     @Override
-    public boolean edit(int id, Deal t) throws SQLException {
+    public boolean edit(int id, Tag t) throws SQLException {
         return false;
     }
 

@@ -1,17 +1,16 @@
 package controller;
 
-import connection.ConnectionCMS;
+import service.deal.DealService;
+import service.deal.IDealService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 @WebServlet(name = "HomeServlet", value = "/home")
 public class HomeServlet extends HttpServlet {
-    private Connection connection = ConnectionCMS.getConnection();
+    IDealService dealService = new DealService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,8 +39,8 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 
-//        request.setAttribute("deals",dealService.fillAll());
-//        request.setAttribute("tags",categoryService.fillAll());
+        request.setAttribute("deals",dealService.fillAll());
+//        request.setAttribute("tags",tagService.fillAll());
 //        request.setAttribute("shops",shopService.fillAll());
 //        request.setAttribute("foods",foodService.fillAll());
 //        request.setAttribute("services",serviceService.fillAll());
