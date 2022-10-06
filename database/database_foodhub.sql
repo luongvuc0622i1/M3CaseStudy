@@ -89,11 +89,11 @@ CREATE TABLE client (
 	client_id 		INT 			AUTO_INCREMENT PRIMARY KEY,
 	client_code 	nVARCHAR(150) 	UNIQUE,
 	client_name 	nVARCHAR(150),
-	client_phone 	nVARCHAR(150) 	UNIQUE,
-	client_address 	nVARCHAR(150),
-	client_email 	nVARCHAR(150) 	UNIQUE,
-	client_account 	nVARCHAR(150) 	UNIQUE,
-	client_password nVARCHAR(150),
+	client_phone 	nVARCHAR(150) 	UNIQUE NOT NULL,
+	client_address 	nVARCHAR(150)	NOT NULL,
+	client_email 	nVARCHAR(150) 	UNIQUE NOT NULL,
+	client_account 	nVARCHAR(150) 	UNIQUE NOT NULL,
+	client_password nVARCHAR(150)	NOT NULL,
 	status 			bit
 );
 

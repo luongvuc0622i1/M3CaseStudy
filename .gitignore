@@ -3,6 +3,9 @@
 .idea
 src/main/java/connection/ConnectionCMS.java
 !src/**/build/
+src/main/webapp/home.jsp
+src/main/webapp/login.jsp
+src/main/webapp/adminHome.jsp
 
 # Ignore Gradle GUI config
 gradle-app.setting
