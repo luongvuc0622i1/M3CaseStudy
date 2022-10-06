@@ -29,11 +29,7 @@ public class ClientService implements IClientService {
                 String email = rs.getString("client_email");
                 String account = rs.getString("client_account");
                 String password = rs.getString("client_password");
-<<<<<<< HEAD
-                int status = rs.getInt("client_status");
-=======
                 int status = rs.getInt("status");
->>>>>>> ed5347bd4fa90529c02b9a720896e0b9a5fe6f95
                 Client client = new Client(id, code, name, phone, address, email, account, password, status);
                 clients.add(client);
             }
@@ -55,17 +51,7 @@ public class ClientService implements IClientService {
 
     @Override
     public boolean delete(int id) throws SQLException {
-<<<<<<< HEAD
-        boolean rowDeleted;
-        try(Connection connection=ConnectionCMS.getConnection();
-            PreparedStatement statement=connection.prepareStatement(DELETE_CLIENT_SQL);){
-            statement.setInt(1,id);
-            rowDeleted=statement.executeUpdate()>0;
-        }
-        return rowDeleted;
-=======
         return false;
->>>>>>> ed5347bd4fa90529c02b9a720896e0b9a5fe6f95
     }
 
     @Override
