@@ -90,11 +90,7 @@ public class LoginServlet extends HttpServlet {
         for (Client client : clients) {
             if (client.getAccount().equals(account) && client.getPassword().equals(password)) {
                 request.setAttribute("account", account);
-<<<<<<< HEAD
-                dispatcher = request.getRequestDispatcher("/client/assets/page/customer/customerHome.jsp");
-=======
-                dispatcher = request.getRequestDispatcher("/client/assets/page/customer/clientHome.jsp");
->>>>>>> 697f4a8144b0f457a07b03f5789dfe51eeaad6d6
+                dispatcher = request.getRequestDispatcher("/client/assets/page/client/clientHome.jsp");
                 LoginServlet.checkLogin = true;
                 dispatcher.forward(request, response);
                 return;
