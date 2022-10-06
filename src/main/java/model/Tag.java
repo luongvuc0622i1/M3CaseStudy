@@ -7,7 +7,14 @@ public class Tag {
     public Tag() {
     }
 
-    public Tag(int status, String code, String name, String description) {
+    public Tag(int id, String code, String name, String description) {
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.description = description;
+    }
+
+    public Tag(String code, String name, String description, int status) {
         this.status = status;
         this.code = code;
         this.name = name;
@@ -21,6 +28,8 @@ public class Tag {
         this.name = name;
         this.description = description;
     }
+
+
 
     public int getId() {
         return id;

@@ -9,7 +9,17 @@ public class Deal {
     private String code, name, description, image;
     private Date startDate, endDate;
 
+
+
     public Deal() {
+    }
+
+    public Deal(int id, String code, String name, String description, String image) {
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.description = description;
+        this.image = image;
     }
 
     public Deal(int id, int status, double percent, String code, String name, String description, String image, Date startDate, Date endDate) {
