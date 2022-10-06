@@ -238,7 +238,7 @@
                 </div>
                 <p class="text">${message}</p>
                 <div class="form-login-input">
-                    <form method="post" action="">
+                    <form method="post" action="login">
                         <div class="field-group">
                             <div class="input-group">
                                 <i class="far fa-envelope"></i>
@@ -260,7 +260,7 @@
                         <input style="font-size: 20px" class="btn btn-block btn-submit" type="submit" value="Đăng nhập">
 
                     </form>
-                    <form action="/login?action=">
+                    <form action="/login?action=create">
                         <div class="item phone">
                             <span class="fas fa-mobile-alt"></span>Đăng Ký
                         </div>

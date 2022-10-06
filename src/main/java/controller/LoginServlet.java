@@ -50,9 +50,37 @@ public class LoginServlet extends HttpServlet {
         if (action == null)
             action = "";
         switch (action) {
+            case "login":
+                login(request,response);
+                break;
+            case "createClient":
+                createClient(request,response);
+                break;
             default:
                 login(request,response);
                 break;
+        }
+    }
+
+    private void createClient(HttpServletRequest request, HttpServletResponse response) {
+        String account = request.getParameter("account");
+        LoginServlet.account = account;
+        String name = request.getParameter("name");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        Client client = new Client(name, phone, address, email, account, password);
+        clientService.insert(client);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/clientSignup.jsp");
+        request.setAttribute("message", "New customer was created");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
