@@ -2,7 +2,6 @@ package service.admin;
 
 import connection.ConnectionCMS;
 import model.Admin;
-import model.Tag;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
