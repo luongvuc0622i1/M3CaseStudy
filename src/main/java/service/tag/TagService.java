@@ -49,22 +49,66 @@ public class TagService implements ITagService {
 
     @Override
     public Tag findById(int id) {
-        return null;
+        Tag tag = null;
+        try(PreparedStatement statement = connection.prepareStatement(SELECT_TAG_BY_ID);){
+            statement.setInt(1,id);
+            System.out.println(statement);
+            ResultSet resultSet =statement.executeQuery();
+            while (resultSet.next()) {
+                String tag_code = resultSet.getString("tags_code");
+                String tag_name = resultSet.getString("tags_name");
+                String tag_description = resultSet.getString("tags_description");
+//                List<Item> itemList =
+
+                tag = new Tag(tag_code, tag_name, tag_description);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return tag;
     }
 
     @Override
-    public void insert(Tag p) {
+    public void insert(Tag tag) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(INSERT_TAG);
 
+            statement.setString(1, tag.getCode());
+            statement.setString(2, tag.getName());
+            statement.setString(3, tag.getDescription());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return false;
+        boolean rowDeleted;
+        try(
+                PreparedStatement statement = connection.prepareStatement(DELETE_TAG);){
+            statement.setInt(1,id);
+            rowDeleted = statement.executeUpdate()>0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rowDeleted;
     }
 
     @Override
-    public boolean edit(int id, Tag t) throws SQLException {
-        return false;
+    public boolean edit(int id, Tag tag) throws SQLException {
+        boolean rowUpdated;
+        try (
+                PreparedStatement statement = connection.prepareStatement(DELETE_TAG);) {
+            statement.setString(1, tag.getCode());
+            statement.setString(2, tag.getName());
+            statement.setString(3, tag.getDescription());
+            statement.setInt(4, id);
+            rowUpdated = statement.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rowUpdated;
     }
 
     @Override
