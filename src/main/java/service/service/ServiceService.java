@@ -1,8 +1,8 @@
-package service.client;
+package service.service;
 
 import connection.ConnectionCMS;
-import model.Admin;
 import model.Client;
+import model.Service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,41 +11,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientService implements IClientService {
-    private static final String FIND_ALL_CLIENT = "SELECT * FROM client;";
+public class ServiceService implements IServiceService {
+    private static final String FIND_ALL_SERVICE = "SELECT * FROM service;";
     private Connection c = ConnectionCMS.getConnection();
     @Override
-    public List<Client> fillAll() {
-        List<Client> clients = new ArrayList<>();
+    public List<Service> fillAll() {
+        List<Service> services = new ArrayList<>();
         try {
-            PreparedStatement ps= c.prepareStatement(FIND_ALL_CLIENT);
+            PreparedStatement ps= c.prepareStatement(FIND_ALL_SERVICE);
             ResultSet rs= ps.executeQuery();
             while (rs.next()){
                 int id = rs.getInt("client_id");
-                String code = rs.getString("client_code");
+                int price = rs.getInt("client_code");
                 String name = rs.getString("client_name");
-                String phone = rs.getString("client_phone");
-                String address = rs.getString("client_address");
-                String email = rs.getString("client_email");
-                String account = rs.getString("client_account");
-                String password = rs.getString("client_password");
-                int status = rs.getInt("client_status");
-                Client client = new Client(id, code, name, phone, address, email, account, password, status);
-                clients.add(client);
+                String description = rs.getString("client_phone");
+                Service service = new Service(id, price, name, description);
+                services.add(service);
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return clients;
+        return services;
     }
 
     @Override
-    public Client findById(int id) {
+    public Service findById(int id) {
         return null;
     }
 
     @Override
-    public void insert(Client p) {
+    public void insert(Service p) {
 
     }
 
@@ -55,7 +50,7 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public boolean edit(int id, Client t) throws SQLException {
+    public boolean edit(int id, Service t) throws SQLException {
         return false;
     }
 
