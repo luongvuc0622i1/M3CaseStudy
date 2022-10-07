@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet(name = "ShopServlet", value = "/foods")
@@ -38,7 +40,7 @@ public class FoodServlet extends HttpServlet {
                     showEdit(request,response);
                     break;
                 case "delete":
-                    deleteItem(request,response);
+                    deleteFood(request,response);
                     break;
                 case "find":
                     showFind(request,response);
@@ -63,17 +65,19 @@ public class FoodServlet extends HttpServlet {
         try{
             switch (action){
                 case "create":
-                    showCreate(request,response);
+                    createFood(request,response);
                     break;
                 case "edit":
-                    showEdit(request,response);
+                    editFood(request, response);
                     break;
                 case "delete":
-                    deleteItem(request,response);
+                    deleteFood(request,response);
                     break;
                 case "find":
-                    showFind(request,response);
+                    searchFood(request,response);
                     break;
+                case "listFood":
+                    listFood(request, response);
                 default:
                     listFood(request,response);
                     break;
@@ -94,9 +98,6 @@ public class FoodServlet extends HttpServlet {
 
     }
 
-    private void deleteItem(HttpServletRequest request, HttpServletResponse response) {
-
-    }
 
     private void showEdit(HttpServletRequest request, HttpServletResponse response) {
 
@@ -122,7 +123,17 @@ public class FoodServlet extends HttpServlet {
 
     }
 
-    private void createFood(HttpServletRequest request, HttpServletResponse response) {
-
+    private void createFood(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+        int shop_id = Integer.parseInt(request.getParameter("shop_id"));
+        int tag_id = Integer.parseInt(request.getParameter("tags_id"));
+        int deal_id = Integer.parseInt(request.getParameter("deal_id"));
+        String food_name = new String(request.getParameter("food_name").getBytes("iso-8859-1"),"utf-8");
+        double food_price = Double.parseDouble(request.getParameter("item_price"));
+        String food_description = new String(request.getParameter("food_description").getBytes("iso-8859-1"),"utf-8");
+        String item_image = new String(request.getParameter("item_image").getBytes("iso-8859-1"),"utf-8");
+        Time food_cooktime = Time.valueOf(request.getParameter("food_cooktime"));
+        Date food_daycreate = java.sql.Date.valueOf(request.getParameter("food_daycreate"));
+        Date food_lastupdate = java.sql.Date.valueOf(request.getParameter("food_lastupdate"));
+        int status = Integer.parseInt(request.getParameter("status"));
     }
 }
