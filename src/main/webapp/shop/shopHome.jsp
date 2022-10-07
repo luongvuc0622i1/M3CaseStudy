@@ -47,37 +47,33 @@
             </ul>
             <div id="end-top_menu">
                 <a href="#"><i class="fal fa-search"></i></a>
-                <a href="#">Tên shop đưa vào đây</a>
+                <a href="#" style="background-color: orange">abc</a>
             </div>
         </header>
     </div>
 </div>
 <div  style="margin-top: 80px;
-				/*background-image: url(images/main-banner.jpg);*/
 				background-repeat: no-repeat;
 				height: 840px;">
-    <div class="content" id="order-food">
+    <div class="content">
         <div id="left-content" >
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Active</a>
+                    <a class="nav-link active" aria-current="page" href="#">Thêm Món Ăn</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
                 </li>
             </ul>
         </div>
     </div>
     <div class="content">
         <div id="right-content">
-
-            </div>
+            abc
+        </div>
         </div>
     </div>
 <div class="clearfix"></div>
