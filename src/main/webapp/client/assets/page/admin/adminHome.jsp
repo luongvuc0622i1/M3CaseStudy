@@ -128,11 +128,10 @@
 
                         <div class="user-acc col-auto">
                             <a href="/admin?action=shopManager"><button type="button" class="btn btn-none-bg btn-login">
-<<<<<<< HEAD
-                                <span class="font14">Admin</span>
-=======
+
+
                                 <span class="font14">${account}</span>
->>>>>>> ed5347bd4fa90529c02b9a720896e0b9a5fe6f95
+
                             </button></a>
                         </div>
                         <div class="user-acc col-auto">
