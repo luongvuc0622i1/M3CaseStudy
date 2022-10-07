@@ -16,6 +16,7 @@ public class ShopService implements IShopService {
     private static final String DELETE_SHOP_SQL = "UPDATE shop SET status = 0 where shop_id =?";
     private static final String UPDATE_SHOP_SQL = "update shop set shop_code = ?, shop_name = ?, shop_email = ?, shop_phone = ?, shop_address = ?, shop_account = ?, shop_password = ? , shop_image=?, shop_open=?, shop_close=?, service_id=?,shop_description=?, status=? where shop_id = ?";
     private static final String SELECT_SHOP_BY_NAME = "update shop set shop_code = ?, shop_name = ?, shop_email = ?, shop_phone = ?, shop_address = ?, shop_account = ?, shop_password = ? , shop_image=?, shop_open=?, shop_close=?, service_id=?,shop_description=?, status=? where shop_name = ?";
+    private static final String INSERT_SHOP_SQL = "insert into shop(shop_name, shop_email, shop_phone, shop_address, shop_account, shop_password, shop_image, shop_open, shop_close, service_id, shop_description, status) values (?,?,?,?,?,?,?,?,?,?,?,?)";
 
     Connection connection = ConnectionCMS.getConnection();
     @Override
@@ -106,6 +107,27 @@ public class ShopService implements IShopService {
             preparedStatement.setString(12, shop.getDescription());
             preparedStatement.setInt(13, shop.getStatus());
             System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void insertDefaul(Shop shop) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SHOP_SQL)) {
+            preparedStatement.setString(1, shop.getName());
+            preparedStatement.setString(2, shop.getEmail());
+            preparedStatement.setString(3, shop.getPhone());
+            preparedStatement.setString(4, shop.getAddress());
+            preparedStatement.setString(5, shop.getAccount());
+            preparedStatement.setString(6, shop.getPassword());
+            preparedStatement.setString(7, shop.getImage());
+            preparedStatement.setTime(8, shop.getOpen());
+            preparedStatement.setTime(9, shop.getClose());
+            preparedStatement.setInt(10, shop.getService().getId());
+            preparedStatement.setString(11, shop.getDescription());
+            preparedStatement.setInt(12, shop.getStatus());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

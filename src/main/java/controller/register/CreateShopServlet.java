@@ -80,7 +80,7 @@ public class CreateShopServlet extends HttpServlet {
         Service service = null;
 
         Shop shop = new Shop(status, open, close, name, email, phone, address, account, password, image, description, service);
-        shopService.insert(shop);
+        shopService.insertDefaul(shop);
         request.setAttribute("account", account);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/shop/shopHome.jsp");
         request.setAttribute("message", "New shop was created");
