@@ -76,6 +76,7 @@ public class TagService implements ITagService {
             statement.setString(1, tag.getCode());
             statement.setString(2, tag.getName());
             statement.setString(3, tag.getDescription());
+            statement.setInt(4, tag.getStatus());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
