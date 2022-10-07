@@ -16,7 +16,7 @@
 <center>
   <h1>User Management</h1>
   <h2>
-    <a href="foods?action=create">List All Users</a>
+    <a href="foods?action=foods">List All Users</a>
   </h2>
 </center>
 <div align="center">
@@ -61,7 +61,7 @@
       </tr>
 
       <tr>
-        <th>food_name</th>
+        <th>food_price</th>
         <td>
           <input type="text" name="food_price" id="food_price" size="45"/>
         </td>
