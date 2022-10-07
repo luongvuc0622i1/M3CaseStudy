@@ -81,8 +81,8 @@ public class LoginServlet extends HttpServlet {
         }
         for (Shop shop : shops) {
             if (shop.getAccount().equals(account) && shop.getPassword().equals(password)) {
-                request.setAttribute("account", account);
-                dispatcher = request.getRequestDispatcher("/client/assets/page/shop/shopHome.jsp");
+                request.setAttribute("shop", shop);
+                dispatcher = request.getRequestDispatcher("/shop/shopHome.jsp");
                 LoginServlet.checkLogin = true;
                 dispatcher.forward(request, response);
                 return;
