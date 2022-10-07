@@ -4,6 +4,10 @@ import connection.ConnectionCMS;
 import model.Admin;
 import model.Service;
 import model.Shop;
+import service.admin.AdminService;
+import service.admin.IAdminService;
+import service.service.IServiceService;
+import service.service.ServiceService;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,9 +23,12 @@ public class ShopService implements IShopService {
     private static final String INSERT_SHOP_SQL = "insert into shop(shop_name, shop_email, shop_phone, shop_address, shop_account, shop_password, shop_image, shop_open, shop_close, service_id, shop_description, status) values (?,?,?,?,?,?,?,?,?,?,?,?)";
 
     Connection connection = ConnectionCMS.getConnection();
+    private IServiceService serviceService = new ServiceService();
+
     @Override
     public List<Shop> fillAll() {
         List<Shop> shops = new ArrayList<>();
+        List<Service> services = serviceService.fillAll();
         try {
             PreparedStatement ps= connection.prepareStatement(SELECT_ALL_SHOP);
             ResultSet rs= ps.executeQuery();
@@ -39,13 +46,13 @@ public class ShopService implements IShopService {
                 Time close = rs.getTime("shop_close");
                 int service_id = rs.getInt("service_id");
                 Service service = null;
+                for (Service s : services) {
+                    if (s.getId() == service_id) {
+                        service = s;
+                    }
+                }
                 String description = rs.getString("shop_description");
                 int status = rs.getInt("status");
-//                for (Service s : services) {
-//                    if (s.getId() == service_id) {
-//                        service = s;
-//                    }
-//                }
                 Shop shop  = new Shop(id, status, open, close, code, name, email, phone, address, account, password, image, description, service);
                 shops.add(shop);
             }
@@ -58,6 +65,7 @@ public class ShopService implements IShopService {
     @Override
     public Shop findById(int id) {
         Shop shop = null;
+        List<Service> services = serviceService.fillAll();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SHOP_BY_ID)) {
             preparedStatement.setInt(1, id);
             System.out.println(preparedStatement);
@@ -77,6 +85,11 @@ public class ShopService implements IShopService {
                 Time close = rs.getTime("shop_close");
                 int service_id = rs.getInt("service_id");
                 Service service = null;
+                for (Service s : services) {
+                    if (s.getId() == service_id) {
+                        service = s;
+                    }
+                }
                 String description = rs.getString("shop_description");
                 int status = rs.getInt("status");
                 shop = new Shop(status, open, close, code, name, email, phone, address, account, password, image, description, service);
@@ -188,6 +201,7 @@ public class ShopService implements IShopService {
     @Override
     public Shop selectShopByName(String name_shop) {
         Shop shop = null;
+        List<Service> services = serviceService.fillAll();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SHOP_BY_NAME)) {
             preparedStatement.setString(1, name_shop);
             System.out.println(preparedStatement);
@@ -206,6 +220,11 @@ public class ShopService implements IShopService {
                 Time close = rs.getTime("shop_close");
                 int service_id = rs.getInt("service_id");
                 Service service = null;
+                for (Service s : services) {
+                    if (s.getId() == service_id) {
+                        service = s;
+                    }
+                }
                 String description = rs.getString("shop_description");
                 int status = rs.getInt("status");
                 shop = new Shop(status, open, close, code, name, email, phone, address, account, password, image, description, service);
