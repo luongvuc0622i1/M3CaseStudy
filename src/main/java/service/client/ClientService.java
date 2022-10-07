@@ -4,10 +4,7 @@ import connection.ConnectionCMS;
 import model.Admin;
 import model.Client;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,17 +17,17 @@ public class ClientService implements IClientService {
         List<Client> clients = new ArrayList<>();
         try {
             PreparedStatement ps= c.prepareStatement(FIND_ALL_CLIENT);
-            ResultSet rs= ps.executeQuery();
-            while (rs.next()){
-                int id = rs.getInt("client_id");
-                String code = rs.getString("client_code");
-                String name = rs.getString("client_name");
-                String phone = rs.getString("client_phone");
-                String address = rs.getString("client_address");
-                String email = rs.getString("client_email");
-                String account = rs.getString("client_account");
-                String password = rs.getString("client_password");
-                int status = rs.getInt("client_status");
+            ResultSet resultSet= ps.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("client_id");
+                String code = resultSet.getString("client_code");
+                String name = resultSet.getString("client_name");
+                String phone = resultSet.getString("client_phone");
+                String address = resultSet.getString("client_address");
+                String email = resultSet.getString("client_email");
+                String account = resultSet.getString("client_account");
+                String password = resultSet.getString("client_password");
+                int status = resultSet.getInt("client_status");
                 Client client = new Client(id, code, name, phone, address, email, account, password, status);
                 clients.add(client);
             }
@@ -42,12 +39,47 @@ public class ClientService implements IClientService {
 
     @Override
     public Client findById(int id) {
-        return null;
+        Client client=null;
+        String query="{CALL get_client_id}";
+        try(Connection connection=ConnectionCMS.getConnection();
+        CallableStatement callableStatement=connection.prepareCall(query);){
+            callableStatement.setInt(1,id);
+            ResultSet resultSet=callableStatement.executeQuery();
+            while (resultSet.next()){
+                String code = resultSet.getString("client_code");
+                String name = resultSet.getString("client_name");
+                String phone = resultSet.getString("client_phone");
+                String address = resultSet.getString("client_address");
+                String email = resultSet.getString("client_email");
+                String account = resultSet.getString("client_account");
+                String password = resultSet.getString("client_password");
+                int status = resultSet.getInt("client_status");
+                client = new Client(id, code, name, phone, address, email, account, password, status);
+            }
+        }catch (SQLException e){
+            printSQLException(e);
+        }
+        return client;
     }
-
+    
     @Override
     public void insert(Client p) {
+        String query ="{CALL insert_client(?,?,?,?,?,?,?,?)}";
+        try(Connection connection=ConnectionCMS.getConnection();
+            CallableStatement callableStatement=connection.prepareCall(query);){
+            callableStatement.setString(1,p.getCode());
+            callableStatement.setString(2,p.getName());
+            callableStatement.setString(3,p.getAccount());
+            callableStatement.setString(4,p.getPassword());
+            callableStatement.setString(5,p.getAddress());
+            callableStatement.setString(6,p.getEmail());
+            callableStatement.setString(7,p.getPhone());
+            callableStatement.setInt(8,p.getStatus());
+            callableStatement.executeUpdate();
 
+        }catch (SQLException e){
+            printSQLException(e);
+        }
     }
 
     @Override
