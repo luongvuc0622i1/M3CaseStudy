@@ -56,6 +56,10 @@
 </head>
 
 <body class="portal" style="font-size:calc(8px + 0.5vw);">
+<form action="/customers" method="post">
+    <input type="text" value="${customer}" name ="account">
+    <input size="300px" type="submit">
+</form>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZSQTX3" height="0" width="0"
                   style="display:none;visibility:hidden"></iframe></noscript>
@@ -122,17 +126,13 @@
                             <a class="nav-item " href="https://shopeefood.vn/ho-chi-minh/fmcg">Siêu thị</a>
                             <a class="nav-item " href="https://shopeefood.vn/ho-chi-minh/medicine">Thuốc</a>
                             <a class="nav-item " href="https://shopeefood.vn/ho-chi-minh/pets">Thú
-                            cưng</a>
+                                cưng</a>
                         </div>
 
 
                         <div class="user-acc col-auto">
-                            <a href="/admin?action=shopManager"><button type="button" class="btn btn-none-bg btn-login">
-<<<<<<< HEAD
-                                <span class="font14">Admin</span>
-=======
+                            <a href="/customers"><button type="button" class="btn btn-none-bg btn-login">
                                 <span class="font14">${account}</span>
->>>>>>> ed5347bd4fa90529c02b9a720896e0b9a5fe6f95
                             </button></a>
                         </div>
                         <div class="user-acc col-auto">
@@ -245,13 +245,13 @@
                         </div>
                     </div>
                     <div class="category-list-filter">
-                        <a href="/ha-noi/danh-sach-dia-diem-giao-tan-noi">
+                        <a href="https://shopeefood.vn/ha-noi/danh-sach-dia-diem-phuc-vu-food-giao-tan-noi">
                             <span class="category-item ">All</span>
                         </a>
 
                         <%--            Show Category_name--%>
                         <c:forEach var="category" items="${categories}">
-                            <a href="categories?action=view&id=${category.category_id}">
+                            <a href="https://shopeefood.vn/ha-noi/danh-sach-dia-diem-phuc-vu-food-giao-tan-noi">
                                 <span class="category-item ">${category.category_name}</span>
                             </a>
                         </c:forEach>
@@ -347,9 +347,10 @@
                                 </div>
                             </div>
                             <%--              List shops foreach--%>
+
                             <c:forEach var="shops" items="${shops}">
-                                <div class="item-restaurant"><a class="item-content"
-                                                                href="shopItems?id=${shops.shop_id}">
+                                <div class="item-restaurant"><a  class="item-content"
+                                                                href="/customers?action=showShopItem&id=${shops.shop_id}">
                                     <div class="img-restaurant"><img
                                             src="img/${shops.shop_image}"
                                             class=""></div>
@@ -435,16 +436,22 @@
                                 </div>
                             </div>
                             <div>
-                                <%--                list deal--%>
-                                <c:forEach var="deals" items="${deals}">
+                                <%--              List shops foreach--%>
+                                <c:forEach var="shops" items="${shops}">
                                     <div class="item-restaurant"><a  class="item-content"
-                                                                     href="dealShops?id=${deals.deal_id}">
+                                                                     href="shopItems?id=${shops.shop_id}">
                                         <div class="img-restaurant"><img
-                                                src="img/${deals.deal_image}"
+                                                src="img/${shops.shop_image}"
                                                 class=""></div>
                                         <div class="info-restaurant">
                                             <div class="info-basic-res">
-                                                <h4 class="name-res" title="${deals.deal_name}">${deals.deal_name}</h4>
+                                                <h4 class="name-res" title="${shops.shop_name}">${shops.shop_name}</h4>
+                                                <div class="address-res" title="${shops.shop_address}">${shops.shop_address}</div>
+                                            </div>
+                                            <p class="content-promotion"><i class="fas fa-tag"></i>Giảm 100%</p>
+                                            <div class="opentime-status"><span class="stt online" title="Mở cửa"
+                                                                               style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+
                                             </div>
                                         </div>
                                     </a></div>
@@ -916,7 +923,7 @@
                     </a>
                         <ul class="seo-footer-link__sub-item-wrapper"></ul>
                     </div>
-                    <div class="seo-footer-link__item"><a href="">
+                    <div class="seo-footer-link__item"><a href="#">
                         <p class="seo-footer-link__title">Thực phẩm HN</p>
                     </a>
                         <ul class="seo-footer-link__sub-item-wrapper"></ul>
@@ -1015,6 +1022,7 @@
             <div class="modal-backdrop fade under-modal show"></div>
         </div>
     </div>
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

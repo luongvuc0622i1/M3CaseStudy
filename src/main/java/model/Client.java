@@ -27,15 +27,13 @@ public class Client {
         this.status = status;
     }
 
-    public Client(String code, String name, String phone, String address, String email, String account, String password, int status) {
-        this.code = code;
+    public Client(String name, String phone, String address, String email, String account, String password) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.email = email;
         this.account = account;
         this.password = password;
-        this.status = status;
     }
 
     public int getId() {

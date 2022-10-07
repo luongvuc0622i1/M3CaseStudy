@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
     private IAdminService adminService = new AdminService();
     private IShopService shopService = new ShopService();
     private IClientService clientService = new ClientService();
-    private static String account ="";
+    public static String account ="";
     private static boolean checkLogin = false;
 
     @Override
@@ -50,6 +50,9 @@ public class LoginServlet extends HttpServlet {
         if (action == null)
             action = "";
         switch (action) {
+            case "login":
+                login(request,response);
+                break;
             default:
                 login(request,response);
                 break;

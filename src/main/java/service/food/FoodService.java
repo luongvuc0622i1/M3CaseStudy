@@ -1,6 +1,12 @@
 package service.food;
 
 import connection.ConnectionCMS;
+<<<<<<< HEAD
+
+import java.sql.Connection;
+
+public class FoodService {
+=======
 import model.Food;
 import model.Tag;
 import service.tag.TagService;
@@ -11,11 +17,15 @@ import java.util.Date;
 import java.util.List;
 
 public class FoodService implements IFoodService{
+>>>>>>> ed5347bd4fa90529c02b9a720896e0b9a5fe6f95
 
     private static final String SELECT_FOOD_BY_ID_SHOP = "SELECT * FROM food WHERE shop_id=?";
     private static final String SELECT_FOOD_BY_ID_DEAL = "SELECT * FROM food WHERE deal_id=?";
     private static final String SELECT_FOOD_BY_ID_TAGS = "SELECT * FROM food WHERE tags_id=?";
     Connection connection = ConnectionCMS.getConnection();
+<<<<<<< HEAD
+
+=======
     TagService tagService = new TagService();
 
     private static final String SELECT_ALL_FOOD = "SELECT * FROM food WHERE status = 1;";
@@ -128,6 +138,7 @@ public class FoodService implements IFoodService{
     public List<Food> findAllFoodByIdDeal(int id) {
         return null;
     }
+>>>>>>> ed5347bd4fa90529c02b9a720896e0b9a5fe6f95
 
     @Override
     public List<Food> findAllFoodByIdTag(int id) {
