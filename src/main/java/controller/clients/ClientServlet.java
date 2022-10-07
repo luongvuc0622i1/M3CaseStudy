@@ -1,8 +1,7 @@
 package controller.clients;
 
 import connection.ConnectionCMS;
-import controller.HomeServlet;
-import service.client.ClientService;
+import controller.home.HomeServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 @WebServlet(name="ClientServlet",value = "/homeClient")
 public class ClientServlet extends HttpServlet {

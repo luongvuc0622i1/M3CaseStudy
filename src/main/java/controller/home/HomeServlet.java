@@ -1,4 +1,4 @@
-package controller;
+package controller.home;
 
 import service.deal.DealService;
 import service.deal.IDealService;

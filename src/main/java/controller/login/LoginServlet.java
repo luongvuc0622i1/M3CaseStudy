@@ -1,4 +1,4 @@
-package controller;
+package controller.login;
 
 import model.Admin;
 import model.Client;
@@ -7,8 +7,6 @@ import service.admin.AdminService;
 import service.admin.IAdminService;
 import service.client.ClientService;
 import service.client.IClientService;
-import service.deal.DealService;
-import service.deal.IDealService;
 import service.shop.IShopService;
 import service.shop.ShopService;
 
