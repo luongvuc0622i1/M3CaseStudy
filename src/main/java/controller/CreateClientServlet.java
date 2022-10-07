@@ -65,7 +65,7 @@ public class CreateClientServlet extends HttpServlet {
         clientService.insert(client);
         request.setAttribute("account", account);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/client/clientHome.jsp");
-//        request.setAttribute("message", "New customer was created");
+        request.setAttribute("message", "New client was created");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {

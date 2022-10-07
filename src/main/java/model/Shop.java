@@ -44,7 +44,20 @@ public class Shop {
         this.service = service;
     }
 
-
+    public Shop(int status, Time open, Time close, String name, String email, String phone, String address, String account, String password, String image, String description, Service service) {
+        this.status = status;
+        this.open = open;
+        this.close = close;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.account = account;
+        this.password = password;
+        this.image = image;
+        this.description = description;
+        this.service = service;
+    }
 
     public int getId() {
         return id;
