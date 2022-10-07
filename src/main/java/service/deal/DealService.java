@@ -14,9 +14,9 @@ import java.util.List;
 public class DealService implements IDealService {
     private static final String FIND_ALL_DEAL = "SELECT deal_id,deal_code,deal_name,deal_percent,deal_startDate, deal_endDate, deal_description,deal_image, status FROM deal;";
     private static final String FIND_BY_ID = "SELECT * FROM DEAL WHERE deal_id=?";
-    private static final String INSERT_DEAL = "INSERT INTO deal(deal_id,deal_code,deal_name,deal_percent,deal_startDate, deal_endDate, deal_description,deal_image, status) VALUE (?,?,?,?,?,?,?,?,?)";
+    private static final String INSERT_DEAL = "INSERT INTO deal(deal_code,deal_name,deal_percent,deal_startDate, deal_endDate, deal_description,deal_image, status) VALUE (?,?,?,?,?,?,?,?)";
     private static final String DELETE_DEAL = "DELETE FROM deal WHERE deal_id=?";
-    private static final String UPDATE_DEAL = "UPDATE DEAL SET deal_id=?,deal_code=?,deal_name=?,deal_percent=?,deal_startDate=?, deal_endDate=?, deal_description=?,deal_image=?, status=?";
+    private static final String UPDATE_DEAL = "UPDATE DEAL SET deal_code=?,deal_name=?,deal_percent=?,deal_startDate=?, deal_endDate=?, deal_description=?,deal_image=?, status=?";
     Connection connection= ConnectionCMS.getConnection();
     @Override
     public List<Deal> fillAll() {
@@ -72,8 +72,8 @@ public class DealService implements IDealService {
             ptmt.setDate(4, (java.sql.Date) p.getStartDate());
             ptmt.setDate(5, (java.sql.Date) p.getEndDate());
             ptmt.setString(6,p.getDescription());
-            ptmt.setString(6,p.getImage());
-            ptmt.setInt(7,p.getStatus());
+            ptmt.setString(7,p.getImage());
+            ptmt.setInt(8,p.getStatus());
             System.out.println(ptmt);
             ptmt.executeUpdate();
         } catch (SQLException e) {
@@ -105,8 +105,8 @@ public class DealService implements IDealService {
             ptmt.setDate(4, (java.sql.Date) p.getStartDate());
             ptmt.setDate(5, (java.sql.Date) p.getEndDate());
             ptmt.setString(6,p.getDescription());
-            ptmt.setString(6,p.getImage());
-            ptmt.setInt(7,p.getStatus());
+            ptmt.setString(7,p.getImage());
+            ptmt.setInt(8,p.getStatus());
             update= ptmt.executeUpdate()>0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
