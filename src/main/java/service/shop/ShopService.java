@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShopService implements IShopService {
-    private static final String ADD_SHOP_SQL = "insert into shop(shop_code, shop_name, shop_email, shop_phone, shop_address, shop_account, shop_password,shop_image) values (?, ?, ?, ?, ?, ?, ?,?)";
+    private static final String ADD_SHOP_SQL = "insert into shop(shop_code, shop_name, shop_email, shop_phone, shop_address, shop_account, shop_password,shop_image,shop_open,shop_close,service_id,shop_description,status) values (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)";
     private static final String SELECT_SHOP_BY_ID = "select * from shop where shop_id = ?";
     private static final String SELECT_ALL_SHOP = "select * from shop where status = 1";
     private static final String DELETE_SHOP_SQL = "UPDATE shop SET status = 0 where shop_id =?";
-    private static final String UPDATE_SHOP_SQL = "update shop set shop_code = ?, shop_name = ?, shop_email = ?, shop_phone = ?, shop_address = ?, shop_account = ?, shop_password = ? , shop_image=? where shop_id = ?";
-    private static final String SELECT_SHOP_BY_NAME = "update shop set shop_code = ?, shop_name = ?, shop_email = ?, shop_phone = ?, shop_address = ?, shop_account = ?, shop_password = ? , shop_image=? where shop_name = ?";
+    private static final String UPDATE_SHOP_SQL = "update shop set shop_code = ?, shop_name = ?, shop_email = ?, shop_phone = ?, shop_address = ?, shop_account = ?, shop_password = ? , shop_image=?, shop_open=?, shop_close=?, service_id=?,shop_description=?, status=? where shop_id = ?";
+    private static final String SELECT_SHOP_BY_NAME = "update shop set shop_code = ?, shop_name = ?, shop_email = ?, shop_phone = ?, shop_address = ?, shop_account = ?, shop_password = ? , shop_image=?, shop_open=?, shop_close=?, service_id=?,shop_description=?, status=? where shop_name = ?";
 
     Connection connection = ConnectionCMS.getConnection();
     @Override
@@ -114,12 +114,37 @@ public class ShopService implements IShopService {
 
     @Override
     public boolean delete(int id) throws SQLException {
-       return false;
+        boolean rowDeleted;
+        try (PreparedStatement statement = connection.prepareStatement(DELETE_SHOP_SQL)) {
+            statement.setInt(1, id);
+            rowDeleted = statement.executeUpdate() > 0;
+        }
+        return rowDeleted;
     }
 
     @Override
-    public boolean edit(int id, Shop t) throws SQLException {
-        return false;
+    public boolean edit(int id, Shop shop) throws SQLException {
+        boolean rowUpdated;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SHOP_SQL)) {
+//            statement.setInt(1, shop.getShop_id());
+            preparedStatement.setString(1, shop.getCode());
+            preparedStatement.setString(2, shop.getName());
+            preparedStatement.setString(3, shop.getEmail());
+            preparedStatement.setString(4, shop.getPhone());
+            preparedStatement.setString(5, shop.getAddress());
+            preparedStatement.setString(6, shop.getAccount());
+            preparedStatement.setString(7, shop.getPassword());
+            preparedStatement.setString(8, shop.getImage());
+            preparedStatement.setTime(9, shop.getOpen());
+            preparedStatement.setTime(10, shop.getClose());
+            preparedStatement.setInt(11, shop.getServiceId());
+            preparedStatement.setString(12, shop.getDescription());
+            preparedStatement.setInt(13, shop.getStatus());
+            preparedStatement.setInt(14,id);
+
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        }
+        return rowUpdated;
     }
 
     private void printSQLException(SQLException ex) {
@@ -139,7 +164,34 @@ public class ShopService implements IShopService {
     }
 
     @Override
-    public Shop selectShopByName(String name) {
-        return null;
+    public Shop selectShopByName(String name_shop) {
+        Shop shop = null;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SHOP_BY_NAME)) {
+            preparedStatement.setString(1, name_shop);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                String code = rs.getString("shop_code");
+                String name = rs.getString("shop_name");
+                String email = rs.getString("shop_email");
+                String phone = rs.getString("shop_phone");
+                String address = rs.getString("shop_address");
+                String account = rs.getString("shop_account");
+                String password = rs.getString("shop_password");
+                String image = rs.getString("shop_image");
+                Time open = rs.getTime("shop_open");
+                Time close = rs.getTime("shop_close");
+                int service_id = rs.getInt("service_id");
+                Service service = null;
+                String description = rs.getString("shop_description");
+                int status = rs.getInt("status");
+                shop = new Shop(status, open, close, code, name, email, phone, address, account, password, image, description, service);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return shop;
     }
+
 }
