@@ -70,19 +70,20 @@ public class CreateShopServlet extends HttpServlet {
         String address = request.getParameter("address");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        int oHour = parseInt(request.getParameter("open"));
-        Time open = new Time(oHour, 00, 00);
-        int cHour = parseInt(request.getParameter("close"));
-        Time close = new Time(cHour, 00, 00);
-        String image = request.getParameter("image");
+        String sOpen = request.getParameter("openTime");
+        Time open = Time.valueOf(sOpen);
+        String sClose = request.getParameter("closeTime");
+        Time close = Time.valueOf(sClose);
+        String image = request.getParameter("shopImage");
         String description = request.getParameter("description");
         int status = CREATE_STATUS;
-        Service service = null;
+        Service service = new Service(1, 1, "dfs", "dsfd");
+
 
         Shop shop = new Shop(status, open, close, name, email, phone, address, account, password, image, description, service);
         shopService.insertDefaul(shop);
         request.setAttribute("account", account);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/shop/shopHome.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/client/clientHome.jsp");
         request.setAttribute("message", "New shop was created");
         try {
             dispatcher.forward(request, response);

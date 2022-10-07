@@ -65,7 +65,7 @@
                                                    height="70px" style="margin-top: 20px;margin-left: 10px">
                             <div class="card-body p-md-5 text-black">
                                 <h3 class="mb-5 text-uppercase text-center">Đăng ký cửa hàng mới</h3>
-                                <form method="post" action="/createClient?action=submit">
+                                <form method="post" action="/createShop?action=submit">
                                     <fieldset>
                                         <legend>Thông tin tài khoản</legend>
                                         <div class="form-outline mb-4">
