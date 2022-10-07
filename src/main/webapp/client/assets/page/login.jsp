@@ -23664,11 +23664,11 @@
                 </div>
                 <p class="text">${message}</p>
                 <div class="form-login-input">
-<<<<<<< HEAD
+
                     <form method="post" action="login">
-=======
+
                     <form method="post" action="/login?action=login">
->>>>>>> 53f25d69ce9a364f82c3f1c85c19b2378c3449ae
+
                         <div class="field-group">
                             <div class="input-group">
                                 <i class="far fa-envelope"></i>
@@ -23692,7 +23692,7 @@
                         <input style="font-size: 20px" class="btn btn-block btn-submit" type="submit" value="Đăng nhập">
 
                     </form>
-<<<<<<< HEAD
+
                     <form action="/login?action=create">
                         <div class="item phone">
                             <span class="fas fa-mobile-alt"></span>Đăng Ký
@@ -23701,12 +23701,10 @@
 
 
 
-=======
                     <p class="text">Chưa có tài khoản? Hãy đăng ký tại đây. </p>
                     <form action="/login?action=createClient">
                         <input style="font-size: 20px;float: left" class="btn btn-block btn-info" type="submit"
                                value="Đăng Ký Người Dùng">
->>>>>>> 53f25d69ce9a364f82c3f1c85c19b2378c3449ae
 
                     </form>
                     </form>
