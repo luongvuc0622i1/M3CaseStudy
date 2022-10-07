@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 public class BillService implements IBill{
+    Bill bill;
     private static final String INSERT_BILL_SQL = "INSERT INTO bill (fool_code,bill_date,bill_totalCost,client_id,shop_id,status) VALUES (?, ?, ?,?,?);";
 
     private static final String FIND_ALL_BILL = "SELECT * FROM bill;";
@@ -30,11 +31,11 @@ public class BillService implements IBill{
                 String code = resultSet.getString("bill_code");
                 Date date = resultSet.getDate("bill_date");
                 Double totalCost = resultSet.getDouble("bill_totalCost");
-//                Client clientId = resultSet.getInt("id");
-//                Shop shopId = resultSet.getInt("shop");
+                int clientId = resultSet.getInt("id");
+                int shopId = resultSet.getInt("id");
                 int status = resultSet.getInt("client_status");
-//                Bill bill = new Bill(code, (java.sql.Date) date,totalCost,clientId,shopId, status);
-//                bills.add(bill);
+                Bill bill = new Bill(code, (java.sql.Date) date,totalCost,clientId,shopId, status);
+                bills.add(bill);
             }
         } catch (SQLException e) {
             printSQLException(e);

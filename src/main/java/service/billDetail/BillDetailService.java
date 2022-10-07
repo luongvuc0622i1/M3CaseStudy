@@ -26,11 +26,11 @@ public class BillDetailService implements IBillDetail{
             while (resultSet.next()){
                 int quantity = resultSet.getInt("quantity");
                 Double price = resultSet.getDouble("price");
-//                int foodId = resultSet.getInt("fool");
-//                int billId = resultSet.getInt("bill");
+                int foodId = resultSet.getInt("id");
+                int billId = resultSet.getInt("id");
                 int status = resultSet.getInt("client_status");
-//                BillDetail billDetail =new BillDetail (billId,foodId,quantity,price, status);
-//                billDetailList.add(billDetail);
+                BillDetail billDetail =new BillDetail (billId,foodId,quantity,price, status);
+                billDetailList.add(billDetail);
             }
         } catch (SQLException e) {
             printSQLException(e);

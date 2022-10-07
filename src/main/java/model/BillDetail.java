@@ -21,9 +21,9 @@ public class BillDetail {
         this.status = status;
     }
 
-    public BillDetail(Bill bill, Food food, int quantity, double price, int status) {
-        this.bill = bill;
-        this.food = food;
+    public BillDetail(int billId, int foodId, int quantity, double price, int status) {
+        this.bill.setId(billId);
+        this.food.setId(foodId);
         this.quantity = quantity;
         this.price = price;
         this.status = status;

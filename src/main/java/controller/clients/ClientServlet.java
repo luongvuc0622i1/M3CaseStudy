@@ -81,11 +81,11 @@ public class ClientServlet extends HttpServlet {
         String code = request.getParameter("bill_code");
         Date date = Date.valueOf(request.getParameter("bill_date"));
         Double totalCost= Double.valueOf(request.getParameter("totalCost"));
-        int client_id= Integer.parseInt(request.getParameter("client_id"));
-        int shop_id= Integer.parseInt(request.getParameter("shop_id"));
+        int client_id= Integer.parseInt(request.getParameter("id"));
+        int shop_id= Integer.parseInt(request.getParameter("id"));
         int status= Integer.parseInt(request.getParameter("bill_status"));
-//        Bill bill=new Bill(code,date,totalCost,client_id,shop_id,status);
-//        billService.insert(bill);
+        Bill bill=new Bill(code,date,totalCost,client_id,shop_id,status);
+        billService.insert(bill);
         RequestDispatcher requestDispatcher=request.getRequestDispatcher("client/assets");
         requestDispatcher.forward(request,response);
     }
