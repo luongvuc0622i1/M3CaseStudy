@@ -124,10 +124,10 @@ import java.util.List;
                 statement.setString(6, food.getDescription());
                 statement.setString(7, food.getImage());
                 statement.setTime(8, food.getCookTime());
-                statement.setDate(10, food.getDayCreate());
-                statement.setDate(11, food.getLastUpdate());
-                statement.setInt(12, food.getStatus());
-                statement.setInt(13, id);
+                statement.setDate(9, food.getDayCreate());
+                statement.setDate(10, food.getLastUpdate());
+                statement.setInt(11, food.getStatus());
+                statement.setInt(12, id);
                 rowUpdated = statement.executeUpdate() > 0;
 
 
@@ -150,9 +150,9 @@ import java.util.List;
                 statement.setString(6, food.getDescription());
                 statement.setString(7, food.getImage());
                 statement.setTime(8, food.getCookTime());
-                statement.setDate(10, food.getDayCreate());
-                statement.setDate(11, food.getLastUpdate());
-                statement.setInt(12, food.getStatus());
+                statement.setDate(9, food.getDayCreate());
+                statement.setDate(10, food.getLastUpdate());
+                statement.setInt(11, food.getStatus());
                 statement.executeUpdate();
                 System.out.println(statement);
             } catch (SQLException e) {
@@ -174,9 +174,9 @@ import java.util.List;
                 statement.setString(6, food.getDescription());
                 statement.setString(7, food.getImage());
                 statement.setTime(8, food.getCookTime());
-                statement.setDate(10, food.getDayCreate());
-                statement.setDate(11, food.getLastUpdate());
-                statement.setInt(12, food.getStatus());
+                statement.setDate(9, food.getDayCreate());
+                statement.setDate(10, food.getLastUpdate());
+                statement.setInt(11, food.getStatus());
                 statement.executeUpdate();
 
                 ResultSet resultSet = statement.getGeneratedKeys();
