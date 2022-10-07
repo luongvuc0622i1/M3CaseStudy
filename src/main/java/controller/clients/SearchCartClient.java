@@ -11,11 +11,10 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-<<<<<<< HEAD
+
 @WebServlet(name = "SearchClient",value = "/search")
-=======
-@WebServlet(name = "SearchClient",value = "/home")
->>>>>>> minhhuy
+
+
 public class SearchCartClient extends ClientServlet {
     private Connection connection= ConnectionCMS.getConnection();
     private HomeServlet homeServlet;
