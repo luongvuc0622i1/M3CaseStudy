@@ -12,8 +12,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-@WebServlet(name = "SearchClient",value = "/search")
 
+@WebServlet(name = "SearchClient",value = "/search")
 
 public class SearchCartClient extends ClientServlet {
     private Connection connection= ConnectionCMS.getConnection();
