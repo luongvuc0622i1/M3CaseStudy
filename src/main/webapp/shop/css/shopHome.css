@@ -129,10 +129,11 @@ header h1{
 }
 #left-content{
     position: fixed;
-    background-color: #6cc942;
-    width:20%;
+    /*background-color: #6cc942;*/
+    width:15%;
     float: left;
-    margin-top: 60px;
+    margin-top: 30px;
+
 }
 #right-content{
     background-color: #0ccaff;
