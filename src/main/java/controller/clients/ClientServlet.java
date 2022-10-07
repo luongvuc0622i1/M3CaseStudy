@@ -1,6 +1,7 @@
-package controller;
+package controller.clients;
 
 import connection.ConnectionCMS;
+import controller.HomeServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +12,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet(name="ClientServlet",value = "/client")
+@WebServlet(name="ClientServlet",value = "/homeClient")
 public class ClientServlet extends HttpServlet {
     private Connection connection= ConnectionCMS.getConnection();
     private HomeServlet homeServlet;
@@ -19,28 +20,16 @@ public class ClientServlet extends HttpServlet {
         homeServlet=new HomeServlet();}
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         String action =request.getParameter("action");
-        String add=request.getParameter("add");
         if(action==null){
             action="";
         }
 //        try{
             switch (action){
                 case "search":
+                    //searchShop
                     break;
                 case "add":
-
-                    switch (add){
-                        case "more":
-                            break;
-                        case "edit":
-
-                            break;
-                        case "delete":
-
-                            break;
-                        default:
-                            break;
-                    }
+                    //addKet;
                     break;
             }
 //        }catch (SQLException e){
@@ -57,10 +46,16 @@ public class ClientServlet extends HttpServlet {
             switch (action){
                 case "view":
                     break;
+                case "search":
+                    //showSearchFrom;
+                    break;
+                case "add":
+                    //showAddFrom;
             }
         }
 //        catch (SQLException e){
 //            throw new ServletException(e);
 //        }
 //    }
+
 }
