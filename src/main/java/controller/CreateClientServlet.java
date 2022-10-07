@@ -12,6 +12,7 @@ import java.io.IOException;
 
 @WebServlet(name = "CreateClientServlet", value = "/createClient")
 public class CreateClientServlet extends HttpServlet {
+    private static final int CREATE_STATUS = 1;
     private IClientService clientService = new ClientService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,8 +62,9 @@ public class CreateClientServlet extends HttpServlet {
         String address = request.getParameter("address");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        int status = CREATE_STATUS;
 
-        Client client = new Client(name, phone, address, email, account, password);
+        Client client = new Client(name, phone, address, email, account, password, status);
         clientService.insert(client);
         request.setAttribute("account", account);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/client/clientHome.jsp");
