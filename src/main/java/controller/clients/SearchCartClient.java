@@ -10,12 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> aafba748453f30bda0f5a9dd02fa37ca71e298d5
 
 <<<<<<< HEAD
 @WebServlet(name = "SearchClient",value = "/search")
+<<<<<<< HEAD
 =======
 @WebServlet(name = "SearchClient",value = "/home")
 >>>>>>> minhhuy
+=======
+
+>>>>>>> aafba748453f30bda0f5a9dd02fa37ca71e298d5
 public class SearchCartClient extends ClientServlet {
     private Connection connection= ConnectionCMS.getConnection();
     private HomeServlet homeServlet;
