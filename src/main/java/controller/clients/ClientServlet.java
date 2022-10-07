@@ -2,6 +2,7 @@ package controller.clients;
 
 import connection.ConnectionCMS;
 import controller.HomeServlet;
+import service.client.ClientService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,8 +17,12 @@ import java.sql.SQLException;
 public class ClientServlet extends HttpServlet {
     private Connection connection= ConnectionCMS.getConnection();
     private HomeServlet homeServlet;
+    private SearchCartClient searchCartClient=new SearchCartClient();
+
+
     public void init(){
-        homeServlet=new HomeServlet();}
+        homeServlet=new HomeServlet();
+    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         String action =request.getParameter("action");
         if(action==null){
@@ -26,10 +31,11 @@ public class ClientServlet extends HttpServlet {
 //        try{
             switch (action){
                 case "search":
-                    //searchShop
+                    searchCartClient.doGet(request,response);
+                    //searchHome
                     break;
-                case "add":
-                    //addKet;
+                case "addCart":
+                    //addCart;
                     break;
             }
 //        }catch (SQLException e){
@@ -44,13 +50,13 @@ public class ClientServlet extends HttpServlet {
         }
 //        try{
             switch (action){
-                case "view":
-                    break;
-                case "search":
+//                case "search":
                     //showSearchFrom;
+//                    homeServlet.doGet(request,response);
+//                    break;
+                default:
+                    homeServlet.doGet(request,response);
                     break;
-                case "add":
-                    //showAddFrom;
             }
         }
 //        catch (SQLException e){
