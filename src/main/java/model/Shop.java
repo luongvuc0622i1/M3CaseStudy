@@ -153,6 +153,9 @@ public class Shop {
     public Service getService() {
         return service;
     }
+    public int getServiceId() {
+        return service.getId();
+    }
 
     public void setService(Service service) {
         this.service = service;
