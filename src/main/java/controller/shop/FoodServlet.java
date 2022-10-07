@@ -103,7 +103,7 @@ public class FoodServlet extends HttpServlet {
     }
 
     private void showCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("test/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("shop/createTest.jsp");
         request.setAttribute("tags", tagService.fillAll());
         dispatcher.forward(request, response);
     }
