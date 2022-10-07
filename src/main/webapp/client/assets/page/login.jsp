@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="../img/favicon.png">
     <title>Đăng nhập</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -122,12 +122,6 @@
                             cưng</a></div>
 
 
-                        <div class="user-acc col-auto">
-                            <button type="button" )onclick="login(" class="btn btn-none-bg btn-login">
-                                <span class="font14">Đăng nhập</span>
-                            </button>
-<%--                            <input type="submit" value="Đăng nhập ">--%>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -235,7 +229,7 @@
                         <div class="item plus"><a target="_blank" href="https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=229327170580-69v69v4s94p2tvf4qi3g0qb901b2pg99.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fshopeefood.vn%2Faccount%2Flogin&scope=email%20profile%20openid&state=%2Fgioi-thieu&response_type=permission%20id_token&fetch_basic_profile=true&nonce=XGQ3vrHYjqY9A1iybTTvj4A5rusBTzEe&flowName=GeneralOAuthFlow"></a><i class="fab fa-google-plus-g"></i>Google</div>
                     </form>
                 </div>
-                <p class="text">${message}</p>
+                <p style="color: red" class="text">${message}</p>
                 <div class="form-login-input">
                     <form method="post" action="">
                         <div class="field-group">
@@ -259,18 +253,19 @@
                         <input style="font-size: 20px" class="btn btn-block btn-submit" type="submit" value="Đăng nhập">
 
                     </form>
-                    <form action="/login?action=">
+                    <form>
+                        <p>Chưa có tài khoản? Đăng ký ngay tại đây. </p>
                         <div class="item phone">
-                            <span class="fas fa-mobile-alt"></span>Đăng Ký
+                            <a href="/createClient"><span class="fas fa-mobile-alt"></span>Đăng ký người dùng mới</a>
+                        </div>
+                        <div class="item phone">
+                            <a href="/createShop"><span class="fas fa-mobile-alt"></span>Đăng ký cửa hàng mới</a>
                         </div>
                     </form>
 
 
 
-
-
-
-                </div><br>
+                </div>
                 <div class="login-mess-policy">Chúng tôi không sử dụng thông tin của bạn với bất kỳ mục đích nào. Bằng cách đăng
                     nhập hoặc đăng ký, bạn đồng ý với <a
                             style="color: #0495ba; border-bottom: 2px solid; text-decoration: none !important;" target="_blank"
