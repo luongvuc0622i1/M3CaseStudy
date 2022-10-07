@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet(name="ClientServlet",value = "/home")
+@WebServlet(name="ClientServlet",value = "/homeClient")
 public class ClientServlet extends HttpServlet {
     private Connection connection= ConnectionCMS.getConnection();
     private HomeServlet homeServlet;
