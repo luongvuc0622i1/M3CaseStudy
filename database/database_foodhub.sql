@@ -1,5 +1,5 @@
 
--- DROP DATABASE foodhub;
+DROP DATABASE foodhub;
 CREATE DATABASE foodhub;
 
 USE foodhub;
@@ -14,17 +14,17 @@ CREATE TABLE	service (
 
 CREATE TABLE	shop (
 	shop_id 		INT				AUTO_INCREMENT PRIMARY KEY,
-	shop_code 		nVARCHAR(150) 	NOT NULL UNIQUE,
-    shop_name 		nVARCHAR(150) 	NOT NULL,
-    shop_email 		nVARCHAR(150) 	NOT NULL UNIQUE,
-    shop_phone 		nVARCHAR(150) 	NOT NULL UNIQUE,
-    shop_address 	nVARCHAR(150) 	NOT NULL,
-    shop_account 	nVARCHAR(150) 	NOT NULL UNIQUE,
-    shop_password 	nVARCHAR(150) 	NOT NULL,
-    shop_image 		NVARCHAR(150)	NOT NULL,
-    shop_open		TIME			NOT NULL,
-    shop_close		TIME			NOT NULL,
-    service_id		INT				NOT NULL,
+	shop_code 		nVARCHAR(150) 	UNIQUE,
+    shop_name 		nVARCHAR(150) 	,
+    shop_email 		nVARCHAR(150) 	UNIQUE,
+    shop_phone 		nVARCHAR(150) 	UNIQUE,
+    shop_address 	nVARCHAR(150) 	,
+    shop_account 	nVARCHAR(150) 	UNIQUE,
+    shop_password 	nVARCHAR(150) 	,
+    shop_image 		NVARCHAR(150)	,
+    shop_open		TIME			,
+    shop_close		TIME			,
+    service_id		INT				,
     shop_description nVARCHAR(500),
     status 			bit,
     FOREIGN KEY		(service_id)	REFERENCES	service (service_id)

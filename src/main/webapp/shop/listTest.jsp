@@ -51,8 +51,8 @@
         <td><c:out value="${food.lastUpdate}"/></td>
         <td><c:out value="${food.status}"/></td>
         <td>
-          <a href="/users?action=edit&id=${user.id}">Edit</a>
-          <a href="/users?action=delete&id=${user.id}">Delete</a>
+          <a href="/users?action=edit&id=${food.id}">Edit</a>
+          <a href="/users?action=delete&id=${food.id}">Delete</a>
         </td>
       </tr>
     </c:forEach>

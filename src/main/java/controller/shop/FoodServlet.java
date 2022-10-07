@@ -53,28 +53,6 @@ public class FoodServlet extends HttpServlet {
 
     }
 
-    private void listFood(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Food> foods = foodService.fillAll();
-        request.setAttribute("foods", foods);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("shop/listTest.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    private void showFind(HttpServletRequest request, HttpServletResponse response) {
-
-    }
-
-    private void deleteItem(HttpServletRequest request, HttpServletResponse response) {
-
-    }
-
-    private void showEdit(HttpServletRequest request, HttpServletResponse response) {
-
-    }
-
-    private void showCreate(HttpServletRequest request, HttpServletResponse response) {
-
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -104,6 +82,33 @@ public class FoodServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+    private void listFood(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Food> foods = foodService.fillAll();
+        request.setAttribute("foods", foods);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("shop/listTest.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void showFind(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    private void deleteItem(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    private void showEdit(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    private void showCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("test/create.jsp");
+        request.setAttribute("tags", tagService.fillAll());
+        dispatcher.forward(request, response);
+    }
+
+
 
     private void searchFood(HttpServletRequest request, HttpServletResponse response) {
 
