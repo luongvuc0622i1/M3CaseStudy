@@ -13,19 +13,24 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "AddCarClient" , value ="/client")
-public class AddCartClient extends ClientServlet{
+public class AddCartClient {
+    private ClientServlet clientServlet;
+    public void init1(){
+        clientServlet =new ClientServlet();
+    }
+
     private ClientService clientService;
     public void init(){
         clientService=new ClientService();
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException{
-        String action=request.getParameter("action");
-        if(action==null){
-            action="";
+        String addCart=request.getParameter("addCArt");
+        if(addCart==null){
+            addCart="";
         }
         try{
-            switch (action){
+            switch (addCart){
                 case "delete":
                     deleteClient(request,response);
                     break;
