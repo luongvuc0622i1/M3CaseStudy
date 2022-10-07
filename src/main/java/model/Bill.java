@@ -12,7 +12,14 @@ public class Bill {
     private Shop shop;
     private int status;
 
-    public Bill() {
+    public Bill(String code, java.sql.Date date, Double totalCost, Client client, Shop shop, int status) {
+        this.code=code;
+        this.date=date;
+        this.totalCost=totalCost;
+        this.client=client;
+        this.shop=shop;
+        this.status=status;
+
     }
 
     public Bill(int id, String code, Date date, double totalCost, Client client, Shop shop, int status) {

@@ -3,6 +3,7 @@ package service.bill;
 import connection.ConnectionCMS;
 import model.Bill;
 import model.Client;
+import model.Shop;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,11 +30,11 @@ public class BillService implements IBill{
                 String code = resultSet.getString("bill_code");
                 Date date = resultSet.getDate("bill_date");
                 Double totalCost = resultSet.getDouble("bill_totalCost");
-                int clientId = resultSet.getInt("client_id");
-                int shopId = resultSet.getInt("shop_id");
+//                Client clientId = resultSet.getInt("id");
+//                Shop shopId = resultSet.getInt("shop");
                 int status = resultSet.getInt("client_status");
-                Bill bill = new Bill(code, date,totalCost,clientId,shopId, status);
-                bills.add(bill);
+//                Bill bill = new Bill(code, (java.sql.Date) date,totalCost,clientId,shopId, status);
+//                bills.add(bill);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -54,8 +55,8 @@ public class BillService implements IBill{
             preparedStatement.setString(1,p.getCode());
             preparedStatement.setDate(2, (java.sql.Date) p.getDate());
             preparedStatement.setDouble(3,p.getTotalCost());
-            preparedStatement.setInt(4,p.getClient_id());
-            preparedStatement.setInt(5,p.getShop_id());
+            preparedStatement.setInt(4,p.getClient().getId());
+            preparedStatement.setInt(5,p.getShop().getId());
             preparedStatement.setInt(6,p.getStatus());
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
@@ -95,3 +96,4 @@ public class BillService implements IBill{
         }
     }
 }
+

@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public class BillDetailService implements IBillDetail{
+    BillDetail billDetail;
     private static final String INSERT_BILL_DATAIL_SQL = "INSERT INTO bill_detail (bill_id,fool_id,quantity,price,status) VALUES (?, ?, ?,?,?);";
 
     private static final String FIND_ALL_BILL_DETAIL = "SELECT * FROM bill_detail;";
@@ -25,11 +26,11 @@ public class BillDetailService implements IBillDetail{
             while (resultSet.next()){
                 int quantity = resultSet.getInt("quantity");
                 Double price = resultSet.getDouble("price");
-                int foodId = resultSet.getInt("fool_id");
-                int billId = resultSet.getInt("bill_id");
+//                int foodId = resultSet.getInt("fool");
+//                int billId = resultSet.getInt("bill");
                 int status = resultSet.getInt("client_status");
-                BillDetail billDetail =new BillDetail ( billId, foodId,quantity,price, status);
-                billDetailList.add(billDetail);
+//                BillDetail billDetail =new BillDetail (billId,foodId,quantity,price, status);
+//                billDetailList.add(billDetail);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -46,9 +47,9 @@ public class BillDetailService implements IBillDetail{
     public void insert(model.BillDetail p) {
         System.out.println(INSERT_BILL_DATAIL_SQL);
         try(Connection c=ConnectionCMS.getConnection();
-          PreparedStatement preparedStatement=c.prepareStatement(INSERT_BILL_DATAIL_SQL); ){
-            preparedStatement.setInt(1,p.getBill_id());
-            preparedStatement.setInt(2,p.getFood_id());
+            PreparedStatement preparedStatement=c.prepareStatement(INSERT_BILL_DATAIL_SQL); ){
+            preparedStatement.setInt(1,p.getBill().getId());
+            preparedStatement.setInt(2,p.getFood().getId());
             preparedStatement.setInt(3,p.getQuantity());
             preparedStatement.setDouble(4,p.getPrice());
             preparedStatement.setInt(5,p.getStatus());
@@ -84,8 +85,8 @@ public class BillDetailService implements IBillDetail{
             c=ConnectionCMS.getConnection();
             c.setAutoCommit(false);
             preparedStatement=c.prepareStatement(INSERT_BILL_DATAIL_SQL, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1,billDetail.getBill_id());
-            preparedStatement.setInt(2,billDetail.getFood_id());
+            preparedStatement.setInt(1,billDetail.getBill().getId());
+            preparedStatement.setInt(2,billDetail.getFood().getId());
             preparedStatement.setInt(3,billDetail.getQuantity());
             preparedStatement.setDouble(4,billDetail.getPrice());
             preparedStatement.setInt(5,billDetail.getStatus());
@@ -145,3 +146,4 @@ public class BillDetailService implements IBillDetail{
         }
     }
 }
+

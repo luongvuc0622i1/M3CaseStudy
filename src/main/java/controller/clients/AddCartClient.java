@@ -26,7 +26,7 @@ public class AddCartClient {
         clientService=new ClientService();
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException{
+            throws ServletException, IOException{
         String addCart=request.getParameter("addCart");
         if(addCart==null){
             addCart="";
@@ -45,21 +45,21 @@ public class AddCartClient {
         }
     }
     protected void doGet(HttpServletRequest request,HttpServletResponse response)
-        throws ServletException,IOException{
+            throws ServletException,IOException{
         String addCart=request.getParameter("addCart");
         if(addCart==null){
             addCart="";
         }
 //        try{
-            switch (addCart){
-                default:
-                    try {
-                        listAddCart(request,response);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    break;
-            }
+        switch (addCart){
+            default:
+                try {
+                    listAddCart(request,response);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+        }
 //        }
     }
     private void listAddCart(HttpServletRequest request,HttpServletResponse response)
@@ -70,7 +70,7 @@ public class AddCartClient {
         dispatcher.forward(request,response);
     }
     private void deleteCart(HttpServletRequest request,HttpServletResponse response)
-    throws SQLException,IOException,ServletException {
+            throws SQLException,IOException,ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
         clientService.delete(id);
         List<Client> clientList = clientService.fillAll();

@@ -5,3 +5,4 @@ import service.IService;
 
 public interface IBill extends IService<Bill> {
 }
+
