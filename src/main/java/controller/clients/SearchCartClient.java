@@ -1,7 +1,7 @@
 package controller.clients;
 
 import connection.ConnectionCMS;
-import controller.HomeServlet;
+import controller.home.HomeServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,9 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 
+<<<<<<< HEAD
 @WebServlet(name = "SearchClient",value = "search")
+=======
+
+@WebServlet(name = "SearchClient",value = "/search")
+
+
+>>>>>>> 5613f0dba5b454aed39a425171f8d6ac763978d8
 public class SearchCartClient extends ClientServlet {
     private Connection connection= ConnectionCMS.getConnection();
     private HomeServlet homeServlet;

@@ -27,8 +27,7 @@ public class Client {
         this.status = status;
     }
 
-    public Client(String code, String name, String phone, String address, String email, String account, String password, int status) {
-        this.code = code;
+    public Client(String name, String phone, String address, String email, String account, String password, int status) {
         this.name = name;
         this.phone = phone;
         this.address = address;

@@ -8,38 +8,37 @@ public class Bill {
     private String code;
     private Date date;
     private double totalCost;
-    private int client_id;
-    private int shop_id;
+    private Client client;
+    private Shop shop;
     private int status;
 
     public Bill() {
     }
 
-    public Bill(int id, String code, Date date, double totalCost, int client_id, int shop_id, int status) {
+    public Bill(int id, String code, Date date, double totalCost, Client client, Shop shop, int status) {
         this.id = id;
         this.code = code;
         this.date = date;
         this.totalCost = totalCost;
-        this.client_id = client_id;
-        this.shop_id = shop_id;
+        this.client = client;
+        this.shop = shop;
         this.status = status;
     }
 
-    public Bill(int id, String code, double totalCost, int client_id, int shop_id, int status) {
+    public Bill(int id, String code, double totalCost, Client client, Shop shop, int status) {
         this.id = id;
         this.code = code;
         this.totalCost = totalCost;
-        this.client_id = client_id;
-        this.shop_id = shop_id;
+        this.client = client;
+        this.shop = shop;
         this.status = status;
     }
 
-    public Bill(String code, Date date, double totalCost, int client_id, int shop_id, int status) {
+    public Bill(String code, double totalCost, Client client, Shop shop, int status) {
         this.code = code;
-        this.date = date;
         this.totalCost = totalCost;
-        this.client_id = client_id;
-        this.shop_id = shop_id;
+        this.client = client;
+        this.shop = shop;
         this.status = status;
     }
 
@@ -75,20 +74,20 @@ public class Bill {
         this.totalCost = totalCost;
     }
 
-    public int getClient_id() {
-        return client_id;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClient_id(int client_id) {
-        this.client_id = client_id;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public int getShop_id() {
-        return shop_id;
+    public Shop getShop() {
+        return shop;
     }
 
-    public void setShop_id(int shop_id) {
-        this.shop_id = shop_id;
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 
     public int getStatus() {

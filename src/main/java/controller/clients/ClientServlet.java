@@ -1,6 +1,7 @@
 package controller.clients;
 
 import connection.ConnectionCMS;
+<<<<<<< HEAD
 import controller.HomeServlet;
 import model.Bill;
 import model.Client;
@@ -8,6 +9,9 @@ import model.Service;
 import model.Shop;
 import service.bill.BillService;
 import service.client.ClientService;
+=======
+import controller.home.HomeServlet;
+>>>>>>> 5613f0dba5b454aed39a425171f8d6ac763978d8
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,11 +20,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+<<<<<<< HEAD
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name="ClientServlet",value = "/client")
+=======
+import java.sql.Connection;
+
+@WebServlet(name="ClientServlet",value = "/homeClient")
+>>>>>>> 5613f0dba5b454aed39a425171f8d6ac763978d8
 public class ClientServlet extends HttpServlet {
     private static final String DELETE_CLIENT_SQL="DELETE FROM client WHERE id=?;";
     private Connection connection= ConnectionCMS.getConnection();

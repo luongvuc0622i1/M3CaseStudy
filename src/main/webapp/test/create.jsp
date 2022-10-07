@@ -9,7 +9,7 @@
 <%--<center>--%>
 <%--  <h1>User Management</h1>--%>
 <%--  <h2>--%>
-<%--    <a href="/home">List All Items</a>--%>
+<%--    <a href="/foods">List All Items</a>--%>
 <%--  </h2>--%>
 <%--</center>--%>
 <%--<div align="center">--%>

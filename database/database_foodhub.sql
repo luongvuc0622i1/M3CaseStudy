@@ -1,5 +1,5 @@
 
--- DROP DATABASE foodhub;
+DROP DATABASE foodhub;
 CREATE DATABASE foodhub;
 
 USE foodhub;
@@ -14,17 +14,17 @@ CREATE TABLE	service (
 
 CREATE TABLE	shop (
 	shop_id 		INT				AUTO_INCREMENT PRIMARY KEY,
-	shop_code 		nVARCHAR(150) 	NOT NULL UNIQUE,
-    shop_name 		nVARCHAR(150) 	NOT NULL,
-    shop_email 		nVARCHAR(150) 	NOT NULL UNIQUE,
-    shop_phone 		nVARCHAR(150) 	NOT NULL UNIQUE,
-    shop_address 	nVARCHAR(150) 	NOT NULL,
-    shop_account 	nVARCHAR(150) 	NOT NULL UNIQUE,
-    shop_password 	nVARCHAR(150) 	NOT NULL,
-    shop_image 		NVARCHAR(150)	NOT NULL,
-    shop_open		TIME			NOT NULL,
-    shop_close		TIME			NOT NULL,
-    service_id		INT				NOT NULL,
+	shop_code 		nVARCHAR(150) 	UNIQUE,
+    shop_name 		nVARCHAR(150) 	,
+    shop_email 		nVARCHAR(150) 	UNIQUE,
+    shop_phone 		nVARCHAR(150) 	UNIQUE,
+    shop_address 	nVARCHAR(150) 	,
+    shop_account 	nVARCHAR(150) 	UNIQUE,
+    shop_password 	nVARCHAR(150) 	,
+    shop_image 		NVARCHAR(150)	,
+    shop_open		TIME			,
+    shop_close		TIME			,
+    service_id		INT				,
     shop_description nVARCHAR(500),
     status 			bit,
     FOREIGN KEY		(service_id)	REFERENCES	service (service_id)
@@ -87,7 +87,7 @@ CREATE TABLE	social (
 CREATE TABLE client (
 
 	client_id 		INT 			AUTO_INCREMENT PRIMARY KEY,
-	client_code 	nVARCHAR(150) 	UNIQUE,
+	client_code 	nVARCHAR(150),
 	client_name 	nVARCHAR(150),
 	client_phone 	nVARCHAR(150) 	UNIQUE NOT NULL,
 	client_address 	nVARCHAR(150)	NOT NULL,
@@ -191,5 +191,15 @@ VALUES
 INSERT INTO		bill_detail 	(bill_id, food_id, quantity, price, status)
 VALUES
 								(1, 1, 1, 50000, 1);
+					
+CREATE TABLE food_tags (
+	food_id			INT,
+    tags_id			INT,
+    FOREIGN KEY	(food_id)		REFERENCES		food (food_id),
+    FOREIGN KEY	(tags_id)		REFERENCES		tags (tags_id)
+);
+
+INSERT INTO food_tags (food_id, tags_id) VALUES (1,1), (1,2), (2,2);
+											
 
 -- USE foodhub;

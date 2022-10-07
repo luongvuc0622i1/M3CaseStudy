@@ -3,8 +3,8 @@ package model;
 public class BillDetail {
 
     private int id;
-    private int bill_id;
-    private int food_id;
+    private Bill bill;
+    private Food food;
     private int quantity;
     private double price;
     private int status;
@@ -12,18 +12,18 @@ public class BillDetail {
     public BillDetail() {
     }
 
-    public BillDetail(int id, int bill_id, int food_id, int quantity, double price, int status) {
+    public BillDetail(int id, Bill bill, Food food, int quantity, double price, int status) {
         this.id = id;
-        this.bill_id = bill_id;
-        this.food_id = food_id;
+        this.bill = bill;
+        this.food = food;
         this.quantity = quantity;
         this.price = price;
         this.status = status;
     }
 
-    public BillDetail(int bill_id, int food_id, int quantity, double price, int status) {
-        this.bill_id = bill_id;
-        this.food_id = food_id;
+    public BillDetail(Bill bill, Food food, int quantity, double price, int status) {
+        this.bill = bill;
+        this.food = food;
         this.quantity = quantity;
         this.price = price;
         this.status = status;
@@ -37,20 +37,20 @@ public class BillDetail {
         this.id = id;
     }
 
-    public int getBill_id() {
-        return bill_id;
+    public Bill getBill() {
+        return bill;
     }
 
-    public void setBill_id(int bill_id) {
-        this.bill_id = bill_id;
+    public void setBill(Bill bill) {
+        this.bill = bill;
     }
 
-    public int getFood_id() {
-        return food_id;
+    public Food getFood() {
+        return food;
     }
 
-    public void setFood_id(int food_id) {
-        this.food_id = food_id;
+    public void setFood(Food food) {
+        this.food = food;
     }
 
     public int getQuantity() {

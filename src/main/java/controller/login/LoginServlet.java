@@ -1,4 +1,4 @@
-package controller;
+package controller.login;
 
 import model.Admin;
 import model.Client;
@@ -7,8 +7,6 @@ import service.admin.AdminService;
 import service.admin.IAdminService;
 import service.client.ClientService;
 import service.client.IClientService;
-import service.deal.DealService;
-import service.deal.IDealService;
 import service.shop.IShopService;
 import service.shop.ShopService;
 
@@ -23,7 +21,7 @@ public class LoginServlet extends HttpServlet {
     private IAdminService adminService = new AdminService();
     private IShopService shopService = new ShopService();
     private IClientService clientService = new ClientService();
-    private static String account ="";
+    public static String account ="";
     private static boolean checkLogin = false;
 
     @Override
@@ -50,6 +48,9 @@ public class LoginServlet extends HttpServlet {
         if (action == null)
             action = "";
         switch (action) {
+            case "login":
+                login(request,response);
+                break;
             default:
                 login(request,response);
                 break;
@@ -80,8 +81,8 @@ public class LoginServlet extends HttpServlet {
         }
         for (Shop shop : shops) {
             if (shop.getAccount().equals(account) && shop.getPassword().equals(password)) {
-                request.setAttribute("account", account);
-                dispatcher = request.getRequestDispatcher("/client/assets/page/shop/shopHome.jsp");
+                request.setAttribute("shop", shop);
+                dispatcher = request.getRequestDispatcher("/shop/shopHome.jsp");
                 LoginServlet.checkLogin = true;
                 dispatcher.forward(request, response);
                 return;
@@ -96,8 +97,8 @@ public class LoginServlet extends HttpServlet {
                 return;
             }
         }
-        request.setAttribute("message","Sai tài khoản hoặc mật khẩu!!");
-        dispatcher = request.getRequestDispatcher("login.jsp");
+        request.setAttribute("message","Sai tài khoản hoặc mật khẩu !!!");
+        dispatcher = request.getRequestDispatcher("/client/assets/page/login.jsp");
         dispatcher.forward(request,response);
     }
 }

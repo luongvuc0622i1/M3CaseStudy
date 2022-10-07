@@ -5,14 +5,13 @@
   Time: 11:49 SA
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="../img/favicon.png">
     <title>Đăng nhập</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -123,12 +122,6 @@
                             cưng</a></div>
 
 
-                        <div class="user-acc col-auto">
-                            <button type="button" )onclick="login(" class="btn btn-none-bg btn-login">
-                                <span class="font14">Đăng nhập</span>
-                            </button>
-<%--                            <input type="submit" value="Đăng nhập ">--%>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -260,18 +253,19 @@
                         <input style="font-size: 20px" class="btn btn-block btn-submit" type="submit" value="Đăng nhập">
 
                     </form>
-                    <form action="/login?action=">
+                    <form>
+                        <p>Chưa có tài khoản? Đăng ký ngay tại đây. </p>
                         <div class="item phone">
-                            <span class="fas fa-mobile-alt"></span>Đăng Ký
+                            <a href="/createClient"><span class="fas fa-mobile-alt"></span>Đăng ký người dùng mới</a>
+                        </div>
+                        <div class="item phone">
+                            <a href="/createShop"><span class="fas fa-mobile-alt"></span>Đăng ký cửa hàng mới</a>
                         </div>
                     </form>
 
 
 
-
-
-
-                </div><br>
+                </div>
                 <div class="login-mess-policy">Chúng tôi không sử dụng thông tin của bạn với bất kỳ mục đích nào. Bằng cách đăng
                     nhập hoặc đăng ký, bạn đồng ý với <a
                             style="color: #0495ba; border-bottom: 2px solid; text-decoration: none !important;" target="_blank"

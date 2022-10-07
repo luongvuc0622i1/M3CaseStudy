@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Food {
 
-    private int id, status;
+    private int id;
 
     private int shop_id;
     private int tag_id;
@@ -18,25 +18,13 @@ public class Food {
     private List<Tag> tag;
     private int quantity;
 
+    private int status;
+
     public Food() {
     }
 
-    public Food(int id, int status, String name, String description, String image, double price, Time cookTime, Date dayCreate, Date lastUpdate, List<Tag> tag, int quantity) {
+    public Food(int id, int shop_id, int tag_id, int deal_id, String name, String description, String image, double price, Time cookTime, Date dayCreate, Date lastUpdate, List<Tag> tag, int quantity, int status) {
         this.id = id;
-        this.status = status;
-        this.name = name;
-        this.description = description;
-        this.image = image;
-        this.price = price;
-        this.cookTime = cookTime;
-        this.dayCreate = dayCreate;
-        this.lastUpdate = lastUpdate;
-        this.tag = tag;
-        this.quantity = quantity;
-    }
-
-    public Food(int status, int shop_id, int tag_id, int deal_id, String name, String description, String image, double price, Time cookTime, Date dayCreate, Date lastUpdate, List<Tag> tag, int quantity) {
-        this.status = status;
         this.shop_id = shop_id;
         this.tag_id = tag_id;
         this.deal_id = deal_id;
@@ -49,6 +37,51 @@ public class Food {
         this.lastUpdate = lastUpdate;
         this.tag = tag;
         this.quantity = quantity;
+        this.status = status;
+    }
+
+    public Food(int shop_id, int tag_id, int deal_id, String name, String description, String image, double price, Time cookTime, Date dayCreate, Date lastUpdate, List<Tag> tag, int quantity, int status) {
+        this.shop_id = shop_id;
+        this.tag_id = tag_id;
+        this.deal_id = deal_id;
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.price = price;
+        this.cookTime = cookTime;
+        this.dayCreate = dayCreate;
+        this.lastUpdate = lastUpdate;
+        this.tag = tag;
+        this.quantity = quantity;
+        this.status = status;
+    }
+
+    public Food(int shop_id, int tag_id, int deal_id, String name, String description, String image, double price, Time cookTime, Date dayCreate, Date lastUpdate, int status, List<Tag> tag) {
+        this.shop_id = shop_id;
+        this.tag_id = tag_id;
+        this.deal_id = deal_id;
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.price = price;
+        this.cookTime = cookTime;
+        this.dayCreate = dayCreate;
+        this.lastUpdate = lastUpdate;
+        this.status = status;
+    }
+
+    public Food(int shop_id, int tag_id, int deal_id, String name, String description, String image, double price, Time cookTime, Date dayCreate, Date lastUpdate, int status) {
+        this.shop_id = shop_id;
+        this.tag_id = tag_id;
+        this.deal_id = deal_id;
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.price = price;
+        this.cookTime = cookTime;
+        this.dayCreate = dayCreate;
+        this.lastUpdate = lastUpdate;
+        this.status = status;
     }
 
     public int getId() {
