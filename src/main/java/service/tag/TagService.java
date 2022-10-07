@@ -98,7 +98,7 @@ public class TagService implements ITagService {
     public boolean edit(int id, Tag tag) throws SQLException {
         boolean rowUpdated;
         try (
-                PreparedStatement statement = connection.prepareStatement(DELETE_TAG);) {
+                PreparedStatement statement = connection.prepareStatement(UPDATE_TAG);) {
             statement.setString(1, tag.getCode());
             statement.setString(2, tag.getName());
             statement.setString(3, tag.getDescription());

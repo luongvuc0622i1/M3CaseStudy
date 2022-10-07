@@ -2,10 +2,12 @@ package service.food;
 
 import connection.ConnectionCMS;
 import model.Food;
+import model.Tag;
 import service.tag.TagService;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FoodService implements IFoodService{
@@ -31,13 +33,66 @@ public class FoodService implements IFoodService{
 
     @Override
     public List<Food> fillAll() {
-        return null;
+        List<Food> foodList = new ArrayList<>();
+        try (
+                PreparedStatement statement = connection.prepareStatement(SELECT_ALL_FOOD);) {
+            System.out.println(statement);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("food_id");
+                int shop_id = resultSet.getInt("shop_id");
+                int tag_id = resultSet.getInt("tag_id");
+                int deal_id = resultSet.getInt("deal_id");
+                String name = resultSet.getString("food_name");
+                double price = resultSet.getDouble("food_price");
+                String description = resultSet.getString("food_description");
+                String image = resultSet.getString("food_image");
+                Time cookTime = resultSet.getTime("food_cooktime");
+                Date dayCreate = resultSet.getDate("food_daycreate");
+                Date lastUpdate = resultSet.getDate("food_lastupdate");
+                int status = resultSet.getInt("status");
+                List<Tag> tagList = tagService.findAllByFoodId(id);
+                foodList.add(new Food(shop_id, tag_id, deal_id, name, description, image, price, cookTime, (java.sql.Date) dayCreate, (java.sql.Date) lastUpdate, status, tagList));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return foodList;
     }
 
     @Override
     public Food findById(int id) {
-        return null;
+        Food food = null;
+        try(PreparedStatement statement = connection.prepareStatement(SELECT_FOOD_BY_ID);){
+            statement.setInt(1,id);
+            System.out.println(statement);
+            ResultSet resultSet =statement.executeQuery();
+            while (resultSet.next()) {
+                int food_id = resultSet.getInt("food_id");
+                int shop_id = resultSet.getInt("shop_id");
+                int tag_id = resultSet.getInt("tag_id");
+                int deal_id = resultSet.getInt("deal_id");
+                String name = resultSet.getString("food_name");
+                double price = resultSet.getDouble("food_price");
+                String description = resultSet.getString("food_description");
+                String image = resultSet.getString("food_image");
+                Time cookTime = resultSet.getTime("food_cooktime");
+                Date dayCreate = resultSet.getDate("food_daycreate");
+                Date lastUpdate = resultSet.getDate("food_lastupdate");
+                int status = resultSet.getInt("status");
+                List<Tag> tagList = tagService.findAllByFoodId(id);
+
+                food = new Food(shop_id, tag_id, deal_id, name, description, image, price, cookTime, (java.sql.Date) dayCreate, (java.sql.Date) lastUpdate, status, tagList);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return food;
     }
+
+
 
     @Override
     public boolean delete(int id) throws SQLException {
