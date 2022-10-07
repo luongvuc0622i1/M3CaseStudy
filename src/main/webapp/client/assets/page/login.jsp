@@ -229,7 +229,7 @@
                         <div class="item plus"><a target="_blank" href="https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=229327170580-69v69v4s94p2tvf4qi3g0qb901b2pg99.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fshopeefood.vn%2Faccount%2Flogin&scope=email%20profile%20openid&state=%2Fgioi-thieu&response_type=permission%20id_token&fetch_basic_profile=true&nonce=XGQ3vrHYjqY9A1iybTTvj4A5rusBTzEe&flowName=GeneralOAuthFlow"></a><i class="fab fa-google-plus-g"></i>Google</div>
                     </form>
                 </div>
-                <p style="color: red" class="text">${message}</p>
+                <p class="text">${message}</p>
                 <div class="form-login-input">
                     <form method="post" action="">
                         <div class="field-group">
