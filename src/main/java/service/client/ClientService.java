@@ -11,6 +11,7 @@ import java.util.List;
 public class ClientService implements IClientService {
     private static final String FIND_ALL_CLIENT = "SELECT * FROM client;";
     private static final String DELETE_CLIENT_SQL="DELETE FROM client WHERE client_id=?";
+    private static final String INSERT_CLIENT_SQL = "INSERT INTO client (client_name, client_phone, client_address, client_email, client_account, client_password, status) VALUES (?,?,?,?,?,?,?);";
     private Connection c = ConnectionCMS.getConnection();
     @Override
     public List<Client> fillAll() {
@@ -63,22 +64,18 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public void insert(Client p) {
-        String query ="{CALL insert_client(?,?,?,?,?,?,?,?)}";
-        try(Connection connection=ConnectionCMS.getConnection();
-            CallableStatement callableStatement=connection.prepareCall(query);){
-            callableStatement.setString(1,p.getCode());
-            callableStatement.setString(2,p.getName());
-            callableStatement.setString(3,p.getAccount());
-            callableStatement.setString(4,p.getPassword());
-            callableStatement.setString(5,p.getAddress());
-            callableStatement.setString(6,p.getEmail());
-            callableStatement.setString(7,p.getPhone());
-            callableStatement.setInt(8,p.getStatus());
-            callableStatement.executeUpdate();
-
-        }catch (SQLException e){
-            printSQLException(e);
+    public void insert(Client client) {
+        try (PreparedStatement preparedStatement = c.prepareStatement(INSERT_CLIENT_SQL)) {
+            preparedStatement.setString(1, client.getName());
+            preparedStatement.setString(2, client.getPhone());
+            preparedStatement.setString(3, client.getAddress());
+            preparedStatement.setString(4, client.getEmail());
+            preparedStatement.setString(5, client.getAccount());
+            preparedStatement.setString(6, client.getPassword());
+            preparedStatement.setInt(7, client.getStatus());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
