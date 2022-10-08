@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 
 public class Bill {
-
+ private Shop shops =new Shop();
     private int id;
     private String code;
     private Date date;
@@ -11,6 +11,22 @@ public class Bill {
     private Client client;
     private Shop shop;
     private int status;
+    public Bill(String code, java.sql.Date date, Double totalCost, Client client, Shop shop, int status) {
+        this.code=code;
+        this.date=date;
+        this.totalCost=totalCost;
+        this.client=client;
+        this.shop=shop;
+        this.status=status;
+    }
+    public Bill(String code, java.sql.Date date, Double totalCost, int clientId, int shopId, int status){
+        this.code=code;
+        this.date=date;
+        this.totalCost=totalCost;
+        this.shop.setId(shopId);
+        this.shop.setId(clientId);
+        this.status=status;
+    }
 
     public Bill() {
     }

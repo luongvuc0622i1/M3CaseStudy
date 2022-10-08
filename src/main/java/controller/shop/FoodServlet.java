@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet(name = "ShopServlet", value = "/foods")
@@ -38,7 +41,7 @@ public class FoodServlet extends HttpServlet {
                     showEdit(request,response);
                     break;
                 case "delete":
-                    deleteItem(request,response);
+                    deleteFood(request,response);
                     break;
                 case "find":
                     showFind(request,response);
@@ -53,28 +56,6 @@ public class FoodServlet extends HttpServlet {
 
     }
 
-    private void listFood(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Food> foods = foodService.fillAll();
-        request.setAttribute("foods", foods);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("shop/listTest.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    private void showFind(HttpServletRequest request, HttpServletResponse response) {
-
-    }
-
-    private void deleteItem(HttpServletRequest request, HttpServletResponse response) {
-
-    }
-
-    private void showEdit(HttpServletRequest request, HttpServletResponse response) {
-
-    }
-
-    private void showCreate(HttpServletRequest request, HttpServletResponse response) {
-
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -85,16 +66,19 @@ public class FoodServlet extends HttpServlet {
         try{
             switch (action){
                 case "create":
-                    showCreate(request,response);
+                    createFood(request,response);
                     break;
                 case "edit":
-                    showEdit(request,response);
+                    editFood(request, response);
                     break;
                 case "delete":
-                    deleteItem(request,response);
+                    deleteFood(request,response);
                     break;
                 case "find":
-                    showFind(request,response);
+                    searchFood(request,response);
+                    break;
+                case "listFood":
+                    listFood(request, response);
                     break;
                 default:
                     listFood(request,response);
@@ -105,19 +89,112 @@ public class FoodServlet extends HttpServlet {
         }
     }
 
-    private void searchFood(HttpServletRequest request, HttpServletResponse response) {
-
+    private void listFood(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Food> foods = foodService.fillAll();
+        request.setAttribute("foods", foods);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/testShop/listTest.jsp");
+        dispatcher.forward(request, response);
     }
 
-    private void deleteFood(HttpServletRequest request, HttpServletResponse response) {
-
+    private void showFind(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/find.jsp");
+        request.setAttribute("foods",foodService.fillAll());
+        dispatcher.forward(request,response);
     }
 
-    private void editFood(HttpServletRequest request, HttpServletResponse response) {
 
+    private void showEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        int item_id = Integer.parseInt(request.getParameter("id"));
+        Food food = this.foodService.findById(item_id);
+        request.setAttribute("food",food);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/testShop/createTest.jsp");
+        dispatcher.forward(request,response);
     }
 
-    private void createFood(HttpServletRequest request, HttpServletResponse response) {
+    private void showCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/testShop/createTest.jsp");
+        request.setAttribute("tags", tagService.fillAll());
+        dispatcher.forward(request, response);
+    }
 
+
+
+    private void searchFood(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String name = new String(request.getParameter("search").getBytes("iso-8859-1"),"utf-8");
+//        String name = request.getParameter("search");
+        List<Food> items = foodService.selectFoodByName(name);
+
+        request.setAttribute("items",items);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/find.jsp");
+        dispatcher.forward(request,response);
+    }
+
+    private void deleteFood(HttpServletRequest request, HttpServletResponse response) throws   SQLException, ServletException, IOException {
+        int food_id = Integer.parseInt(request.getParameter("food_id"));
+        foodService.delete(food_id);
+        List<Food> foods = foodService.fillAll();
+        request.setAttribute("foods",foods);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("test/home.jsp");
+        dispatcher.forward(request,response);
+    }
+
+    private void editFood(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ServletException {
+        int food_id = Integer.parseInt(request.getParameter("food_id"));
+        int shop_id = Integer.parseInt(request.getParameter("shop_id"));
+        int tag_id = Integer.parseInt(request.getParameter("tags_id"));
+        int deal_id = Integer.parseInt(request.getParameter("deal_id"));
+        String food_name = new String(request.getParameter("food_name").getBytes("iso-8859-1"),"utf-8");
+        double food_price = Double.parseDouble(request.getParameter("food_price"));
+        String food_description = new String(request.getParameter("food_description").getBytes("iso-8859-1"),"utf-8");
+        String food_image = new String(request.getParameter("food_image").getBytes("iso-8859-1"),"utf-8");
+        Time food_cooktime = Time.valueOf(request.getParameter("food_cooktime"));
+        Date food_daycreate = java.sql.Date.valueOf(request.getParameter("food_daycreate"));
+        Date food_lastupdate = java.sql.Date.valueOf(request.getParameter("food_lastupdate"));
+        int status = Integer.parseInt(request.getParameter("status"));
+
+        Food food = new Food(shop_id, tag_id, deal_id, food_name, food_description, food_image, food_price, food_cooktime, (java.sql.Date) food_daycreate, (java.sql.Date) food_lastupdate, status);
+        foodService.edit(food_id, food);
+
+        request.setAttribute("message", "Đã sửa thành công");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/testShop/createTest.jsp");
+        dispatcher.forward(request,response);
+    }
+
+    private void createFood(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+            int shop_id = Integer.parseInt(request.getParameter("shop_id"));
+            int tag_id = Integer.parseInt(request.getParameter("tags_id"));
+            int deal_id = Integer.parseInt(request.getParameter("deal_id"));
+            String food_name = new String(request.getParameter("food_name").getBytes("iso-8859-1"),"utf-8");
+            double food_price = Double.parseDouble(request.getParameter("food_price"));
+            String food_description = new String(request.getParameter("food_description").getBytes("iso-8859-1"),"utf-8");
+            String food_image = new String(request.getParameter("food_image").getBytes("iso-8859-1"),"utf-8");
+            String scooktime = request.getParameter("food_cooktime");
+            Time food_cooktime = Time.valueOf(scooktime);
+
+            Date food_daycreate = java.sql.Date.valueOf(request.getParameter("food_daycreate"));
+            Date food_lastupdate = java.sql.Date.valueOf(request.getParameter("food_lastupdate"));
+            int status = Integer.parseInt(request.getParameter("status"));
+
+            String[] tagStr = request.getParameterValues("tags");
+            int[] tags = new int[tagStr.length];
+            for (int i = 0; i < tagStr.length; i++) {
+                tags[i] = Integer.parseInt(tagStr[i]);
+            }
+
+            Food food = new Food(shop_id, tag_id, deal_id, food_name, food_description, food_image, food_price, food_cooktime, (java.sql.Date) food_daycreate, (java.sql.Date) food_lastupdate, status);
+
+            foodService.save(food, tags);
+
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/testShop/createTest.jsp");
+        dispatcher.forward(request, response);
     }
 }

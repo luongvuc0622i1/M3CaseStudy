@@ -138,7 +138,7 @@ public class ShopService implements IShopService {
             preparedStatement.setString(7, shop.getImage());
             preparedStatement.setTime(8, shop.getOpen());
             preparedStatement.setTime(9, shop.getClose());
-            preparedStatement.setInt(10, shop.getService().getId());
+            preparedStatement.setInt(10, shop.getServiceId());
             preparedStatement.setString(11, shop.getDescription());
             preparedStatement.setInt(12, shop.getStatus());
             preparedStatement.executeUpdate();

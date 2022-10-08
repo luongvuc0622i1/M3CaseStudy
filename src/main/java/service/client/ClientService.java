@@ -4,33 +4,30 @@ import connection.ConnectionCMS;
 import model.Admin;
 import model.Client;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClientService implements IClientService {
     private static final String FIND_ALL_CLIENT = "SELECT * FROM client;";
-    private static final String INSERT_USERS_SQL = "INSERT INTO client (client_name, client_phone, client_address, client_email, client_account, client_password) VALUES (?,?,?,?,?,?);";
+    private static final String DELETE_CLIENT_SQL="DELETE FROM client WHERE client_id=?";
     private Connection c = ConnectionCMS.getConnection();
     @Override
     public List<Client> fillAll() {
         List<Client> clients = new ArrayList<>();
         try {
             PreparedStatement ps= c.prepareStatement(FIND_ALL_CLIENT);
-            ResultSet rs= ps.executeQuery();
-            while (rs.next()){
-                int id = rs.getInt("client_id");
-                String code = rs.getString("client_code");
-                String name = rs.getString("client_name");
-                String phone = rs.getString("client_phone");
-                String address = rs.getString("client_address");
-                String email = rs.getString("client_email");
-                String account = rs.getString("client_account");
-                String password = rs.getString("client_password");
-                int status = rs.getInt("status");
+            ResultSet resultSet= ps.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("client_id");
+                String code = resultSet.getString("client_code");
+                String name = resultSet.getString("client_name");
+                String phone = resultSet.getString("client_phone");
+                String address = resultSet.getString("client_address");
+                String email = resultSet.getString("client_email");
+                String account = resultSet.getString("client_account");
+                String password = resultSet.getString("client_password");
+                int status = resultSet.getInt("client_status");
                 Client client = new Client(id, code, name, phone, address, email, account, password, status);
                 clients.add(client);
             }
@@ -42,28 +39,58 @@ public class ClientService implements IClientService {
 
     @Override
     public Client findById(int id) {
-        return null;
+        Client client=null;
+        String query="{CALL get_client_id}";
+        try(Connection connection=ConnectionCMS.getConnection();
+            CallableStatement callableStatement=connection.prepareCall(query);){
+            callableStatement.setInt(1,id);
+            ResultSet resultSet=callableStatement.executeQuery();
+            while (resultSet.next()){
+                String code = resultSet.getString("client_code");
+                String name = resultSet.getString("client_name");
+                String phone = resultSet.getString("client_phone");
+                String address = resultSet.getString("client_address");
+                String email = resultSet.getString("client_email");
+                String account = resultSet.getString("client_account");
+                String password = resultSet.getString("client_password");
+                int status = resultSet.getInt("client_status");
+                client = new Client(id, code, name, phone, address, email, account, password, status);
+            }
+        }catch (SQLException e){
+            printSQLException(e);
+        }
+        return client;
     }
 
     @Override
-    public void insert(Client client) {
-        try {
-            PreparedStatement preparedStatement = c.prepareStatement(INSERT_USERS_SQL);
-            preparedStatement.setString(1, client.getName());
-            preparedStatement.setString(2, client.getPhone());
-            preparedStatement.setString(3, client.getAddress());
-            preparedStatement.setString(4, client.getEmail());
-            preparedStatement.setString(5, client.getAccount());
-            preparedStatement.setString(6, client.getPassword());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
+    public void insert(Client p) {
+        String query ="{CALL insert_client(?,?,?,?,?,?,?,?)}";
+        try(Connection connection=ConnectionCMS.getConnection();
+            CallableStatement callableStatement=connection.prepareCall(query);){
+            callableStatement.setString(1,p.getCode());
+            callableStatement.setString(2,p.getName());
+            callableStatement.setString(3,p.getAccount());
+            callableStatement.setString(4,p.getPassword());
+            callableStatement.setString(5,p.getAddress());
+            callableStatement.setString(6,p.getEmail());
+            callableStatement.setString(7,p.getPhone());
+            callableStatement.setInt(8,p.getStatus());
+            callableStatement.executeUpdate();
+
+        }catch (SQLException e){
             printSQLException(e);
         }
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return false;
+        boolean rowDeleted;
+        try(Connection connection=ConnectionCMS.getConnection();
+            PreparedStatement statement=connection.prepareStatement(DELETE_CLIENT_SQL);){
+            statement.setInt(1,id);
+            rowDeleted=statement.executeUpdate()>0;
+        }
+        return rowDeleted;
     }
 
     @Override

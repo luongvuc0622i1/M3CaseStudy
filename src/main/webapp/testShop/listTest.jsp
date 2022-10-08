@@ -16,7 +16,7 @@
 <center>
   <h1>User Management</h1>
   <h2>
-    <a href="/foods?action=">Add New User</a>
+    <a href="/foods?action=create">Add New Foods</a>
   </h2>
 </center>
 <div align="center">
@@ -51,8 +51,8 @@
         <td><c:out value="${food.lastUpdate}"/></td>
         <td><c:out value="${food.status}"/></td>
         <td>
-          <a href="/users?action=edit&id=${user.id}">Edit</a>
-          <a href="/users?action=delete&id=${user.id}">Delete</a>
+          <a href="/foods?action=edit&id=${food.id}">Edit</a>
+          <a href="/foods?action=delete&id=${food.id}">Delete</a>
         </td>
       </tr>
     </c:forEach>
