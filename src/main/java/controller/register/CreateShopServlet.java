@@ -77,7 +77,7 @@ public class CreateShopServlet extends HttpServlet {
         String image = request.getParameter("shopImage");
         String description = request.getParameter("description");
         int status = CREATE_STATUS;
-        Service service = new Service(1, 1, "dfs", "dsfd");
+        Service service = new Service(1, 1, "dfs", "dsd");
 
 
         Shop shop = new Shop(status, open, close, name, email, phone, address, account, password, image, description, service);
