@@ -288,7 +288,7 @@
             <div class="item-restaurant"><a  class="item-content"
                                              href="shopItems?id=${food.id}">
                 <div class="img-restaurant"><img
-                        src="img/${food.image}"
+                        src="<c:out value="${food.image}"/>" alt="Ảnh món ăn"
                         class=""></div>
                 <div class="info-restaurant">
                     <div class="info-basic-res">

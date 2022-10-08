@@ -250,9 +250,9 @@
                         </a>
 
                         <%--            Show Category_name--%>
-                        <c:forEach var="category" items="${categories}">
+                        <c:forEach var="tag" items="${categories}">
                             <a href="https://shopeefood.vn/ha-noi/danh-sach-dia-diem-phuc-vu-food-giao-tan-noi">
-                                <span class="category-item ">${category.category_name}</span>
+                                <span class="category-item ">${tag.category_name}</span>
                             </a>
                         </c:forEach>
 
@@ -348,16 +348,16 @@
                             </div>
                             <%--              List shops foreach--%>
 
-                            <c:forEach var="shops" items="${shops}">
+                            <c:forEach var="food" items="${shops}">
                                 <div class="item-restaurant"><a  class="item-content"
-                                                                href="/customers?action=showShopItem&id=${shops.shop_id}">
+                                                                href="/customers?action=showShopItem&id=${food.shop_id}">
                                     <div class="img-restaurant"><img
-                                            src="img/${shops.shop_image}"
+                                            src="img/${food.shop_image}"
                                             class=""></div>
                                     <div class="info-restaurant">
                                         <div class="info-basic-res">
-                                            <h4 class="name-res" title="${shops.shop_name}">${shops.shop_name}</h4>
-                                            <div class="address-res" title="${shops.shop_address}">${shops.shop_address}</div>
+                                            <h4 class="name-res" title="${food.shop_name}">${food.shop_name}</h4>
+                                            <div class="address-res" title="${food.shop_address}">${food.shop_address}</div>
                                         </div>
                                         <p class="content-promotion"><i class="fas fa-tag"></i>Giảm 100%</p>
                                         <div class="opentime-status"><span class="stt online" title="Mở cửa"
@@ -437,16 +437,16 @@
                             </div>
                             <div>
                                 <%--              List shops foreach--%>
-                                <c:forEach var="shops" items="${shops}">
+                                <c:forEach var="food" items="${shops}">
                                     <div class="item-restaurant"><a  class="item-content"
-                                                                     href="shopItems?id=${shops.shop_id}">
+                                                                     href="shopItems?id=${food.shop_id}">
                                         <div class="img-restaurant"><img
-                                                src="img/${shops.shop_image}"
+                                                src="img/${food.shop_image}"
                                                 class=""></div>
                                         <div class="info-restaurant">
                                             <div class="info-basic-res">
-                                                <h4 class="name-res" title="${shops.shop_name}">${shops.shop_name}</h4>
-                                                <div class="address-res" title="${shops.shop_address}">${shops.shop_address}</div>
+                                                <h4 class="name-res" title="${food.shop_name}">${food.shop_name}</h4>
+                                                <div class="address-res" title="${food.shop_address}">${food.shop_address}</div>
                                             </div>
                                             <p class="content-promotion"><i class="fas fa-tag"></i>Giảm 100%</p>
                                             <div class="opentime-status"><span class="stt online" title="Mở cửa"

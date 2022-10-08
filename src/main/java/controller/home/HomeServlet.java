@@ -16,6 +16,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
+import static java.lang.Integer.parseInt;
+
 @WebServlet(name = "HomeServlet", value = "/home")
 public class HomeServlet extends HttpServlet {
     private IDealService dealService = new DealService();
@@ -51,8 +53,8 @@ public class HomeServlet extends HttpServlet {
 
     private void showByTag(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/client/listFoodSearchByTag.jsp");
-
-        request.setAttribute("foods",foodService.fillAll());
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("foods",foodService.findAllFoodByIdTag(id));
         dispatcher.forward(request,response);
     }
 
