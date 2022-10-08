@@ -136,8 +136,8 @@ header h1{
 
 }
 #right-content{
-    background-color: #0ccaff;
     width: 75%;
+    height: 100%;
     float: right;
 }
 #left-content h2{
