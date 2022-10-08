@@ -109,7 +109,15 @@
         </td>
       </tr>
 
-
+      <tr>
+        <th>Tags</th>
+        <select name="listTag" id="listTag">
+        <c:forEach var="tag" items="${tags}">
+<%--          <option value=""><c:out value="${tag.name}"></c:out></option>--%>
+          <option value="<c:out value="${tag.id}"/>"><c:out value="${tag.name}"/></option>
+        </c:forEach>
+        </select>
+      </tr>
 
       <tr>
         <td colspan="2" align="center">

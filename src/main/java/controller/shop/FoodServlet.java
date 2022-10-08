@@ -1,6 +1,7 @@
 package controller.shop;
 
 import model.Food;
+import model.Tag;
 import service.food.FoodService;
 import service.food.IFoodService;
 import service.tag.ITagService;
@@ -177,16 +178,18 @@ public class FoodServlet extends HttpServlet {
             Date food_lastupdate = java.sql.Date.valueOf(request.getParameter("food_lastupdate"));
             int status = Integer.parseInt(request.getParameter("status"));
 
-            String[] tagStr = request.getParameterValues("tags");
-            int[] tags = new int[tagStr.length];
-            for (int i = 0; i < tagStr.length; i++) {
-                tags[i] = Integer.parseInt(tagStr[i]);
-            }
 
+
+            request.setAttribute("tags", tagService.fillAll());
             Food food = new Food(shop_id, tag_id, deal_id, food_name, food_description, food_image, food_price, food_cooktime, (java.sql.Date) food_daycreate, (java.sql.Date) food_lastupdate, status);
+            int tags = Integer.parseInt(request.getParameter("listTag"));
+            for (Tag t:tagService.fillAll()
+                 ) {
+                if (t.getId()==tags)
 
-            foodService.save(food, tags);
-
+                    foodService.save(food, t);
+                break;
+            }
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {

@@ -26,15 +26,16 @@ import java.util.List;
         private static final String SELECT_ALL_FOOD = "SELECT * FROM food WHERE status = 1;";
         private static final String SELECT_FOOD_BY_ID = "SELECT * FROM food WHERE food_id=?";
         private static final String SELECT_FOOD_BY_NAME = "SELECT * FROM food WHERE food_name like ?";
+        private static final String SELECT_FOOD_ID_BY_NAME = "SELECT food_id FROM food WHERE food_name like ?";
 
         private static final String INSERT_FOOD = "INSERT INTO food (shop_id, tags_id, deal_id," +
-                "food_name, food_price, food_description, food_image, food_cooktime, food_daycreate, food_lastupdate, food_status) VALUE (?,?,?,?,?,?,?,?,?,?,?);";
+                "food_name, food_price, food_description, food_image, food_cooktime, food_daycreate, food_lastupdate, status) VALUE (?,?,?,?,?,?,?,?,?,?,?);";
 
         private static final String DELETE_FOOD = "DELETE FROM food WHERE food_id =? ;";
-        private static final String UPDATE_FOOD = "UPDATE food SET shop_id =?, tag_id =?, deal_id =?," +
-                "food_name = ?, food_price =?, food_description =?, food_image =?, food_cooktime=?, food_daycreate=?, food_lastupdate=?, food_status=? WHERE food_id =?;";
+        private static final String UPDATE_FOOD = "UPDATE food SET shop_id =?, tags_id =?, deal_id =?," +
+                "food_name = ?, food_price =?, food_description =?, food_image =?, food_cooktime=?, food_daycreate=?, food_lastupdate=?, status=? WHERE food_id =?;";
 
-        public static final String INSERT_NEW_FOOD_TAG = "INSERT INTO food_tag (food_id, tag_id) VALUE (?, ?);";
+        public static final String INSERT_NEW_FOOD_TAG = "INSERT INTO food_tags (food_id, tags_id) VALUE (?, ?);";
 
         @Override
         public List<Food> fillAll() {
@@ -157,6 +158,58 @@ import java.util.List;
                 System.out.println(statement);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
+            }
+        }
+
+        @Override
+        public void save(Food food, Tag tag) {
+
+            try{
+//            connection.setAutoCommit(false);
+                PreparedStatement statement =connection.prepareStatement(INSERT_FOOD);
+                statement.setInt(1, food.getShop_id());
+                statement.setInt(2, food.getTag_id());
+                statement.setInt(3, food.getDeal_id());
+                statement.setString(4, food.getName());
+                statement.setDouble(5, food.getPrice());
+                statement.setString(6, food.getDescription());
+                statement.setString(7, food.getImage());
+                statement.setTime(8, food.getCookTime());
+                statement.setDate(9, food.getDayCreate());
+                statement.setDate(10, food.getLastUpdate());
+                statement.setInt(11, food.getStatus());
+                statement.executeUpdate();
+
+                PreparedStatement statementF = connection.prepareStatement(SELECT_FOOD_BY_NAME);
+                statementF.setString(1, food.getName());
+                ResultSet set = statementF.executeQuery();
+                int id=0;
+                while (set.next())
+                {
+                id = set.getInt("food_id");
+                }
+
+
+
+
+
+
+
+
+                PreparedStatement statement1 = connection.prepareStatement(INSERT_NEW_FOOD_TAG);
+
+                    statement1.setInt(1,id);
+                    statement1.setInt(2,tag.getId());
+                    statement1.executeUpdate();
+
+//            connection.commit();
+            } catch (SQLException throwables) {
+                try {
+                    connection.rollback();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                throwables.printStackTrace();
             }
         }
 
