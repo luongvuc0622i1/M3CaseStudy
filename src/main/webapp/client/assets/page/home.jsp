@@ -236,13 +236,13 @@
                         </div>
                     </div>
                     <div class="category-list-filter">
-                        <a href="https://shopeefood.vn/ha-noi/danh-sach-dia-diem-phuc-vu-food-giao-tan-noi">
+                        <a href="home?action=showAllTag">
                             <span class="category-item ">All</span>
                         </a>
 
                         <%--            Show Category_name--%>
                         <c:forEach var="tag" items="${tags}">
-                            <a href="https://shopeefood.vn/ha-noi/danh-sach-dia-diem-phuc-vu-food-giao-tan-noi">
+                            <a href="home?action=showByTag&id=${tag.id}">
                                 <span class="category-item ">${tag.name}</span>
                             </a>
                         </c:forEach>
@@ -338,16 +338,16 @@
                                 </div>
                             </div>
                             <%--              List shops foreach--%>
-                            <c:forEach var="shops" items="${shops}">
+                            <c:forEach var="food" items="${foods}">
                                 <div class="item-restaurant"><a  class="item-content"
-                                                                 href="shopItems?id=${shops.shop_id}">
+                                                                 href="shopItems?id=${food.id}">
                                     <div class="img-restaurant"><img
-                                            src="img/${shops.shop_image}"
+                                            src="<c:out value="${food.image}"/>" alt="Ảnh món ăn"
                                             class=""></div>
                                     <div class="info-restaurant">
                                         <div class="info-basic-res">
-                                            <h4 class="name-res" title="${shops.shop_name}">${shops.shop_name}</h4>
-                                            <div class="address-res" title="${shops.shop_address}">${shops.shop_address}</div>
+                                            <h4 class="name-res" title="${food.name}">${food.name}</h4>
+                                            <div class="address-res" title="${food.price}">${food.price}</div>
                                         </div>
                                         <p class="content-promotion"><i class="fas fa-tag"></i>Giảm 100%</p>
                                         <div class="opentime-status"><span class="stt online" title="Mở cửa"
@@ -429,13 +429,13 @@
                                 <%--                list deal--%>
                                 <c:forEach var="deals" items="${deals}">
                                     <div class="item-restaurant"><a  class="item-content"
-                                                                     href="dealShops?id=${deals.deal_id}">
+                                                                     href="dealShops?id=${deals.id}">
                                         <div class="img-restaurant"><img
-                                                src="img/${deals.deal_image}"
+                                                src="<c:out value="${deals.image}"/>" alt="Ảnh món ăn"
                                                 class=""></div>
                                         <div class="info-restaurant">
                                             <div class="info-basic-res">
-                                                <h4 class="name-res" title="${deals.deal_name}">${deals.deal_name}</h4>
+                                                <h4 class="name-res" title="${deals.name}">${deals.name}</h4>
                                             </div>
                                         </div>
                                     </a></div>

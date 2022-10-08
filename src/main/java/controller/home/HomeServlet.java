@@ -37,6 +37,9 @@ public class HomeServlet extends HttpServlet {
 
         try {
             switch (action) {
+                case "showAllTag":
+                    showAllTag(request, response);
+                    break;
                 case "showByTag":
                     showByTag(request, response);
                     break;
@@ -51,6 +54,12 @@ public class HomeServlet extends HttpServlet {
         }
     }
 
+    private void showAllTag(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/client/listFoodSearchByTag.jsp");
+        request.setAttribute("foods",foodService.fillAll());
+        dispatcher.forward(request,response);
+    }
+
     private void showByTag(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/client/listFoodSearchByTag.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
@@ -60,7 +69,7 @@ public class HomeServlet extends HttpServlet {
 
     private void showHome(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/home.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/home.jsp");
 
         request.setAttribute("deals",dealService.fillAll());
         request.setAttribute("tags",tagService.fillAll());
