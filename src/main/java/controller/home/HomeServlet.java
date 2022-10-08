@@ -50,11 +50,9 @@ public class HomeServlet extends HttpServlet {
     }
 
     private void showByTag(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("testShop/listFoodSearchByTag.jsp");
-=======
-        RequestDispatcher dispatcher = request.getRequestDispatcher("client/page/tag.jsp");
->>>>>>> 09662607b53f478d27f868c329f307110c573fd5
+
 
 //        request.setAttribute("tags",tagService.fillAll());
 //        request.setAttribute("shops",shopService.fillAll());
