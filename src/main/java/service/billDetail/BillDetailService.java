@@ -1,8 +1,13 @@
 package service.billDetail;
 
 import connection.ConnectionCMS;
-import model.Bill;
-import model.BillDetail;
+import model.*;
+import service.bill.BillService;
+import service.bill.IBillService;
+import service.food.FoodService;
+import service.food.IFoodService;
+import service.service.IServiceService;
+import service.service.ServiceService;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,22 +19,39 @@ public class BillDetailService implements IBillDetail{
     private static final String INSERT_BILL_DATAIL_SQL = "INSERT INTO bill_detail (bill_id,fool_id,quantity,price,status) VALUES (?, ?, ?,?,?);";
 
     private static final String FIND_ALL_BILL_DETAIL = "SELECT * FROM bill_detail;";
-    private Connection c = ConnectionCMS.getConnection();
 
     private static final String DELETE_BILL_DETAIL_SQL="DELETE FROM bill_detail WHERE bill_detail_id=?;";
+    private Connection c = ConnectionCMS.getConnection();
+    private IFoodService foodService = new FoodService();
+    private IBillService billService = new BillService();
+
     @Override
-    public List<model.BillDetail> fillAll() {
+    public List<BillDetail> fillAll() {
         List<BillDetail> billDetailList = new ArrayList<>();
+        List<Food> foods = foodService.fillAll();
+        List<Bill> bills = billService.fillAll();
         try {
             PreparedStatement ps= c.prepareStatement(FIND_ALL_BILL_DETAIL);
             ResultSet resultSet= ps.executeQuery();
             while (resultSet.next()){
                 int quantity = resultSet.getInt("quantity");
                 Double price = resultSet.getDouble("price");
-                int foodId = resultSet.getInt("id");
-                int billId = resultSet.getInt("id");
-                int status = resultSet.getInt("client_status");
-                BillDetail billDetail =new BillDetail (billId,foodId,quantity,price, status);
+                int foodId = resultSet.getInt("food_id");
+                Food food = null;
+                for (Food f : foods) {
+                    if (f.getId() == foodId) {
+                        food = f;
+                    }
+                }
+                int billId = resultSet.getInt("bill_id");
+                Bill bill = null;
+                for (Bill b : bills) {
+                    if (b.getId() == billId) {
+                        bill = b;
+                    }
+                }
+                int status = resultSet.getInt("status");
+                BillDetail billDetail =new BillDetail (bill, food, quantity, price, status);
                 billDetailList.add(billDetail);
             }
         } catch (SQLException e) {
@@ -77,7 +99,7 @@ public class BillDetailService implements IBillDetail{
     }
 
     @Override
-    public void add(model.BillDetail billDetail, int[] billDetails) {
+    public void add(BillDetail billDetail, int[] billDetails) {
 
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;

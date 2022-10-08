@@ -8,6 +8,9 @@ import model.Service;
 import model.Shop;
 import service.bill.BillService;
 import service.client.ClientService;
+import service.client.IClientService;
+import service.shop.IShopService;
+import service.shop.ShopService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,6 +31,8 @@ public class ClientServlet extends HttpServlet {
     private HomeServlet homeServlet;
     private SearchCartClient searchCartClient=new SearchCartClient();
     private BillService billService =new BillService();
+    private IClientService clientService = new ClientService();
+    private IShopService shopService = new ShopService();
 
     public void init(){
         homeServlet=new HomeServlet();
@@ -78,13 +83,27 @@ public class ClientServlet extends HttpServlet {
 //    }
     private void addCart(HttpServletRequest request,HttpServletResponse response)
             throws SQLException,IOException,ServletException {
+        List<Client> clients = clientService.fillAll();
+        List<Shop> shops = shopService.fillAll();
         String code = request.getParameter("bill_code");
         Date date = Date.valueOf(request.getParameter("bill_date"));
         Double totalCost= Double.valueOf(request.getParameter("totalCost"));
-        int client_id= Integer.parseInt(request.getParameter("id"));
-        int shop_id= Integer.parseInt(request.getParameter("id"));
-        int status= Integer.parseInt(request.getParameter("bill_status"));
-        Bill bill=new Bill(code,date,totalCost,client_id,shop_id,status);
+        int clientId= Integer.parseInt(request.getParameter("client_id"));
+        Client client = null;
+        for (Client c : clients) {
+            if (c.getId() == clientId) {
+                client = c;
+            }
+        }
+        int shopId= Integer.parseInt(request.getParameter("shop_id"));
+        Shop shop = null;
+        for (Shop s : shops) {
+            if (s.getId() == shopId) {
+                shop = s;
+            }
+        }
+        int status= Integer.parseInt(request.getParameter("status"));
+        Bill bill=new Bill(code,date,totalCost,client,shop,status);
         billService.insert(bill);
         RequestDispatcher requestDispatcher=request.getRequestDispatcher("client/assets");
         requestDispatcher.forward(request,response);
