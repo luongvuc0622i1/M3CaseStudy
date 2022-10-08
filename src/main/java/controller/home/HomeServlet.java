@@ -2,6 +2,12 @@ package controller.home;
 
 import service.deal.DealService;
 import service.deal.IDealService;
+import service.food.FoodService;
+import service.food.IFoodService;
+import service.service.IServiceService;
+import service.service.ServiceService;
+import service.shop.IShopService;
+import service.shop.ShopService;
 import service.tag.ITagService;
 import service.tag.TagService;
 
@@ -14,6 +20,11 @@ import java.io.IOException;
 public class HomeServlet extends HttpServlet {
     private IDealService dealService = new DealService();
     private ITagService tagService = new TagService();
+    private IShopService shopService = new ShopService();
+    
+    private IFoodService foodService = new FoodService();
+    
+    private IServiceService serviceService = new ServiceService();
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,7 +36,7 @@ public class HomeServlet extends HttpServlet {
         try {
             switch (action) {
                 case "showByTag":
-//                    showByTag(request, response);
+                    showByTag(request, response);
                     break;
                 default:
                     showHome(request, response);
@@ -38,15 +49,24 @@ public class HomeServlet extends HttpServlet {
         }
     }
 
+    private void showByTag(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/page/category.jsp");
+
+        request.setAttribute("categories",tagService.fillAll());
+        request.setAttribute("shops",shopService.fillAll());
+        request.setAttribute("items",foodService.fillAll());
+        dispatcher.forward(request,response);
+    }
+
     private void showHome(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/home.jsp");
 
         request.setAttribute("deals",dealService.fillAll());
         request.setAttribute("tags",tagService.fillAll());
-//        request.setAttribute("shops",shopService.fillAll());
-//        request.setAttribute("foods",foodService.fillAll());
-//        request.setAttribute("services",serviceService.fillAll());
+        request.setAttribute("shops",shopService.fillAll());
+        request.setAttribute("foods",foodService.fillAll());
+        request.setAttribute("services",serviceService.fillAll());
         dispatcher.forward(request,response);
     }
 
@@ -57,11 +77,11 @@ public class HomeServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "...":
-//                    ...(request, response);
+            case "showByTag":
+                   showByTag(request, response);
                 break;
             default:
-//                    showHome(request, response);
+                    showHome(request, response);
                 break;
         }
     }

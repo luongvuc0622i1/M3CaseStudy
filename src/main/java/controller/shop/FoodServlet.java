@@ -173,12 +173,9 @@ public class FoodServlet extends HttpServlet {
             String food_image = new String(request.getParameter("food_image").getBytes("iso-8859-1"),"utf-8");
             String scooktime = request.getParameter("food_cooktime");
             Time food_cooktime = Time.valueOf(scooktime);
-
             Date food_daycreate = java.sql.Date.valueOf(request.getParameter("food_daycreate"));
             Date food_lastupdate = java.sql.Date.valueOf(request.getParameter("food_lastupdate"));
             int status = Integer.parseInt(request.getParameter("status"));
-
-
 
             request.setAttribute("tags", tagService.fillAll());
             Food food = new Food(shop_id, tag_id, deal_id, food_name, food_description, food_image, food_price, food_cooktime, (java.sql.Date) food_daycreate, (java.sql.Date) food_lastupdate, status);
