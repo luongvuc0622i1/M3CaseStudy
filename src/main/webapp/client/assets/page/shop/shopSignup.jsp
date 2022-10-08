@@ -29,7 +29,7 @@
         }
 
         body {
-            background: rgb(250, 110, 34);
+            background: rgb(250, 103, 22);
         }
 
         input, label {
@@ -51,123 +51,147 @@
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col">
-                <div class="card card-registration my-4">
-                    <div class="row g-0">
-                        <div class="col-xl-6 d-none d-xl-block">
+                <div class="col-xl-12">
+                    <div class="card card-registration my-4">
+                        <img src="<c:url value='/img/restaurant.jpg'/>"
+                             alt="Sample photo">
+                        <div class="row">
+                            <img
+                                    src="<c:url value='/img/favicon.png'/>"
+                                    alt="logo"
+                                    class="rounded float-left" width="80px"
+                                    height="80px" style="margin-left: 25%;margin-top: 25px;margin-right: 20px">
 
-                            <img src="<c:url value='/img/restaurant.jpg'/>"
-                                 alt="Sample photo" class="img-fluid"
-                                 style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;"/>
-                            <br>
+                            <h1 class="text-uppercase text-center float-left " style="margin-top: 40px">Đăng ký cửa hàng
+                                mới</h1>
                         </div>
-                        <div class="col-xl-6"><img src="<c:url value='/img/favicon.png'/>" alt="logo"
-                                                   class="rounded float-left" width="70px"
-                                                   height="70px" style="margin-top: 20px;margin-left: 10px">
-                            <div class="card-body p-md-5 text-black">
-                                <h3 class="mb-5 text-uppercase text-center">Đăng ký cửa hàng mới</h3>
-                                <form method="post" action="/createShop?action=submit">
-                                    <fieldset>
-                                        <legend>Thông tin tài khoản</legend>
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="account">Tên tài khoản</label>
-                                            <input type="text" placeholder="Nhập tên tài khoản" id="account"
-                                                   name="account"
-                                                   class="form-control form-control-md"/>
-                                        </div>
-                                        <div class="form-outline mb-4 form-group">
-                                            <label class="form-label" for="password">Mật khẩu</label>
-                                            <input type="password" placeholder="Nhập mật khẩu" id="password"
-                                                   name="password"
-                                                   class="form-control form-control-md"/>
-                                        </div>
-                                    </fieldset>
-                                    <br>
-                                    <fieldset>
-                                        <legend>Thông tin cửa hàng</legend>
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="name">Tên cửa hàng</label>
-                                            <input type="text" placeholder="Nhập tên cửa hàng" id="name" name="name"
-                                                   class="form-control form-control-md"/>
+                        <div class="card-body p-md-5 text-black">
+                            <form method="post" action="/createShop?action=submit">
+                                <fieldset>
+                                    <legend>Thông tin tài khoản</legend>
 
-                                        </div>
-
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="phone">Số điện thoại</label>
-                                            <input type="text" placeholder="Nhập số điện thoại" id="phone" name="phone"
-                                                   class="form-control form-control-md"/>
-                                        </div>
-
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="email">Email</label>
-                                            <input type="text" placeholder="VD: 'abc123@gmail.com'" id="email"
-                                                   name="email"
-                                                   class="form-control form-control-md"/>
-
-                                        </div>
-
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="address">Địa chỉ</label>
-                                            <input type="text" placeholder="Nhập địa chỉ" id="address" name="address"
-                                                   class="form-control form-control-md"/>
-                                        </div>
-
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="openTime">Thời gian mở cửa:</label>
-                                            <input type="time" id="openTime" name="openTime"
-                                                   class="form-control form-control-md"/>
-                                        </div>
-
-
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="closeTime">Thời gian đóng cửa:</label>
-                                            <input type="time" id="closeTime" name="closeTime"
-                                                   class="form-control form-control-md"/>
-                                        </div>
-                                        <br>
-                                        <br>
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label"><h6>Các loại phí khác:</h6></label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox"
-                                                       id="serviceFee"
-                                                       value="1"/>
-                                                <label class="form-check-label" for="serviceFee">Phí dịch vụ</label>
-                                            </div>
-
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="shippingFee"
-                                                       value="2"/>
-                                                <label class="form-check-label" for="shippingFee">Phí ship extra</label>
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
                                             <div class="form-outline mb-4">
-                                                <label class="form-label" for="shopImage">Hình ảnh cửa hàng</label>
-                                                <input type="text" placeholder="Nhập link ảnh cửa hàng" id="shopImage"
-                                                       name="shopImage"
+                                                <label class="form-label" for="account">Tên tài khoản</label>
+                                                <input type="text" placeholder="Nhập tên tài khoản" id="account"
+                                                       name="account"
                                                        class="form-control form-control-md"/>
                                             </div>
-                                            <div class="form-outline mb-4">
-                                                <label class="form-label" for="description">Mô tả</label>
-                                                <textarea class="form-control" id="description" name="description"
-                                                          placeholder="Nhập mô tả về cửa hàng"></textarea>
-                                            </div>
-
                                         </div>
-                                    </fieldset>
-                                    <br>
-                                    <div class="d-flex justify-content-end pt-3">
-                                        <button type="reset" class="btn btn-light btn-lg ">Reset all</button>
-                                        <button type="submit" class="btn btn-lg ms-2 "
-                                                style="background:rgb(255,87,36);color: white">
-                                            Submit form
-                                        </button>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="password">Mật khẩu</label>
+                                                <input type="password" placeholder="Nhập mật khẩu" id="password"
+                                                       name="password"
+                                                       class="form-control form-control-md"/>
+                                            </div>
+                                        </div>
                                     </div>
-                                </form>
-                            </div>
+                                </fieldset>
+                                <br>
+                                <fieldset>
+                                    <legend>Thông tin cửa hàng</legend>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="name">Tên cửa hàng</label>
+                                                <input type="text" placeholder="Nhập tên cửa hàng" id="name" name="name"
+                                                       class="form-control form-control-md"/>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="address">Địa chỉ</label>
+                                                <input type="text" placeholder="Nhập địa chỉ" id="address"
+                                                       name="address"
+                                                       class="form-control form-control-md"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="phone">Số điện thoại</label>
+                                                <input type="text" placeholder="Nhập số điện thoại" id="phone"
+                                                       name="phone"
+                                                       class="form-control form-control-md"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="email">Email</label>
+                                                <input type="text" placeholder="VD: 'abc123@gmail.com'" id="email"
+                                                       name="email"
+                                                       class="form-control form-control-md"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="openTime">Thời gian mở cửa:</label>
+                                                <input type="time" step="1" id="openTime" name="openTime"
+                                                       class="form-control form-control-md"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="closeTime">Thời gian đóng cửa:</label>
+                                                <input type="time" step="1" id="closeTime" name="closeTime"
+                                                       class="form-control form-control-md"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label"><h6>Các loại phí khác:</h6></label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox"
+                                                   id="serviceFee"
+                                                   value="1"/>
+                                            <label class="form-check-label" for="serviceFee">Phí dịch vụ</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="shippingFee"
+                                                   value="2"/>
+                                            <label class="form-check-label" for="shippingFee">Phí ship extra</label>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="shopImage">Hình ảnh cửa hàng</label>
+                                            <input type="text" placeholder="Nhập link ảnh cửa hàng" id="shopImage"
+                                                   name="shopImage"
+                                                   class="form-control form-control-md"/>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="description">Mô tả</label>
+                                            <textarea class="form-control" id="description" name="description"
+                                                      placeholder="Nhập mô tả về cửa hàng"></textarea>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                                <br>
+                                <div class="d-flex justify-content-end pt-3">
+                                    <button type="reset" class="btn btn-light btn-lg ">Reset all</button>
+                                    <button type="submit" class="btn btn-lg ms-2 "
+                                            style="background:rgb(255,87,36);color: white">
+                                        Submit form
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 </body>
