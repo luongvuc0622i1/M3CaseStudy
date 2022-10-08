@@ -464,7 +464,7 @@
                             </tr><tr>
                                 <td></td>
                                 <td></td>
-                                <td><a href="/customers?action=home"><button>Quay lại cửa hàng</button></a></td>
+                                <td><a href="/homeClient?action=home"><button>Quay lại cửa hàng</button></a></td>
                                 <td></td>
                                 <td></td>
                             </tr>

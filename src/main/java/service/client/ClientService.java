@@ -28,7 +28,7 @@ public class ClientService implements IClientService {
                 String email = resultSet.getString("client_email");
                 String account = resultSet.getString("client_account");
                 String password = resultSet.getString("client_password");
-                int status = resultSet.getInt("client_status");
+                int status = resultSet.getInt("status");
                 Client client = new Client(id, code, name, phone, address, email, account, password, status);
                 clients.add(client);
             }
@@ -54,7 +54,7 @@ public class ClientService implements IClientService {
                 String email = resultSet.getString("client_email");
                 String account = resultSet.getString("client_account");
                 String password = resultSet.getString("client_password");
-                int status = resultSet.getInt("client_status");
+                int status = resultSet.getInt("status");
                 client = new Client(id, code, name, phone, address, email, account, password, status);
             }
         }catch (SQLException e){
