@@ -2,11 +2,14 @@ package controller.login;
 
 import model.Admin;
 import model.Client;
+import model.Food;
 import model.Shop;
 import service.admin.AdminService;
 import service.admin.IAdminService;
 import service.client.ClientService;
 import service.client.IClientService;
+import service.food.FoodService;
+import service.food.IFoodService;
 import service.shop.IShopService;
 import service.shop.ShopService;
 
@@ -20,6 +23,7 @@ import java.util.List;
 public class LoginServlet extends HttpServlet {
     private IAdminService adminService = new AdminService();
     private IShopService shopService = new ShopService();
+    private IFoodService foodService = new FoodService();
     private IClientService clientService = new ClientService();
     public static String account ="";
     private static boolean checkLogin = false;
@@ -82,6 +86,8 @@ public class LoginServlet extends HttpServlet {
         for (Shop shop : shops) {
             if (shop.getAccount().equals(account) && shop.getPassword().equals(password)) {
                 request.setAttribute("shop", shop);
+                List<Food> foodList = foodService.findAllFoodByIdShop(shop.getId());
+                request.setAttribute("foodList", foodList);
                 dispatcher = request.getRequestDispatcher("/shop/shopHome.jsp");
                 LoginServlet.checkLogin = true;
                 dispatcher.forward(request, response);
