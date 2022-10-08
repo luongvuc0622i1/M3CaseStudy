@@ -77,7 +77,7 @@
       <tr>
         <th>food_image </th>
         <td>
-          <input type="text" name="food_image " id="food_image " size="45"/>
+          <input type="text" name="food_image" id="food_image " size="45"/>
         </td>
       </tr>
 
@@ -91,14 +91,14 @@
       <tr>
         <th>food_daycreate</th>
         <td>
-          <input type="text" name="food_daycreate" id="food_daycreate" size="45"/>
+          <input type="date" name="food_daycreate" id="food_daycreate" size="45"/>
         </td>
       </tr>
 
       <tr>
         <th>food_lastupdate</th>
         <td>
-          <input type="text" name="food_lastupdate" id="food_lastupdate" size="45"/>
+          <input type="date" name="food_lastupdate" id="food_lastupdate" size="45"/>
         </td>
       </tr>
 
@@ -108,6 +108,8 @@
           <input type="text" name="status" id="status" size="45"/>
         </td>
       </tr>
+
+
 
       <tr>
         <td colspan="2" align="center">

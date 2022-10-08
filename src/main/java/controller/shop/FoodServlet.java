@@ -79,6 +79,7 @@ public class FoodServlet extends HttpServlet {
                     break;
                 case "listFood":
                     listFood(request, response);
+                    break;
                 default:
                     listFood(request,response);
                     break;
@@ -169,7 +170,9 @@ public class FoodServlet extends HttpServlet {
             double food_price = Double.parseDouble(request.getParameter("food_price"));
             String food_description = new String(request.getParameter("food_description").getBytes("iso-8859-1"),"utf-8");
             String food_image = new String(request.getParameter("food_image").getBytes("iso-8859-1"),"utf-8");
-            Time food_cooktime = Time.valueOf(request.getParameter("food_cooktime"));
+            String scooktime = request.getParameter("food_cooktime");
+            Time food_cooktime = Time.valueOf(scooktime);
+
             Date food_daycreate = java.sql.Date.valueOf(request.getParameter("food_daycreate"));
             Date food_lastupdate = java.sql.Date.valueOf(request.getParameter("food_lastupdate"));
             int status = Integer.parseInt(request.getParameter("status"));
