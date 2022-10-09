@@ -71,14 +71,14 @@ import java.util.List;
         @Override
         public Food findById(int id) {
             Food food = null;
-            try (PreparedStatement statement = connection.prepareStatement(SELECT_FOOD_BY_ID);) {
+            try (PreparedStatement statement = connection.prepareStatement(SELECT_FOOD_BY_ID)) {
                 statement.setInt(1, id);
                 System.out.println(statement);
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     int food_id = resultSet.getInt("food_id");
                     int shop_id = resultSet.getInt("shop_id");
-                    int tag_id = resultSet.getInt("tag_id");
+                    int tag_id = resultSet.getInt("tags_id");
                     int deal_id = resultSet.getInt("deal_id");
                     String name = resultSet.getString("food_name");
                     double price = resultSet.getDouble("food_price");

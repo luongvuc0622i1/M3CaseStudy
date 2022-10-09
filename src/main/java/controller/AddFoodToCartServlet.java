@@ -26,24 +26,35 @@ public class AddFoodToCartServlet extends HttpServlet {
             case "delete":
                 deleteOrder(request, response);
                 break;
-            case "addOrder":
-                addOrder(request, response);
+            case "addFood":
+                addFood(request, response);
                 break;
         }
     }
 
-    private void addOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void addFood(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+//        double sum = 0;
+//        int quantity = 1;
+//        int id;
+//        request.setAttribute("account", LoginServlet.account);
+//
+//        id = Integer.parseInt(request.getParameter("id"));
+//        request.setAttribute("food",foodService.findById(id));
+//
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/client/clientCart.jsp");
+//        dispatcher.forward(request,response);
+
         double sum = 0;
         int quantity = 1;
         int id;
         request.setAttribute("account", LoginServlet.account);
-        if (request.getParameter("food_id")!=null){
-            id = Integer.parseInt(request.getParameter("food_id"));
+        if (request.getParameter("id")!=null){
+            id = Integer.parseInt(request.getParameter("id"));
             Food food = foodService.findById(id);
             request.setAttribute("account", LoginServlet.account);
             if (food != null){
-                if (request.getParameter("food_quantity")!=null){
-                    quantity = Integer.parseInt(request.getParameter("food_quantity"));
+                if (request.getParameter("quantity")!=null){
+                    quantity = Integer.parseInt(request.getParameter("quantity"));
                 }
                 HttpSession session = request.getSession();
                 if (session.getAttribute("order")==null){
@@ -78,11 +89,12 @@ public class AddFoodToCartServlet extends HttpServlet {
                 }
             }
             request.setAttribute("account", LoginServlet.account);
-            response.sendRedirect("client/assets/page/client/clientCart.jsp");
-
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/client/clientCart.jsp");
+            dispatcher.forward(request,response);
         }else {
             request.setAttribute("account", LoginServlet.account);
-            response.sendRedirect("/client/assets/page/client/clientCart.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/client/clientCart.jsp");
+            dispatcher.forward(request,response);
         }
     }
 
@@ -101,5 +113,13 @@ public class AddFoodToCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         request.setAttribute("account", LoginServlet.account);
+        switch (action) {
+            case "delete":
+                deleteOrder(request, response);
+                break;
+            case "addFood":
+                addFood(request, response);
+                break;
+        }
     }
 }

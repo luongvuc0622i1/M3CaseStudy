@@ -345,7 +345,7 @@
                             <%--              List shops foreach--%>
                             <c:forEach var="food" items="${foods}">
                                 <div class="item-restaurant"><a  class="item-content"
-                                                                 href="addToCart?action=addOrder&id=${food.id}">
+                                                                 href="addToCart?action=addFood&id=1">
                                     <div class="img-restaurant"><img
                                             src="<c:out value="${food.image}"/>" alt="Ảnh món ăn"
                                             class=""></div>
