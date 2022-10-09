@@ -9,4 +9,7 @@ public interface IShopService extends IService<Shop> {
 
     void insertDefaul(Shop shop);
 
+    Shop blockShopById(int id);
+    Shop unblockShopById(int id);
+
 }

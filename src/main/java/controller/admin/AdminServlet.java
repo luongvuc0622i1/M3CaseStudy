@@ -111,9 +111,55 @@ public class AdminServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "blockShop":
+                blockShop(request, response);
+                break;
+            case "blockClient":
+                blockClient(request, response);
+                break;
+            case "unblockShop":
+                unblockShop(request, response);
+                break;
+            case "unblockClient":
+                unblockClinet(request, response);
+                break;
             default:
                 homeAdmin(request, response);
                 break;
         }
     }
+
+    private void blockShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("shop_id"));
+        Shop existingShop = shopService.blockShopById(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/shopManagement.jsp");
+        request.setAttribute("shop", existingShop);
+        dispatcher.forward(request, response);
     }
+
+    private void blockClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("client_id"));
+        Shop existingShop = clientService.blockClientById(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/clientManagement.jsp");
+        request.setAttribute("shop", existingShop);
+        dispatcher.forward(request, response);
+    }
+
+    private void unblockShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("shop_id"));
+        Shop existingShop = shopService.unblockShopById(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/shopManagement.jsp");
+        request.setAttribute("shop", existingShop);
+        dispatcher.forward(request, response);
+    }
+
+    private void unblockClinet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("client_id"));
+        Shop existingShop = clientService.unblockClientById(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/clientManagement.jsp");
+        request.setAttribute("shop", existingShop);
+        dispatcher.forward(request, response);
+    }
+
+
+}
