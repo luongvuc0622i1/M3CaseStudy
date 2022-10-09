@@ -85,21 +85,33 @@ public class LoginServlet extends HttpServlet {
         }
         for (Shop shop : shops) {
             if (shop.getAccount().equals(account) && shop.getPassword().equals(password)) {
-                request.setAttribute("shop", shop);
-                List<Food> foodList = foodService.findAllFoodByIdShop(shop.getId());
-                request.setAttribute("foodList", foodList);
-                dispatcher = request.getRequestDispatcher("/shop/shopHome.jsp");
-                LoginServlet.checkLogin = true;
-                dispatcher.forward(request, response);
+                if (shop.getStatus() == 1) {
+                    request.setAttribute("shop", shop);
+                    List<Food> foodList = foodService.findAllFoodByIdShop(shop.getId());
+                    request.setAttribute("foodList", foodList);
+                    dispatcher = request.getRequestDispatcher("/shop/shopHome.jsp");
+                    LoginServlet.checkLogin = true;
+                    dispatcher.forward(request, response);
+                } else {
+                    request.setAttribute("message","Tài khoản shop đã bị khoá! Hãy liên hệ hotline để được kích hoạt");
+                    dispatcher = request.getRequestDispatcher("/client/assets/page/login.jsp");
+                    dispatcher.forward(request,response);
+                }
                 return;
             }
         }
         for (Client client : clients) {
             if (client.getAccount().equals(account) && client.getPassword().equals(password)) {
-                request.setAttribute("account", account);
-                dispatcher = request.getRequestDispatcher("/client/assets/page/client/clientHome.jsp");
-                LoginServlet.checkLogin = true;
-                dispatcher.forward(request, response);
+                if (client.getStatus() == 1) {
+                    request.setAttribute("account", account);
+                    dispatcher = request.getRequestDispatcher("/client/assets/page/client/clientHome.jsp");
+                    LoginServlet.checkLogin = true;
+                    dispatcher.forward(request, response);
+                } else {
+                    request.setAttribute("message","Tài khoản khách hàng đã bị khoá! Hãy liên hệ hotline để được kích hoạt");
+                    dispatcher = request.getRequestDispatcher("/client/assets/page/login.jsp");
+                    dispatcher.forward(request,response);
+                }
                 return;
             }
         }
