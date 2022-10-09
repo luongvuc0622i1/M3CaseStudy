@@ -1,5 +1,7 @@
 package controller.admin;
 
+import model.Client;
+import model.Shop;
 import service.client.ClientService;
 import service.client.IClientService;
 import service.deal.DealService;
@@ -18,6 +20,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "AdminServlet", value = "/admin")
 public class AdminServlet extends HttpServlet {
@@ -35,23 +39,28 @@ public class AdminServlet extends HttpServlet {
             action = "";
         }
 
-        switch (action) {
-            case "showShop":
-                showShop(request, response);
-                break;
-            case "showClient":
-                showClient(request, response);
-                break;
-            case "deleteShop":
-                deleteShop(request, response);
-                break;
-            case "deleteClient":
-                deleteClient(request, response);
-                break;
-            default:
-                homeAdmin(request, response);
-                break;
+        try {
+            switch (action) {
+                case "showShop":
+                    showShop(request, response);
+                    break;
+                case "showClient":
+                    showClient(request, response);
+                    break;
+                case "deleteShop":
+                    deleteShop(request, response);
+                    break;
+                case "deleteClient":
+                    deleteClient(request, response);
+                    break;
+                default:
+                    homeAdmin(request, response);
+                    break;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+
     }
 
     private void homeAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -63,20 +72,35 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("clients", clientService.fillAll());
     }
 
-    private void deleteClient(HttpServletRequest request, HttpServletResponse response) {
+    private void deleteClient(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int client_id = Integer.parseInt(request.getParameter("client_id"));
+        clientService.delete(client_id);
 
+        List<Client> clients = clientService.fillAll();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/adminHome.jsp");
+        dispatcher.forward(request, response);
     }
 
-    private void deleteShop(HttpServletRequest request, HttpServletResponse response) {
+    private void deleteShop(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int shop_id = Integer.parseInt(request.getParameter("shop_id"));
+        shopService.delete(shop_id);
 
+        List<Shop> shops = shopService.fillAll();
+        request.setAttribute("shops", shops);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/adminHome.jsp");
+        dispatcher.forward(request, response);
     }
 
-    private void showClient(HttpServletRequest request, HttpServletResponse response) {
-
+    private void showClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/clientManagement.jsp");
+        request.setAttribute("clients",clientService.fillAll());
+        dispatcher.forward(request, response);
     }
 
-    private void showShop(HttpServletRequest request, HttpServletResponse response) {
-
+    private void showShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/shopManagement.jsp");
+        request.setAttribute("shops",shopService.fillAll());
+        dispatcher.forward(request,response);
     }
 
 
