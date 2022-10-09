@@ -22,6 +22,8 @@ public class ShopService implements IShopService {
     private static final String SELECT_SHOP_BY_NAME = "update shop set shop_code = ?, shop_name = ?, shop_email = ?, shop_phone = ?, shop_address = ?, shop_account = ?, shop_password = ? , shop_image=?, shop_open=?, shop_close=?, service_id=?,shop_description=?, status=? where shop_name = ?";
     private static final String INSERT_SHOP_SQL = "insert into shop(shop_name, shop_email, shop_phone, shop_address, shop_account, shop_password, shop_image, shop_open, shop_close, service_id, shop_description, status) values (?,?,?,?,?,?,?,?,?,?,?,?)";
 
+//    private static final String BLOCK_SHOP = "UPDATE"
+//    UPDATE `foodhub`.`shop` SET `status` = '0' WHERE (`shop_id` = '1');
     Connection connection = ConnectionCMS.getConnection();
     private IServiceService serviceService = new ServiceService();
 
