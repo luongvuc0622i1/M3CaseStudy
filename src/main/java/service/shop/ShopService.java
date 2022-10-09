@@ -22,8 +22,9 @@ public class ShopService implements IShopService {
     private static final String SELECT_SHOP_BY_NAME = "update shop set shop_code = ?, shop_name = ?, shop_email = ?, shop_phone = ?, shop_address = ?, shop_account = ?, shop_password = ? , shop_image=?, shop_open=?, shop_close=?, service_id=?,shop_description=?, status=? where shop_name = ?";
     private static final String INSERT_SHOP_SQL = "insert into shop(shop_name, shop_email, shop_phone, shop_address, shop_account, shop_password, shop_image, shop_open, shop_close, service_id, shop_description, status) values (?,?,?,?,?,?,?,?,?,?,?,?)";
 
-//    private static final String BLOCK_SHOP = "UPDATE"
-//    UPDATE `foodhub`.`shop` SET `status` = '0' WHERE (`shop_id` = '1');
+    private static final String BLOCK_SHOP_BY_ID = "CALL blockShopById(?);";
+    private static final String UNBLOCK_SHOP_BY_ID = "CALL unblockShopById(?);";
+
     Connection connection = ConnectionCMS.getConnection();
     private IServiceService serviceService = new ServiceService();
 
@@ -32,9 +33,9 @@ public class ShopService implements IShopService {
         List<Shop> shops = new ArrayList<>();
         List<Service> services = serviceService.fillAll();
         try {
-            PreparedStatement ps= connection.prepareStatement(SELECT_ALL_SHOP);
-            ResultSet rs= ps.executeQuery();
-            while (rs.next()){
+            PreparedStatement ps = connection.prepareStatement(SELECT_ALL_SHOP);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
                 int id = rs.getInt("shop_id");
                 String code = rs.getString("shop_code");
                 String name = rs.getString("shop_name");
@@ -55,7 +56,7 @@ public class ShopService implements IShopService {
                 }
                 String description = rs.getString("shop_description");
                 int status = rs.getInt("status");
-                Shop shop  = new Shop(id, status, open, close, code, name, email, phone, address, account, password, image, description, service);
+                Shop shop = new Shop(id, status, open, close, code, name, email, phone, address, account, password, image, description, service);
                 shops.add(shop);
             }
         } catch (SQLException e) {
@@ -101,7 +102,6 @@ public class ShopService implements IShopService {
         }
         return shop;
     }
-
 
 
     @Override
@@ -177,7 +177,7 @@ public class ShopService implements IShopService {
             preparedStatement.setInt(11, shop.getServiceId());
             preparedStatement.setString(12, shop.getDescription());
             preparedStatement.setInt(13, shop.getStatus());
-            preparedStatement.setInt(14,id);
+            preparedStatement.setInt(14, id);
 
             rowUpdated = preparedStatement.executeUpdate() > 0;
         }
@@ -235,6 +235,30 @@ public class ShopService implements IShopService {
             e.printStackTrace();
         }
         return shop;
+    }
+
+    public Shop blockShopById(int id) {
+        Shop shop = null;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(BLOCK_SHOP_BY_ID)) {
+            preparedStatement.setInt(1, id);
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } return shop;
+    }
+
+    public Shop unblockShopById(int id) {
+        Shop shop = null;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UNBLOCK_SHOP_BY_ID)) {
+            preparedStatement.setInt(1, id);
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } return shop;
     }
 
 }
