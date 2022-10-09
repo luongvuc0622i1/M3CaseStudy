@@ -9,8 +9,16 @@ import model.Shop;
 import service.bill.BillService;
 import service.client.ClientService;
 import service.client.IClientService;
+import service.deal.DealService;
+import service.deal.IDealService;
+import service.food.FoodService;
+import service.food.IFoodService;
+import service.service.IServiceService;
+import service.service.ServiceService;
 import service.shop.IShopService;
 import service.shop.ShopService;
+import service.tag.ITagService;
+import service.tag.TagService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,6 +41,12 @@ public class ClientServlet extends HttpServlet {
     private BillService billService =new BillService();
     private IClientService clientService = new ClientService();
     private IShopService shopService = new ShopService();
+    private IDealService dealService = new DealService();
+    private ITagService tagService = new TagService();
+
+    private IFoodService foodService = new FoodService();
+
+    private IServiceService serviceService = new ServiceService();
 
     public void init(){
         homeServlet=new HomeServlet();
@@ -55,6 +69,9 @@ public class ClientServlet extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
+            default:
+                showHome(request, response);
+                break;
         }
 //        }catch (SQLException e){
 //            throw new ServletException(e);
@@ -73,10 +90,24 @@ public class ClientServlet extends HttpServlet {
 //                    homeServlet.doGet(request,response);
 //                    break;
             default:
-                homeServlet.doGet(request,response);
+                showHome(request, response);
                 break;
         }
     }
+
+    private void showHome(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/home.jsp");
+
+        request.setAttribute("deals",dealService.fillAll());
+        request.setAttribute("tags",tagService.fillAll());
+        request.setAttribute("shops",shopService.fillAll());
+        request.setAttribute("foods",foodService.fillAll());
+        request.setAttribute("services",serviceService.fillAll());
+        dispatcher.forward(request,response);
+
+    }
+
     //        catch (SQLException e){
 //            throw new ServletException(e);
 //        }

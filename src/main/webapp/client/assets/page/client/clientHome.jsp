@@ -56,10 +56,6 @@
 </head>
 
 <body class="portal" style="font-size:calc(8px + 0.5vw);">
-<form action="/customers" method="post">
-    <input type="text" value="${customer}" name ="account">
-    <input size="300px" type="submit">
-</form>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZSQTX3" height="0" width="0"
                   style="display:none;visibility:hidden"></iframe></noscript>
@@ -131,9 +127,9 @@
 
 
                         <div class="user-acc col-auto">
-                            <a href="/customers"><button type="button" class="btn btn-none-bg btn-login">
+                            <button type="button" )onclick="login(" class="btn btn-none-bg btn-login">
                                 <span class="font14">${account}</span>
-                            </button></a>
+                            </button>
                         </div>
                         <div class="user-acc col-auto">
                             <a href="/login"><button type="button" class="btn btn-none-bg btn-login">
@@ -245,14 +241,14 @@
                         </div>
                     </div>
                     <div class="category-list-filter">
-                        <a href="https://shopeefood.vn/ha-noi/danh-sach-dia-diem-phuc-vu-food-giao-tan-noi">
+                        <a href="home?action=showAllTag">
                             <span class="category-item ">All</span>
                         </a>
 
                         <%--            Show Category_name--%>
-                        <c:forEach var="tag" items="${categories}">
-                            <a href="https://shopeefood.vn/ha-noi/danh-sach-dia-diem-phuc-vu-food-giao-tan-noi">
-                                <span class="category-item ">${tag.category_name}</span>
+                        <c:forEach var="tag" items="${tags}">
+                            <a href="home?action=showByTag&id=${tag.id}">
+                                <span class="category-item ">${tag.name}</span>
                             </a>
                         </c:forEach>
 
@@ -347,17 +343,16 @@
                                 </div>
                             </div>
                             <%--              List shops foreach--%>
-
-                            <c:forEach var="food" items="${shops}">
+                            <c:forEach var="food" items="${foods}">
                                 <div class="item-restaurant"><a  class="item-content"
-                                                                href="/customers?action=showShopItem&id=${food.shop_id}">
+                                                                 href="addToCart?action=addOrder&id=${food.id}">
                                     <div class="img-restaurant"><img
-                                            src="img/${food.shop_image}"
+                                            src="<c:out value="${food.image}"/>" alt="Ảnh món ăn"
                                             class=""></div>
                                     <div class="info-restaurant">
                                         <div class="info-basic-res">
-                                            <h4 class="name-res" title="${food.shop_name}">${food.shop_name}</h4>
-                                            <div class="address-res" title="${food.shop_address}">${food.shop_address}</div>
+                                            <h4 class="name-res" title="${food.name}">${food.name}</h4>
+                                            <div class="address-res" title="${food.price}">${food.price}</div>
                                         </div>
                                         <p class="content-promotion"><i class="fas fa-tag"></i>Giảm 100%</p>
                                         <div class="opentime-status"><span class="stt online" title="Mở cửa"
@@ -436,22 +431,16 @@
                                 </div>
                             </div>
                             <div>
-                                <%--              List shops foreach--%>
-                                <c:forEach var="food" items="${shops}">
+                                <%--                list deal--%>
+                                <c:forEach var="deals" items="${deals}">
                                     <div class="item-restaurant"><a  class="item-content"
-                                                                     href="shopItems?id=${food.shop_id}">
+                                                                     href="dealShops?id=${deals.id}">
                                         <div class="img-restaurant"><img
-                                                src="img/${food.shop_image}"
+                                                src="<c:out value="${deals.image}"/>" alt="Ảnh món ăn"
                                                 class=""></div>
                                         <div class="info-restaurant">
                                             <div class="info-basic-res">
-                                                <h4 class="name-res" title="${food.shop_name}">${food.shop_name}</h4>
-                                                <div class="address-res" title="${food.shop_address}">${food.shop_address}</div>
-                                            </div>
-                                            <p class="content-promotion"><i class="fas fa-tag"></i>Giảm 100%</p>
-                                            <div class="opentime-status"><span class="stt online" title="Mở cửa"
-                                                                               style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-
+                                                <h4 class="name-res" title="${deals.name}">${deals.name}</h4>
                                             </div>
                                         </div>
                                     </a></div>
@@ -1022,7 +1011,6 @@
             <div class="modal-backdrop fade under-modal show"></div>
         </div>
     </div>
-
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

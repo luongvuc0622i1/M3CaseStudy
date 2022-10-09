@@ -340,7 +340,7 @@
                             <%--              List shops foreach--%>
                             <c:forEach var="food" items="${foods}">
                                 <div class="item-restaurant"><a  class="item-content"
-                                                                 href="shopItems?id=${food.id}">
+                                                                 href="/login">
                                     <div class="img-restaurant"><img
                                             src="<c:out value="${food.image}"/>" alt="Ảnh món ăn"
                                             class=""></div>
@@ -468,6 +468,360 @@
                                 <option value="945">Nam Từ Liêm</option>
                             </select></div>
                         </div>
+                        <div class="list-restaurant">
+                            <div class="now-loading-restaurant  ">
+                                <div class="box-loading">
+                                    <div class="box-thumbnail"></div>
+                                    <div class="box-line-df"></div>
+                                    <div class="box-line-lgx"></div>
+                                    <div class="box-line-lg"></div>
+                                </div>
+                                <div class="box-loading">
+                                    <div class="box-thumbnail"></div>
+                                    <div class="box-line-df"></div>
+                                    <div class="box-line-lgx"></div>
+                                    <div class="box-line-lg"></div>
+                                </div>
+                                <div class="box-loading">
+                                    <div class="box-thumbnail"></div>
+                                    <div class="box-line-df"></div>
+                                    <div class="box-line-lgx"></div>
+                                    <div class="box-line-lg"></div>
+                                </div>
+                                <div class="box-loading">
+                                    <div class="box-thumbnail"></div>
+                                    <div class="box-line-df"></div>
+                                    <div class="box-line-lgx"></div>
+                                    <div class="box-line-lg"></div>
+                                </div>
+                                <div class="box-loading">
+                                    <div class="box-thumbnail"></div>
+                                    <div class="box-line-df"></div>
+                                    <div class="box-line-lgx"></div>
+                                    <div class="box-line-lg"></div>
+                                </div>
+                                <div class="box-loading">
+                                    <div class="box-thumbnail"></div>
+                                    <div class="box-line-df"></div>
+                                    <div class="box-line-lgx"></div>
+                                    <div class="box-line-lg"></div>
+                                </div>
+                                <div class="box-loading">
+                                    <div class="box-thumbnail"></div>
+                                    <div class="box-line-df"></div>
+                                    <div class="box-line-lgx"></div>
+                                    <div class="box-line-lg"></div>
+                                </div>
+                                <div class="box-loading">
+                                    <div class="box-thumbnail"></div>
+                                    <div class="box-line-df"></div>
+                                    <div class="box-line-lgx"></div>
+                                    <div class="box-line-lg"></div>
+                                </div>
+                                <div class="box-loading">
+                                    <div class="box-thumbnail"></div>
+                                    <div class="box-line-df"></div>
+                                    <div class="box-line-lgx"></div>
+                                    <div class="box-line-lg"></div>
+                                </div>
+                            </div>
+                            <div class="item-restaurant"><a class="item-content"
+                                                            href="/thuong-hieu/the-1989-vietnam-milktea">
+                                <div class="row no-gutters">
+                                    <div class="col-auto">
+                                        <div class="img-restaurant"><img
+                                                src="https://images.foody.vn/res/g89/888197/prof/s280x175/foody-upload-api-foody-mobile-2-190218164006.jpg"
+                                                class=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="info-restaurant">
+                                            <div class="name-res"><span class="icon icon-quality-merchant"
+                                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>The
+                                                1989 - Trà Sữa Muối Biển</div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="count-place-res mb-1">4 địa điểm</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="item-res-distant"> </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-res-info"><span class="icon icon-price-tag"></span>
+                                                Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
+                                                19k</div>
+                                            <p class="kind-restaurant"> Café/Dessert</p>
+                                        </div>
+                                    </div>
+                                    <div class="opentime-status"><span class="stt online" title="Mở cửa"
+                                                                       style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                                    </div>
+                                </div>
+                            </a></div>
+                            <div class="item-restaurant"><a class="item-content"
+                                                            href="/ha-noi/tra-chanh-bui-pho-mai-anh-tuan">
+                                <div class="row no-gutters">
+                                    <div class="col-auto">
+                                        <div class="img-restaurant"><img
+                                                src="https://images.foody.vn/res/g97/966255/prof/s280x175/foody-upload-api-foody-mobile-foody-upload-api-foo-191008162627.jpg"
+                                                class=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="info-restaurant">
+                                            <div class="name-res"><span class="icon icon-quality-merchant"
+                                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Trà
+                                                Chanh Bụi Phố - Mai Anh Tuấn</div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="address-res mb-1">12 Mai Anh Tuấn, P. Ô Chợ Dừa,
+                                                        Đống Đa, Hà Nội</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="item-res-distant"> </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-res-info"><span class="icon icon-price-tag"></span>
+                                                Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
+                                                31k</div>
+                                            <p class="kind-restaurant"> Café/Dessert</p>
+                                        </div>
+                                    </div>
+                                    <div class="opentime-status"><span class="stt online" title="Mở cửa"
+                                                                       style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                                    </div>
+                                </div>
+                            </a></div>
+                            <div class="item-restaurant"><a class="item-content"
+                                                            href="/thuong-hieu/tra-sua-pozaa-tea">
+                                <div class="row no-gutters">
+                                    <div class="col-auto">
+                                        <div class="img-restaurant"><img
+                                                src="https://images.foody.vn/res/g79/783811/prof/s280x175/image-9599c253-220724125745.jpg"
+                                                class=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="info-restaurant">
+                                            <div class="name-res"><span class="icon icon-quality-merchant"
+                                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Trà
+                                                Sữa Pozaa Tea_foody</div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="count-place-res mb-1">65 địa điểm</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="item-res-distant"> </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-res-info"><span class="icon icon-price-tag"></span>
+                                                Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
+                                                43k</div>
+                                            <p class="content-promotion pt-1 pl-0 pb-0"><i
+                                                    class="fas fa-tag"></i> Đồng giá 28k</p>
+                                        </div>
+                                    </div>
+                                    <div class="opentime-status"><span class="stt online" title="Mở cửa"
+                                                                       style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                                    </div>
+                                </div>
+                            </a></div>
+                            <div class="item-restaurant"><a class="item-content" href="/ha-noi/bun-dau-mai-dung">
+                                <div class="row no-gutters">
+                                    <div class="col-auto">
+                                        <div class="img-restaurant"><img
+                                                src="https://images.foody.vn/res/g102/1019748/prof/s280x175/foody-upload-api-foody-mobile-142fe07e-c5f1-467f-b-200511163726.jpg"
+                                                class=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="info-restaurant">
+                                            <div class="name-res"><span class="icon icon-quality-merchant"
+                                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Bún
+                                                Đậu Mai Dung</div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="address-res mb-1">6 Đặng Xuân Bảng, P. Đại Kim,
+                                                        Hoàng Mai, Hà Nội</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="item-res-distant"> </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-res-info"><span class="icon icon-price-tag"></span>
+                                                Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
+                                                27k</div>
+                                            <p class="kind-restaurant"> Quán ăn</p>
+                                        </div>
+                                    </div>
+                                    <div class="opentime-status"><span class="stt online" title="Mở cửa"
+                                                                       style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                                    </div>
+                                </div>
+                            </a></div>
+                            <div class="item-restaurant"><a class="item-content" href="/ha-noi/tocotoco-linh-nam">
+                                <div class="row no-gutters">
+                                    <div class="col-auto">
+                                        <div class="img-restaurant"><img
+                                                src="https://images.foody.vn/res/g97/960486/prof/s280x175/foody-upload-api-foody-mobile-avar-190924114711.jpg"
+                                                class=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="info-restaurant">
+                                            <div class="name-res"><span class="icon icon-quality-merchant"
+                                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Tocotoco
+                                                - Lĩnh Nam</div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="address-res mb-1">40 Lĩnh Nam, P. Mai Động,
+                                                        Hoàng Mai, Hà Nội</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="item-res-distant"> </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-res-info"><span class="icon icon-price-tag"></span>
+                                                Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
+                                                46k</div>
+                                            <p class="content-promotion pt-1 pl-0 pb-0"><i
+                                                    class="fas fa-tag"></i> Giảm hết 40%</p>
+                                        </div>
+                                    </div>
+                                    <div class="opentime-status"><span class="stt online" title="Mở cửa"
+                                                                       style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                                    </div>
+                                </div>
+                            </a></div>
+                            <div class="item-restaurant"><a class="item-content"
+                                                            href="/ha-noi/chan-ga-sa-ot-bun-dau-mam-tom-cu-loc">
+                                <div class="row no-gutters">
+                                    <div class="col-auto">
+                                        <div class="img-restaurant"><img
+                                                src="https://images.foody.vn/res/g68/678593/prof/s280x175/image-46ae002c-200910115831.jpeg"
+                                                class=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="info-restaurant">
+                                            <div class="name-res"><span class="icon icon-quality-merchant"
+                                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Bún
+                                                Đậu Mắm Tôm - Chính Kinh</div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="address-res mb-1">5 Ngõ 12 Chính Kinh, P. Nhân
+                                                        Chính, Thanh Xuân, Hà Nội</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="item-res-distant"> </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-res-info"><span class="icon icon-price-tag"></span>
+                                                Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
+                                                45k</div>
+                                            <p class="content-promotion pt-1 pl-0 pb-0"><i
+                                                    class="fas fa-tag"></i> Giảm món</p>
+                                        </div>
+                                    </div>
+                                    <div class="opentime-status"><span class="stt online" title="Mở cửa"
+                                                                       style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                                    </div>
+                                </div>
+                            </a></div>
+                            <div class="item-restaurant"><a class="item-content"
+                                                            href="/thuong-hieu/anh-gau-mi-tron-indomine">
+                                <div class="row no-gutters">
+                                    <div class="col-auto">
+                                        <div class="img-restaurant"><img
+                                                src="https://images.foody.vn/res/g95/947717/prof/s280x175/file_restaurant_photo_aewu_16474-d8daf85f-220317123810.jpg"
+                                                class=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="info-restaurant">
+                                            <div class="name-res"><span class="icon icon-quality-merchant"
+                                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Anh
+                                                Gấu - Mì Trộn Indomie</div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="count-place-res mb-1">2 địa điểm</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="item-res-distant"> </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-res-info"><span class="icon icon-price-tag"></span>
+                                                Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
+                                                38k</div>
+                                            <p class="content-promotion pt-1 pl-0 pb-0"><i
+                                                    class="fas fa-tag"></i> Giảm món</p>
+                                        </div>
+                                    </div>
+                                    <div class="opentime-status"><span class="stt online" title="Mở cửa"
+                                                                       style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                                    </div>
+                                </div>
+                            </a></div>
+                            <div class="item-restaurant"><a class="item-content"
+                                                            href="/thuong-hieu/bun-bo-tron-bun-mach-trang">
+                                <div class="row no-gutters">
+                                    <div class="col-auto">
+                                        <div class="img-restaurant"><img
+                                                src="https://images.foody.vn/res/g97/961371/prof/s280x175/image-c1f302ed-200910115817.jpeg"
+                                                class=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="info-restaurant">
+                                            <div class="name-res"><span class="icon icon-quality-merchant"
+                                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Bún
+                                                Bò Trộn &amp; Bún Mạch Tràng</div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="count-place-res mb-1">2 địa điểm</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="item-res-distant"> </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-res-info"><span class="icon icon-price-tag"></span>
+                                                Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
+                                                48k</div>
+                                            <p class="kind-restaurant"> Quán ăn</p>
+                                        </div>
+                                    </div>
+                                    <div class="opentime-status"><span class="stt online" title="Mở cửa"
+                                                                       style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                                    </div>
+                                </div>
+                            </a></div>
+                            <div class="item-restaurant"><a class="item-content"
+                                                            href="/thuong-hieu/quan-chi-chip-nem-nuong-nha-trang-bun-dau-met">
+                                <div class="row no-gutters">
+                                    <div class="col-auto">
+                                        <div class="img-restaurant"><img
+                                                src="https://images.foody.vn/res/g101/1002194/prof/s280x175/file_restaurant_photo_azc7_16260-ea61ab57-210712014200.jpeg"
+                                                class=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="info-restaurant">
+                                            <div class="name-res"><span class="icon icon-quality-merchant"
+                                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Quán
+                                                Chị Chíp - Nem Nướng Nha Trang &amp; Bún Đậu Mẹt</div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="count-place-res mb-1">2 địa điểm</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="item-res-distant"> </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-res-info"><span class="icon icon-price-tag"></span>
+                                                Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
+                                                60k</div>
+                                            <p class="kind-restaurant"> Quán ăn</p>
+                                        </div>
+                                    </div>
+                                    <div class="opentime-status"><span class="stt online" title="Mở cửa"
+                                                                       style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                                    </div>
+                                </div>
+                            </a></div>
+                        </div>
+                        <div class="txt-center mt-2"><button class="btn-none btn-load-more link"><span
+                                class="pr-1">Xem thêm</span><i class="fas fa-redo font12 "></i></button></div>
                     </div>
                     <div class="end-check-point"></div>
                 </div>

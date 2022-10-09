@@ -8,10 +8,16 @@ import service.admin.AdminService;
 import service.admin.IAdminService;
 import service.client.ClientService;
 import service.client.IClientService;
+import service.deal.DealService;
+import service.deal.IDealService;
 import service.food.FoodService;
 import service.food.IFoodService;
+import service.service.IServiceService;
+import service.service.ServiceService;
 import service.shop.IShopService;
 import service.shop.ShopService;
+import service.tag.ITagService;
+import service.tag.TagService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -25,6 +31,10 @@ public class LoginServlet extends HttpServlet {
     private IShopService shopService = new ShopService();
     private IFoodService foodService = new FoodService();
     private IClientService clientService = new ClientService();
+    private IDealService dealService = new DealService();
+    private ITagService tagService = new TagService();
+    private IServiceService serviceService = new ServiceService();
+
     public static String account ="";
     private static boolean checkLogin = false;
 
@@ -105,6 +115,11 @@ public class LoginServlet extends HttpServlet {
                 if (client.getStatus() == 1) {
                     request.setAttribute("account", account);
                     dispatcher = request.getRequestDispatcher("/client/assets/page/client/clientHome.jsp");
+                    request.setAttribute("deals",dealService.fillAll());
+                    request.setAttribute("tags",tagService.fillAll());
+                    request.setAttribute("shops",shopService.fillAll());
+                    request.setAttribute("foods",foodService.fillAll());
+                    request.setAttribute("services",serviceService.fillAll());
                     LoginServlet.checkLogin = true;
                     dispatcher.forward(request, response);
                 } else {
