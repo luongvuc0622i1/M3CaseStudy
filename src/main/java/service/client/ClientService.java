@@ -43,11 +43,7 @@ public class ClientService implements IClientService {
     public Client selectClient(int id){
         Client client=null;
         try(Connection connection=ConnectionCMS.getConnection();
-<<<<<<< HEAD
-        PreparedStatement preparedStatement=connection.prepareStatement(SELECT_CLIENT_BY_ID);){
-=======
             PreparedStatement preparedStatement=connection.prepareStatement(SELECT_CLIENT_BY_ID);){
->>>>>>> d275e5e767c43b212ef872b530ee39b60286747d
             preparedStatement.setInt(1,id);
             System.out.println(preparedStatement);
             ResultSet resultSet=preparedStatement.executeQuery();
@@ -128,11 +124,7 @@ public class ClientService implements IClientService {
     public boolean EditPassword(Client client)throws SQLException{
         boolean rowEditPass;
         try(Connection connection=ConnectionCMS.getConnection();
-<<<<<<< HEAD
-        PreparedStatement preparedStatement=connection.prepareStatement(EDIT_CLIENT_PASSWORD_SQL);){
-=======
             PreparedStatement preparedStatement=connection.prepareStatement(EDIT_CLIENT_PASSWORD_SQL);){
->>>>>>> d275e5e767c43b212ef872b530ee39b60286747d
             preparedStatement.setString(1,client.getPassword());
             rowEditPass=preparedStatement.executeUpdate()>0;
         }
@@ -141,11 +133,7 @@ public class ClientService implements IClientService {
     public boolean EditClient(Client client) throws SQLException {
         boolean rowEdit;
         try(Connection connection=ConnectionCMS.getConnection();
-<<<<<<< HEAD
-        PreparedStatement preparedStatement=connection.prepareStatement(EDIT_CLIENT_SQL);){
-=======
             PreparedStatement preparedStatement=connection.prepareStatement(EDIT_CLIENT_SQL);){
->>>>>>> d275e5e767c43b212ef872b530ee39b60286747d
             preparedStatement.setString(1,client.getCode());
             preparedStatement.setString(2,client.getName());
             preparedStatement.setString(3,client.getPhone());
