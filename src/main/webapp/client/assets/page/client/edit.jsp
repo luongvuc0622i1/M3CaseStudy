@@ -2,66 +2,44 @@
   Created by IntelliJ IDEA.
   User: minhhuyduc
   Date: 10/10/2022
-  Time: 10:45
+  Time: 11:43
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page contentType="text/html;charset=UTF-8;" pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
-<<<<<<< HEAD
-    <title>edit client pass</title>
+    <title>Cart Application</title>
 </head>
 <body>
 <center>
-    <h1>Client </h1>
-    <h2><a href="/client?action=add">edit pass</a></h2>
+    <h1>Cart List</h1>
+    <h2><a href="/bill_detail?addCart=addClient">Add New Cart</a></h2>
 </center>
 <div align="center">
-    <form method="post">
-        <table border="1" cellpadding="5">
-            <caption>
-                <h2>edit clientPass</h2>
-            </caption>
-<%--            <c:if test="${client !=null}">--%>
-<%--                <input type="hidden" name="client_id" value="<c:out value="${client.client_id}"/>"/>--%>
-<%--            </c:if>--%>
-            <tr>
-                <th>password:</th>
-                <td><input type="text" name="client_password" size="50" value="<c:out value="${client.client_password}"/>"/></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center"><input type="submit" value="save"/></td>
-            </tr>
-        </table>
-    </form>
-=======
-  <title>edit client pass</title>
-</head>
-<body>
-<center>
-  <h1>Client </h1>
-  <h2><a href="/client?action=add">edit pass</a></h2>
-</center>
-<div align="center">
-  <form method="post">
-    <table border="1" cellpadding="5">
-      <caption>
-        <h2>edit clientPass</h2>
-      </caption>
-      <%--            <c:if test="${client !=null}">--%>
-      <%--                <input type="hidden" name="client_id" value="<c:out value="${client.client_id}"/>"/>--%>
-      <%--            </c:if>--%>
-      <tr>
-        <th>password:</th>
-        <td><input type="text" name="client_password" size="50" value="<c:out value="${client.client_password}"/>"/></td>
-      </tr>
-      <tr>
-        <td colspan="2" align="center"><input type="submit" value="save"/></td>
-      </tr>
-    </table>
-  </form>
->>>>>>> d275e5e767c43b212ef872b530ee39b60286747d
+    <table border="1" cellpadding="5"></table>
+    <tr>
+        <th>id</th>
+        <th>bill_id</th>
+        <th>food_id</th>
+        <th>quantity</th>
+        <th>price</th>
+        <th>status</th>
+    </tr>
+    <c:forEach var="bill_detail" items="${listCart}">
+        <tr>
+            <td><c:out value="${bill_detail.bill_detail_id}"/></td>
+            <td><c:out value="${bill_detail.bill_id}"/></td>
+            <td><c:out value="${bill_detail.food_id}"/></td>
+            <td><c:out value="${bill_detail.quantity}"/></td>
+            <td><c:out value="${bill_detail.price}"/></td>
+            <td><c:out value="${bill_detail.status}"/></td>
+            <td>
+                <a href="/bill_detail?action=add&id=${bill_detail.id}">Add</a>
+                <a href="/bill_detail?action=delete&id=${bill_detail.id}">Detele</a>
+            </td>
+        </tr>
+    </c:forEach>
 </div>
 </body>
 </html>
