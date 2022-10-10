@@ -30,7 +30,8 @@
                         </a>
 
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                            <li><a href="${pageContext.request.contextPath}/shopHome.jsp" class="nav-link px-2 link-dark">Thông tin cá nhân</a></li>
+                            <li><a href="shop?action=info" class="nav-link px-2 link-dark">Thông tin cá nhân</a></li>
+                            <li><a href="shop?action=listFood" class="nav-link px-2 link-dark">Món ăn sẵn có</a></li>
                             <li><a href="#" class="nav-link px-2 link-dark">Thông báo</a></li>
                             <li><a href="#" class="nav-link px-2 link-dark">Trợ giúp</a></li>
                         </ul>
@@ -73,7 +74,6 @@
                     <c:forEach var="food" items="${foodList}">
                     <div class="col-md-4" style="padding-top: 10px; padding-bottom:10px;">
                         <div class="card" style="position: static" >
-
                             <img class="card-img-top"  alt="err" src="<c:out value="${food.image}"/>" data-holder-rendered="true" style="height: 100px; width: 120px; display: block;position: center">
                             <div class="card-body">
                                 <p class="card-text"><c:out value="${food.description}"/></p>

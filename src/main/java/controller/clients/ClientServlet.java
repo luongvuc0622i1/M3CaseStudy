@@ -1,10 +1,8 @@
 package controller.clients;
-
 import connection.ConnectionCMS;
 import controller.home.HomeServlet;
 import model.Bill;
 import model.Client;
-import model.Service;
 import model.Shop;
 import service.bill.BillService;
 import service.client.ClientService;
@@ -28,18 +26,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name="ClientServlet",value = "/client")
 public class ClientServlet extends HttpServlet {
-    private static final String DELETE_CLIENT_SQL="DELETE FROM client WHERE id=?;";
+    //    private static final String DELETE_CLIENT_SQL="DELETE FROM client WHERE id=?;";
     private Connection connection= ConnectionCMS.getConnection();
 
     private HomeServlet homeServlet;
     private SearchCartClient searchCartClient=new SearchCartClient();
     private BillService billService =new BillService();
-    private IClientService clientService = new ClientService();
+    private IClientService IclientService = new ClientService();
     private IShopService shopService = new ShopService();
     private IDealService dealService = new DealService();
     private ITagService tagService = new TagService();
@@ -47,6 +44,7 @@ public class ClientServlet extends HttpServlet {
     private IFoodService foodService = new FoodService();
 
     private IServiceService serviceService = new ServiceService();
+    private ClientService clientService=new ClientService();
 
     public void init(){
         homeServlet=new HomeServlet();
@@ -56,19 +54,53 @@ public class ClientServlet extends HttpServlet {
         if(action==null){
             action="";
         }
-//        try{
-        switch (action){
-            case "search":
-                searchCartClient.doGet(request,response);
-                //searchHome
-                break;
-            case "addCart":
-                try {
+        try{
+            switch (action){
+                case "search":
+                    searchCartClient.doGet(request,response);
+                    //searchHome
+                    break;
+                case "addClient":
+                    addClient(request,response);
+                    break;
+                case "addCart":
                     addCart(request,response);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+                    break;
+                case "edit":
+                    editClientPass(request,response);
+                default:
+                    showHome(request, response);
+                    break;
+            }
+        }catch (SQLException e){
+            throw new ServletException(e);
+        }
+    }
+    private void editClientPass(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException,IOException,ServletException{
+        String password=request.getParameter("client_password");
+        Client client=new Client(password);
+        clientService.EditClient(client);
+        RequestDispatcher requestDispatcher=request.getRequestDispatcher("client/assets/page/client/edit.jsp");
+        requestDispatcher.forward(request,response);
+    }
+    protected void doGet(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException,IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+//        try {
+        switch (action) {
+            case "edit":
+                showEdit(request,response);
                 break;
+            case "search":
+                //showSearchFrom;
+//                    homeServlet.doGet(request,response);
+//                    break;
+            case "addClient":
+                showFormListClient(request,response);
             default:
                 showHome(request, response);
                 break;
@@ -77,27 +109,21 @@ public class ClientServlet extends HttpServlet {
 //            throw new ServletException(e);
 //        }
     }
-    protected void doGet(HttpServletRequest request,HttpServletResponse response)
-            throws ServletException,IOException{
-        String action=request.getParameter("action");
-        if(action==null){
-            action="";
-        }
-//        try{
-        switch (action){
-//                case "search":
-            //showSearchFrom;
-//                    homeServlet.doGet(request,response);
-//                    break;
-            case "homeClient":
-                showHome(request, response);
-                break;
-            default:
-                showHome(request, response);
-                break;
-        }
-    }
 
+    private void showFormListClient(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException ,IOException{
+        RequestDispatcher dispatcher=request.getRequestDispatcher("client/assets/page/client/addClient");
+        dispatcher.forward(request,response);
+    }
+    private void showEdit(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException, IOException{
+        int id=Integer.parseInt(request.getParameter("id"));
+        Client client=clientService.selectClient(id);
+        RequestDispatcher dispatcher=request.getRequestDispatcher("client/assets/page/client/edit.jsp");
+        request.setAttribute("client",client);
+        dispatcher.forward(request,response);
+
+    }
     private void showHome(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/home.jsp");
@@ -117,7 +143,7 @@ public class ClientServlet extends HttpServlet {
 //    }
     private void addCart(HttpServletRequest request,HttpServletResponse response)
             throws SQLException,IOException,ServletException {
-        List<Client> clients = clientService.fillAll();
+        List<Client> clients = IclientService.fillAll();
         List<Shop> shops = shopService.fillAll();
         String code = request.getParameter("bill_code");
         Date date = Date.valueOf(request.getParameter("bill_date"));
@@ -141,5 +167,21 @@ public class ClientServlet extends HttpServlet {
         billService.insert(bill);
         RequestDispatcher requestDispatcher=request.getRequestDispatcher("client/assets");
         requestDispatcher.forward(request,response);
+    }
+    private void addClient(HttpServletRequest request,HttpServletResponse response)
+            throws SQLException , IOException,ServletException{
+        String code=request.getParameter("client_code");
+        String name=request.getParameter("client_name");
+        String phone =request.getParameter("client_phone");
+        String address=request.getParameter("client_address");
+        String email =request.getParameter("client_email");
+        String account=request.getParameter("client_account");
+        String password=request.getParameter("client_password");
+        int status=request.getIntHeader("status");
+        Client client=new Client(code,name,phone,address,email,account,password,status);
+        clientService.insert(client);
+        RequestDispatcher dispatcher=request.getRequestDispatcher("client/assets/page/client/addClient.jsp");
+        dispatcher.forward(request,response);
+
     }
 }

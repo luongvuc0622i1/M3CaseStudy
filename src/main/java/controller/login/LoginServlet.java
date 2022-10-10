@@ -161,9 +161,13 @@ public class LoginServlet extends HttpServlet {
         for (Shop shop : shops) {
             if (shop.getAccount().equals(account) && shop.getPassword().equals(password)) {
                 if (shop.getStatus() == 1) {
-                    request.setAttribute("shop", shop);
+                    HttpSession session = request.getSession();
+                    session.setAttribute("shop", shop);
                     List<Food> foodList = foodService.findAllFoodByIdShop(shop.getId());
-                    request.setAttribute("foodList", foodList);
+                    session.setAttribute("foodList", foodList);
+                    session.setAttribute("shopAcc", shop.getAccount());
+                    session.setAttribute("pass", shop.getPassword());
+                    session.setAttribute("shopId", shop.getId());
                     dispatcher = request.getRequestDispatcher("/shop");
                     LoginServlet.checkLogin = true;
                     dispatcher.forward(request, response);
