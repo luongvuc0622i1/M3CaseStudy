@@ -20,7 +20,7 @@ public class TagService implements ITagService {
     private static final String DELETE_TAG = "DELETE FROM tags WHERE tags_id =? ;";
     private static final String UPDATE_TAG = "UPDATE item SET tags_code =?, tags_name =?," +
             " tags_description =?  WHERE tags_id =?;";
-    public static final String SELECT_TAG_BY_FOOD_ID = "SELECT * FROM tags JOIN food_tags ft ON tags_id = ft.tags_id AND ft.tags_id = ?";
+    public static final String SELECT_TAG_BY_FOOD_ID = "SELECT * FROM tags JOIN food_tags ft ON tags.tags_id = ft.tags_id AND ft.tags_id = ?";
 
 
     @Override
@@ -120,7 +120,7 @@ public class TagService implements ITagService {
             PreparedStatement statement1 = connection.prepareStatement(SELECT_TAG_BY_FOOD_ID);
             statement1.setInt(1, id);
             ResultSet resultSet = statement1.executeQuery();
-            ResultSet resultSet1 = statement1.getGeneratedKeys();
+//            ResultSet resultSet1 = statement1.getGeneratedKeys();
             while (resultSet.next()) {
                 int tag_id = resultSet.getInt("tags_id");
                 String tag_code = resultSet.getString("tags_code");

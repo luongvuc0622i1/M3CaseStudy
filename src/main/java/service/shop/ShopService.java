@@ -243,11 +243,13 @@ public class ShopService implements IShopService {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(BLOCK_SHOP_BY_ID)) {
             preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
             System.out.println(preparedStatement);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } return shop;
+        }
+        return  shop;
     }
 
     public Shop unblockShopById(int id) {
@@ -255,6 +257,7 @@ public class ShopService implements IShopService {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(UNBLOCK_SHOP_BY_ID)) {
             preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
             System.out.println(preparedStatement);
 
         } catch (SQLException e) {
