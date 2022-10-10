@@ -132,6 +132,7 @@ public class ShopService implements IShopService {
     public void insertDefaul(Shop shop) {
         System.out.println(INSERT_SHOP_SQL);
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SHOP_SQL)) {
+           connection.setAutoCommit(false);
             preparedStatement.setString(1, shop.getName());
             preparedStatement.setString(2, shop.getEmail());
             preparedStatement.setString(3, shop.getPhone());
@@ -145,8 +146,14 @@ public class ShopService implements IShopService {
             preparedStatement.setString(11, shop.getDescription());
             preparedStatement.setInt(12, shop.getStatus());
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            connection.commit();
+        } catch (SQLException throwables) {
+            try {
+                connection.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            throwables.printStackTrace();
         }
     }
 

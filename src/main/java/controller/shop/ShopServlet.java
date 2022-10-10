@@ -4,6 +4,8 @@ import model.Food;
 import model.Tag;
 import service.food.FoodService;
 import service.food.IFoodService;
+import service.shop.IShopService;
+import service.shop.ShopService;
 import service.tag.ITagService;
 import service.tag.TagService;
 
@@ -20,11 +22,24 @@ import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet(name = "ShopServlet", value = "/foods")
-public class FoodServlet extends HttpServlet {
+@WebServlet(name = "ShopServlet", value = "/shop")
+public class ShopServlet extends HttpServlet {
+     static String account;
+     static String password;
 
     ITagService tagService = new TagService();
     private IFoodService foodService = new FoodService();
+    private IShopService shopService = new ShopService();
+
+    @Override
+    public void init() throws ServletException {
+
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("ngu vcllllll");
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -60,6 +75,8 @@ public class FoodServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        account = request.getParameter("account");
+        password = request.getParameter("password");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -91,10 +108,14 @@ public class FoodServlet extends HttpServlet {
     }
 
     private void listFood(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Food> foods = foodService.fillAll();
-        request.setAttribute("foods", foods);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/testShop/listTest.jsp");
+//        List<Food> foods = foodService.fillAll();
+////        request.setAttribute("foods", foods);
+        request.setAttribute("shop", request.getAttribute("shop"));
+        request.setAttribute("foodList", request.getAttribute("foodList"));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/shop/shopHome.jsp");
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("shop?action=listFood");
         dispatcher.forward(request, response);
+        System.out.println(password + account);
     }
 
     private void showFind(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -131,11 +152,11 @@ public class FoodServlet extends HttpServlet {
     }
 
     private void deleteFood(HttpServletRequest request, HttpServletResponse response) throws   SQLException, ServletException, IOException {
-        int food_id = Integer.parseInt(request.getParameter("food_id"));
+        int food_id = Integer.parseInt(request.getParameter("id"));
         foodService.delete(food_id);
-        List<Food> foods = foodService.fillAll();
-        request.setAttribute("foods",foods);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("test/home.jsp");
+        List<Food> food = foodService.fillAll();
+        request.setAttribute("food",food);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/shop/shopHome.jsp");
         dispatcher.forward(request,response);
     }
 

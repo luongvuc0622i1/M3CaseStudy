@@ -439,10 +439,10 @@
                             <td>${order.quantityFood}</td>
                             <td>(${food.price * order.quantityFood})</td>
                             <td>
-                                <a href="" class="Sum" title="Sum" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                                <a href="" class="Sum" title="Sum" data-toggle="tooltip"><i class="material-icons">add_circle</i></a>
                             </td>
                             <td>
-                                <a href="addToCart?action=delete&id=${food.id}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                                <a href="addToCart?action=delete&id=${food.id}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">cancel</i></a>
                             </td>
                         </tr>
                         </c:forEach>
@@ -464,8 +464,8 @@
                             </tr><tr>
                                 <td></td>
                                 <td></td>
-                                <td><a href="/homeClient?action=home"><button>Quay lại cửa hàng</button></a></td>
-                                <td></td>
+                                <td><a href="/client"><button>Quay lại cửa hàng</button></a></td>
+                                <td></td>g
                                 <td></td>
                             </tr>
 

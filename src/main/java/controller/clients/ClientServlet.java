@@ -99,6 +99,7 @@ public class ClientServlet extends HttpServlet {
                 //showSearchFrom;
 //                    homeServlet.doGet(request,response);
 //                    break;
+<<<<<<< HEAD
                 case "addClient":
                     showFormListClient(request,response);
                 default:
@@ -108,6 +109,15 @@ public class ClientServlet extends HttpServlet {
 //        }catch (SQLException e){
 //            throw new ServletException(e);
 //        }
+=======
+            case "homeClient":
+                showHome(request, response);
+                break;
+            default:
+                showHome(request, response);
+                break;
+        }
+>>>>>>> a13d76989b48bbe1c83ee7cf0a3e5d2dc94e096c
     }
 
     private void showFormListClient(HttpServletRequest request, HttpServletResponse response)

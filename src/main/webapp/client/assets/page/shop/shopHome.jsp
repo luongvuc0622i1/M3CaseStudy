@@ -59,7 +59,7 @@
         <div id="left-content" style="border: 1px orange;">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a href="javascript:cc();">
+                    <a href="shop?action=create">
                         <img src="/client/assets/page/shop/other/Untitled.png" width="200" height="300">
                     </a>
                 </li>
@@ -79,8 +79,13 @@
                                 <p class="card-text"><c:out value="${food.description}"/></p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Sửa</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Xóa</button>
+                                        <a href="shop?action=edit&id=${food.id}">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Sửa</button>
+                                        </a>
+                                        <a href="shop?action=delete&id=${food.id}" class="delete" title="Delete" data-toggle="tooltip">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Xóa</button>
+                                        </a>
+
                                     </div>
                                     <small class="text-muted"><c:out value="${food.price}"/> VND</small>
                                 </div>
@@ -141,14 +146,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script>
-    const myModal = document.getElementById('myModal')
-    const myInput = document.getElementById('myInput')
-    myModal.addEventListener('shown.bs.modal', () => {
-        myInput.focus()
-    })
-    function cc() {
-        window.alert("${foodList }")
-    }
+
 </script>
 </body>
 </html>
