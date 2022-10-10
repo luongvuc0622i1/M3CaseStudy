@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bo otstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <%--    <link rel="stylesheet" type="text/css" href="css/shopHome.css">--%>
     <link rel="stylesheet" type="text/css" href="/client/assets/page/shop/css/shopHome.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
@@ -57,33 +57,41 @@
 				background-repeat: no-repeat;
 				height: 840px;">
     <div class="content">
-        <div id="left-content" style="border: 1px solid orange">
+        <div id="left-content" style="border: 1px orange;">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Thêm Món Ăn</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a href="#">
+                        <img src="/client/assets/page/shop/other/Untitled.png" width="200" height="300">
+                    </a>
                 </li>
             </ul>
         </div>
     </div>
     <div class="content">
-        <div id="right-content">
+        <div id="right-content" style="margin-top: 30px">
             <div class="container">
                 <div class="row">
                     <c:forEach var="food" items="${foodList}">
-                    <div class="col-md-4">
-                        <div class="nenxanh">
-                            <img src="<c:out value="${food.image}"/>" width="100" height="100">
+                    <div class="col-md-4" style="padding-top: 10px; padding-bottom:10px;">
+                        <div class="card" style="position: static" >
+
+                            <img class="card-img-top"  alt="err" src="<c:out value="${food.image}"/>" data-holder-rendered="true" style="height: 100px; width: 120px; display: block;position: center">
+                            <div class="card-body">
+                                <p class="card-text"><c:out value="${food.description}"/></p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
+                                    <small class="text-muted"><c:out value="${food.price}"/> VND</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     </c:forEach>
                 </div>
             </div>
+
         </div>
     </div>
 <div class="clearfix"></div>
