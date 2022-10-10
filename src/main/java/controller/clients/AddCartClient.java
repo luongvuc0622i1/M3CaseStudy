@@ -66,7 +66,7 @@ public class AddCartClient {
             throws SQLException,IOException,ServletException{
         List<BillDetail> billDetailList = billDetailService.fillAll();
         request.setAttribute("",billDetailList);
-        RequestDispatcher dispatcher=request.getRequestDispatcher("");
+        RequestDispatcher dispatcher=request.getRequestDispatcher("client/page/client/listCart.jsp");
         dispatcher.forward(request,response);
     }
     private void deleteCart(HttpServletRequest request,HttpServletResponse response)
@@ -75,7 +75,8 @@ public class AddCartClient {
         clientService.delete(id);
         List<Client> clientList = clientService.fillAll();
         request.setAttribute("listClient", clientList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/page/client/listCart.jsp");
         dispatcher.forward(request, response);
     }
+
 }
