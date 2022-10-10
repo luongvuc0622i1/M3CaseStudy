@@ -55,12 +55,14 @@ public class TagService implements ITagService {
             System.out.println(statement);
             ResultSet resultSet =statement.executeQuery();
             while (resultSet.next()) {
+                int tag_id = resultSet.getInt("tags_id");
+                int tag_status = resultSet.getInt("status");
                 String tag_code = resultSet.getString("tags_code");
                 String tag_name = resultSet.getString("tags_name");
                 String tag_description = resultSet.getString("tags_description");
 //                List<Item> itemList =
 
-                tag = new Tag(tag_code, tag_name, tag_description);
+                tag = new Tag(tag_id, tag_status, tag_code, tag_name, tag_description);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

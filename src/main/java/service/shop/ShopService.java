@@ -19,6 +19,7 @@ public class ShopService implements IShopService {
     private static final String SELECT_ALL_SHOP = "select * from shop";
     private static final String DELETE_SHOP_SQL = "UPDATE shop SET status = 0 where shop_id =?";
     private static final String UPDATE_SHOP_SQL = "update shop set shop_code = ?, shop_name = ?, shop_email = ?, shop_phone = ?, shop_address = ?, shop_account = ?, shop_password = ? , shop_image=?, shop_open=?, shop_close=?, service_id=?,shop_description=?, status=? where shop_id = ?";
+    private static final String UPDATE_SHOP_SQL_LITE = "update shop set shop_name = ?, shop_email = ?, shop_phone = ?, shop_address = ?, shop_image=?, shop_description=? where shop_id = ?";
     private static final String SELECT_SHOP_BY_NAME = "update shop set shop_code = ?, shop_name = ?, shop_email = ?, shop_phone = ?, shop_address = ?, shop_account = ?, shop_password = ? , shop_image=?, shop_open=?, shop_close=?, service_id=?,shop_description=?, status=? where shop_name = ?";
     private static final String INSERT_SHOP_SQL = "insert into shop(shop_name, shop_email, shop_phone, shop_address, shop_account, shop_password, shop_image, shop_open, shop_close, service_id, shop_description, status) values (?,?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -169,24 +170,51 @@ public class ShopService implements IShopService {
 
     @Override
     public boolean edit(int id, Shop shop) throws SQLException {
-        boolean rowUpdated;
-        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SHOP_SQL)) {
+//        boolean rowUpdated;
+//        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SHOP_SQL)) {
+
+
 //            statement.setInt(1, shop.getShop_id());
-            preparedStatement.setString(1, shop.getCode());
+
+
+//            preparedStatement.setString(1, shop.getCode());
+//            preparedStatement.setString(2, shop.getName());
+//            preparedStatement.setString(3, shop.getEmail());
+//            preparedStatement.setString(4, shop.getPhone());
+//            preparedStatement.setString(5, shop.getAddress());
+//            preparedStatement.setString(6, shop.getAccount());
+//            preparedStatement.setString(7, shop.getPassword());
+//            preparedStatement.setString(8, shop.getImage());
+//            preparedStatement.setTime(9, shop.getOpen());
+//            preparedStatement.setTime(10, shop.getClose());
+//            preparedStatement.setInt(11, shop.getServiceId());
+//            preparedStatement.setString(12, shop.getDescription());
+//            preparedStatement.setInt(13, shop.getStatus());
+//            preparedStatement.setInt(14, id);
+
+            boolean rowUpdated;
+            try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SHOP_SQL_LITE)) {
+                preparedStatement.setString(1, shop.getName());
+                preparedStatement.setString(2, shop.getEmail());
+                preparedStatement.setString(3, shop.getPhone());
+                preparedStatement.setString(4, shop.getAddress());
+                preparedStatement.setString(5, shop.getImage());
+                preparedStatement.setString(6, shop.getDescription());
+                preparedStatement.setInt(7, id);
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        }
+        return rowUpdated;
+    }
+    public boolean editLite(int id, Shop shop) throws SQLException {
+        boolean rowUpdated;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SHOP_SQL_LITE)) {
             preparedStatement.setString(2, shop.getName());
             preparedStatement.setString(3, shop.getEmail());
             preparedStatement.setString(4, shop.getPhone());
             preparedStatement.setString(5, shop.getAddress());
-            preparedStatement.setString(6, shop.getAccount());
-            preparedStatement.setString(7, shop.getPassword());
             preparedStatement.setString(8, shop.getImage());
-            preparedStatement.setTime(9, shop.getOpen());
-            preparedStatement.setTime(10, shop.getClose());
-            preparedStatement.setInt(11, shop.getServiceId());
             preparedStatement.setString(12, shop.getDescription());
-            preparedStatement.setInt(13, shop.getStatus());
             preparedStatement.setInt(14, id);
-
             rowUpdated = preparedStatement.executeUpdate() > 0;
         }
         return rowUpdated;
