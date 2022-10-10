@@ -79,8 +79,13 @@
                                 <p class="card-text"><c:out value="${food.description}"/></p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Sửa</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Xóa</button>
+                                        <a href="shop?action=edit&id=${food.id}">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Sửa</button>
+                                        </a>
+                                        <a href="shop?action=delete&id=${food.id}" class="delete" title="Delete" data-toggle="tooltip">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Xóa</button>
+                                        </a>
+
                                     </div>
                                     <small class="text-muted"><c:out value="${food.price}"/> VND</small>
                                 </div>

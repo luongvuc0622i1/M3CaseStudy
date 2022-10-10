@@ -288,6 +288,7 @@ import java.util.List;
                 System.out.println(statement);
                 ResultSet resultSet =statement.executeQuery();
                 while (resultSet.next()) {
+                    int food_id = resultSet.getInt("food_id");
                     int shop_id = resultSet.getInt("shop_id");
                     int tag_id = resultSet.getInt("tags_id");
                     int deal_id = resultSet.getInt("deal_id");
@@ -299,7 +300,7 @@ import java.util.List;
                     Date dayCreate = resultSet.getDate("food_daycreate");
                     Date lastUpdate = resultSet.getDate("food_lastupdate");
                     int status = resultSet.getInt("status");
-                    foods.add(new Food(shop_id, tag_id, deal_id, name, description, image, price, cookTime, (java.sql.Date) dayCreate, (java.sql.Date) lastUpdate, status)) ;
+                    foods.add(new Food(food_id,shop_id, tag_id, deal_id, name, description, image, price, cookTime, (java.sql.Date) dayCreate, (java.sql.Date) lastUpdate, status)) ;
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
