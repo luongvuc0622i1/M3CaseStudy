@@ -1,6 +1,7 @@
 package controller.shop;
 
 import model.Food;
+import model.Shop;
 import model.Tag;
 import service.food.FoodService;
 import service.food.IFoodService;
@@ -15,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
@@ -26,6 +28,7 @@ import java.util.List;
 public class ShopServlet extends HttpServlet {
      static String account;
      static String password;
+     static int shopId;
 
     ITagService tagService = new TagService();
     private IFoodService foodService = new FoodService();
@@ -62,6 +65,12 @@ public class ShopServlet extends HttpServlet {
                 case "find":
                     showFind(request,response);
                     break;
+                case "info":
+                    shopInfo(request,response);
+                    break;
+                case "listFood":
+                    listFood(request, response);
+                    break;
                 default:
                     listFood(request,response);
                     break;
@@ -75,8 +84,10 @@ public class ShopServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        account = request.getParameter("account");
-        password = request.getParameter("password");
+        HttpSession session = request.getSession();
+        account = (String) session.getAttribute("shopAcc");
+        password = (String) session.getAttribute("pass");
+        shopId = (int) session.getAttribute("shopId");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -108,19 +119,26 @@ public class ShopServlet extends HttpServlet {
     }
 
     private void listFood(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        List<Food> foods = foodService.fillAll();
+        Shop shop = shopService.findById(shopId);
+        List<Food> foods = foodService.findAllFoodByIdShop(shopId);
 ////        request.setAttribute("foods", foods);
-        request.setAttribute("shop", request.getAttribute("shop"));
-        request.setAttribute("foodList", request.getAttribute("foodList"));
+        request.setAttribute("shop", shop);
+        request.setAttribute("foodList", foods);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/shop/shopHome.jsp");
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("shop?action=listFood");
         dispatcher.forward(request, response);
-        System.out.println(password + account);
+        System.out.println(password + account+shopId);
     }
 
     private void showFind(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/find.jsp");
         request.setAttribute("foods",foodService.fillAll());
+        dispatcher.forward(request,response);
+    }
+    private void shopInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Shop shop = shopService.findById(shopId);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/shop/shopInfo.jsp");
+        request.setAttribute("shop", shop);
         dispatcher.forward(request,response);
     }
 
@@ -154,10 +172,11 @@ public class ShopServlet extends HttpServlet {
     private void deleteFood(HttpServletRequest request, HttpServletResponse response) throws   SQLException, ServletException, IOException {
         int food_id = Integer.parseInt(request.getParameter("id"));
         foodService.delete(food_id);
-        List<Food> food = foodService.fillAll();
-        request.setAttribute("food",food);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/shop/shopHome.jsp");
-        dispatcher.forward(request,response);
+//        List<Food> food = foodService.fillAll();
+//        request.setAttribute("food",food);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/shop/shopHome.jsp");
+//        dispatcher.forward(request,response);
+        listFood(request,response);
     }
 
     private void editFood(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ServletException {

@@ -41,9 +41,8 @@
             </td>
         </tr>
     </c:forEach>
-=======
   <title>Cart Application</title>
-</head>
+</div>
 <body>
 <center>
   <h1>Cart List</h1>
@@ -73,7 +72,6 @@
       </td>
     </tr>
   </c:forEach>
->>>>>>> d275e5e767c43b212ef872b530ee39b60286747d
 </div>
 </body>
 </html>
