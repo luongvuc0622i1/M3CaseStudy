@@ -1,10 +1,11 @@
 package controller.shop;
 
 import model.Food;
-import model.Shop;
 import model.Tag;
 import service.food.FoodService;
 import service.food.IFoodService;
+import service.shop.IShopService;
+import service.shop.ShopService;
 import service.tag.ITagService;
 import service.tag.TagService;
 
@@ -14,7 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
@@ -24,19 +24,25 @@ import java.util.List;
 
 @WebServlet(name = "ShopServlet", value = "/shop")
 public class ShopServlet extends HttpServlet {
+     static String account;
+     static String password;
 
     ITagService tagService = new TagService();
     private IFoodService foodService = new FoodService();
+    private IShopService shopService = new ShopService();
 
-//    request.setAttribute("food", request.getAttribute("food"));
-//        request.setAttribute("foodList", request.getAttribute("foodList"));
+    @Override
+    public void init() throws ServletException {
 
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("ngu vcllllll");
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.setAttribute("shop",request.getAttribute("shop"));
-        session.setAttribute("foodList",request.getAttribute("foodList"));
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -69,9 +75,8 @@ public class ShopServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.setAttribute("shop",request.getAttribute("shop"));
-        session.setAttribute("foodList",request.getAttribute("foodList"));
+        account = request.getParameter("account");
+        password = request.getParameter("password");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -105,10 +110,12 @@ public class ShopServlet extends HttpServlet {
     private void listFood(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        List<Food> foods = foodService.fillAll();
 ////        request.setAttribute("foods", foods);
-////        request.setAttribute("shop", request.getAttribute("shop"));
-////        request.setAttribute("foodList", request.getAttribute("foodList"));
+        request.setAttribute("shop", request.getAttribute("shop"));
+        request.setAttribute("foodList", request.getAttribute("foodList"));
         RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/shop/shopHome.jsp");
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("shop?action=listFood");
         dispatcher.forward(request, response);
+        System.out.println(password + account);
     }
 
     private void showFind(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -145,11 +152,11 @@ public class ShopServlet extends HttpServlet {
     }
 
     private void deleteFood(HttpServletRequest request, HttpServletResponse response) throws   SQLException, ServletException, IOException {
-        int food_id = Integer.parseInt(request.getParameter("food_id"));
+        int food_id = Integer.parseInt(request.getParameter("id"));
         foodService.delete(food_id);
-        List<Food> foods = foodService.fillAll();
-        request.setAttribute("foods",foods);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("test/home.jsp");
+        List<Food> food = foodService.fillAll();
+        request.setAttribute("food",food);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/shop/shopHome.jsp");
         dispatcher.forward(request,response);
     }
 
