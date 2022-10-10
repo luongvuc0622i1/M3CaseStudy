@@ -67,7 +67,7 @@ public class AddFoodToCartServlet extends HttpServlet {
                             check = true;
                         }
                     }
-                    if (check == false){
+                    if (!check){
                         Food food1 = foodService.findById(id);
                         order.setQuantityFood(quantity);
 //                        Food food1 = new Food();
