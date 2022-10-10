@@ -200,6 +200,15 @@ CREATE TABLE food_tags (
 );
 
 INSERT INTO food_tags (food_id, tags_id) VALUES (1,1), (1,2), (2,2);
-											
 
--- USE foodhub;
+
+INSERT INTO		food	(shop_id, tags_id, deal_id, food_name, food_price, food_description, food_image, food_cooktime, food_daycreate, food_lastupdate, status)
+VALUES
+    (2, 2, 2, 'cám lợn', 50000, 'làm từ gạo và ốc ', 'https://media.foody.vn/res/g70/699961/prof/s/foody-upload-api-foody-mobile-87dc1dd7-48c8-442f-8-200903152049.jpg', '00:30:00', '2022-09-04', '2022-10-04', 1),
+    (3, 3, 3, 'thịt chó', 220000, 'làm từ chó tươi đông lạnh', 'https://dacsanhuongquynh.vn/wp-content/uploads/2021/04/Ruou-de-1.jpg', '00:30:00', '2022-09-04', '2022-10-04', 0),
+    (1, 1, 1, 'ốc sào mật ong', 200000, 'làm từ óc và mật ông', 'https://thucduong.org/wp-content/uploads/2019/11/cach-lam-gio-lua-chay-tai-nha.jpg', '00:30:00', '2022-09-04', '2022-10-04', 0),
+    (1, 1, 1, 'hột vịt lộn', 70000, 'làm từ trứng vịt có trống', 'https://blog.beemart.vn/wp-content/uploads/2016/07/tong-hop-cac-loai-banh-ngot-Phap-noi-tieng-lam-me-man-long-nguoi-5.jpg', '00:30:00', '2022-09-04', '2022-10-04', 1),
+    (5, 5, 5, 'bột tôm', 50000, 'giun đất', 'https://thaotomsmart.com/wp-content/uploads/2022/06/kiotviet_d5e2d57069d8196146923207b9b4b03b.jpg', '00:30:00', '2022-09-04', '2022-10-04', 1);
+
+
+USE foodhub;
