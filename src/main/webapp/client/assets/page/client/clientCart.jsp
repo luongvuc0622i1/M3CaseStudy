@@ -439,7 +439,7 @@
                             <td>${order.quantityFood}</td>
                             <td>(${food.price * order.quantityFood})</td>
                             <td>
-                                <a href="/addToCart?action=addFood&id=${food.id}" class="Sum" title="Sum" data-toggle="tooltip"><i class="material-icons">add_circle</i></a>
+                                <a href="/addToCart?action=addFood&id=${food.id}" class="Sum" title="Sum" data-toggle="tooltip"><i class="material-icons btn-adding">add_circle</i></a>
                             </td>
                             <td>
                                 <a href="/addToCart?action=delete&id=${food.id}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">cancel</i></a>
