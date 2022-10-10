@@ -70,6 +70,7 @@ public class ClientService implements IClientService {
     @Override
     public void insert(Client client) {
         try (PreparedStatement preparedStatement = c.prepareStatement(INSERT_CLIENT_SQL)) {
+            c.setAutoCommit(false);
             preparedStatement.setString(1, client.getName());
             preparedStatement.setString(2, client.getPhone());
             preparedStatement.setString(3, client.getAddress());
@@ -78,8 +79,14 @@ public class ClientService implements IClientService {
             preparedStatement.setString(6, client.getPassword());
             preparedStatement.setInt(7, client.getStatus());
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            c.commit();
+        } catch (SQLException throwables) {
+            try {
+                c.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            throwables.printStackTrace();
         }
     }
 
@@ -145,6 +152,7 @@ public class ClientService implements IClientService {
     public List<Client> fillAllForAdmin() {
         List<Client> clients = new ArrayList<>();
         try {
+            c.setAutoCommit(false);
             PreparedStatement ps = c.prepareStatement(FIND_ALL_CLIENT);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -160,9 +168,17 @@ public class ClientService implements IClientService {
                 Client client = new Client(id, code, name, phone, address, email, account, password, status);
                 clients.add(client);
             }
-        } catch (SQLException e) {
-            printSQLException(e);
+            c.commit();
+        } catch (SQLException throwables) {
+            try {
+                c.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            throwables.printStackTrace();
         }
         return clients;
     }
+
+
 }

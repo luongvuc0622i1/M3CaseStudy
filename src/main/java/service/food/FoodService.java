@@ -165,7 +165,7 @@ import java.util.List;
         public void save(Food food, Tag tag) {
 
             try{
-//            connection.setAutoCommit(false);
+            connection.setAutoCommit(false);
                 PreparedStatement statement =connection.prepareStatement(INSERT_FOOD);
                 statement.setInt(1, food.getShop_id());
                 statement.setInt(2, food.getTag_id());
@@ -188,21 +188,13 @@ import java.util.List;
                 {
                 id = set.getInt("food_id");
                 }
-
-
-
-
-
-
-
-
                 PreparedStatement statement1 = connection.prepareStatement(INSERT_NEW_FOOD_TAG);
 
                     statement1.setInt(1,id);
                     statement1.setInt(2,tag.getId());
                     statement1.executeUpdate();
 
-//            connection.commit();
+            connection.commit();
             } catch (SQLException throwables) {
                 try {
                     connection.rollback();

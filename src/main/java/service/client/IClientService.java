@@ -18,4 +18,6 @@ public interface IClientService extends IService<Client> {
     Client unblockClientById(int id);
 
     List<Client> fillAllForAdmin();
+
+
 }
