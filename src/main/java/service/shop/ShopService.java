@@ -16,7 +16,7 @@ import java.util.List;
 public class ShopService implements IShopService {
     private static final String ADD_SHOP_SQL = "insert into shop(shop_code, shop_name, shop_email, shop_phone, shop_address, shop_account, shop_password,shop_image,shop_open,shop_close,service_id,shop_description,status) values (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)";
     private static final String SELECT_SHOP_BY_ID = "select * from shop where shop_id = ?";
-    private static final String SELECT_ALL_SHOP = "select * from shop where status = 1";
+    private static final String SELECT_ALL_SHOP = "select * from shop";
     private static final String DELETE_SHOP_SQL = "UPDATE shop SET status = 0 where shop_id =?";
     private static final String UPDATE_SHOP_SQL = "update shop set shop_code = ?, shop_name = ?, shop_email = ?, shop_phone = ?, shop_address = ?, shop_account = ?, shop_password = ? , shop_image=?, shop_open=?, shop_close=?, service_id=?,shop_description=?, status=? where shop_id = ?";
     private static final String SELECT_SHOP_BY_NAME = "update shop set shop_code = ?, shop_name = ?, shop_email = ?, shop_phone = ?, shop_address = ?, shop_account = ?, shop_password = ? , shop_image=?, shop_open=?, shop_close=?, service_id=?,shop_description=?, status=? where shop_name = ?";
@@ -130,6 +130,7 @@ public class ShopService implements IShopService {
 
     @Override
     public void insertDefaul(Shop shop) {
+        System.out.println(INSERT_SHOP_SQL);
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SHOP_SQL)) {
             preparedStatement.setString(1, shop.getName());
             preparedStatement.setString(2, shop.getEmail());

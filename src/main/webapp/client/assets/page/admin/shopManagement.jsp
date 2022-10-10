@@ -1,4 +1,4 @@
-
+<%@ page import="model.Shop" %>
 <%--
   Created by IntelliJ IDEA.
   User: PV
@@ -282,9 +282,9 @@
                             </div>
                         </div>
 
-                        <div class="main-nav col"><a class="nav-item active" href="/admin?action=shopManagement">Shop</a><a
-                                class="nav-item " href="/admin?action=userManagement">User</a><a class="nav-item " href="/admin?action=dealManagement">Deal</a><a
-                                class="nav-item " href="/admin?action=categoryManagement">Category</a>
+                        <div class="main-nav col"><a class="nav-item active" href="/admin?action=showShop">Cửa hàng</a>
+                            <a
+                                class="nav-item " href="/admin?action=showClient">Người dùng</a>
 
                         </div>
 
@@ -408,7 +408,7 @@
                     <div class="table-title">
                         <div class="row">
                             <div class="col-sm-5">
-                                <h2>Shop <b>Management</b></h2>
+                                <h2>Quản lý <b>Cửa hàng</b></h2>
                             </div>
                             <div class="col-sm-7">
 <%--                                <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>--%>
@@ -419,27 +419,37 @@
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>ShopName</th>
-                            <th>Code</th>
+                            <th>ID</th>
+                            <th>CODE</th>
+                            <th>Tên</th>
                             <th>Email</th>
-                            <th>Phone</th>
-                            <th>Address</th>
+                            <th>Liên hệ</th>
+                            <th>Địa chỉ</th>
+                            <th>Account</th>
+                            <th>Status</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="shop" items="${shops}">
+                        <c:forEach var="shops" items="${shops}">
                             <tr>
-                                <td>${shop.shop_id}</td>
-                                <td>${shop.shop_name}</td>
-                                <td>${shop.shop_code}></td>
-                                <td>${shop.shop_email}</td>
-                                <td>${shop.shop_phone}</td>
-                                <td>${shop.shop_address}</td>
+                                <td>${shops.id}</td>
+                                <td>${shops.code}</td>
+                                <td>${shops.name}</td>
+                                <td>${shops.email}</td>
+                                <td>${shops.phone}</td>
+                                <td>${shops.address}</td>
+                                <td>${shops.account}</td>
+                                <td>${shops.status}</td>
+<%--                                <td>--%>
+<%--                                    <c:if test = "${shops.status == 1}">--%>
+<%--                                    <a>Đang hoạt động</a></c:if>--%>
+<%--                                    <c:if test = "${shops.status == 0}">--%>
+<%--                                        <a>Bị khóa</a></c:if>--%>
+<%--                                </td>--%>
 <%--                                <td><span class="status text-success">&bull;</span> Active</td>--%>
                                 <td>
-                                    <a href="/admin?action=editShop&id=${shop.shop_id}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                    <a href="/admin?action=deleteShop&id=${shop.shop_id}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                                    <a href="/admin?action=blockShop&id=${shops.id}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                                    <a href="/admin?action=unblockShop&id=${shops.id}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                                 </td>
                             </tr>
                         </c:forEach>

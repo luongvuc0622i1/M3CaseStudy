@@ -102,7 +102,7 @@ CREATE TABLE bill (
 	bill_code 		nVARCHAR(150) 	NOT NULL UNIQUE,
 	bill_date 		date 		NOT NULL,
 	bill_totalCost 	DOUBLE 			NOT NULL,
-	client_id 	INT 			NOT NULL,
+	client_id 		INT 			NOT NULL,
 	shop_id 		INT 			NOT NULL,
 	status 			BIT 			NOT NULL,
 	FOREIGN KEY (client_id)	REFERENCES client (client_id),

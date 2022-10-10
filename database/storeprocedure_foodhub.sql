@@ -26,8 +26,6 @@ BEGIN
     END$$
 DELIMITER ;
 
-CALL unblockShopById(3);
-
 DELIMITER $$
 CREATE PROCEDURE blockClientById(IN client_id INT)
 
@@ -51,5 +49,3 @@ BEGIN
 
     END$$
 DELIMITER ;
-
-CALL blockShopById(3);

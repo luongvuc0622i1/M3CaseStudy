@@ -54,7 +54,7 @@ public class AdminServlet extends HttpServlet {
                     deleteClient(request, response);
                     break;
                 default:
-                    homeAdmin(request, response);
+                    showShop(request, response);
                     break;
             }
         } catch (SQLException e) {
@@ -121,10 +121,10 @@ public class AdminServlet extends HttpServlet {
                 unblockShop(request, response);
                 break;
             case "unblockClient":
-                unblockClinet(request, response);
+                unblockClient(request, response);
                 break;
             default:
-                homeAdmin(request, response);
+                showShop(request, response);
                 break;
         }
     }
@@ -153,7 +153,7 @@ public class AdminServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void unblockClinet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void unblockClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("client_id"));
         Shop existingShop = clientService.unblockClientById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/clientManagement.jsp");
