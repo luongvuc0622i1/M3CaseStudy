@@ -16,7 +16,7 @@
 <center>
   <h1>User Management</h1>
   <h2>
-    <a href="foods?action=foods">List All Users</a>
+    <a href="shop?action=listFood">List All Users</a>
   </h2>
 </center>
 <div align="center">
