@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientService implements IClientService {
+    private static final String SELECT_CLIENT_BY_ID="SELECT client_account,client_password FROM client WHERE client_id=?;";
+    private static final String EDIT_CLIENT_PASSWORD_SQL="UPDATE client set client_password=?; ";
+    private static final String EDIT_CLIENT_SQL="UPDATE client set client_code=?,client_name=?,client_phone=?,client_address=?,client_email=?,client_account=?,client_password=?,client_status=?;";
     private static final String FIND_ALL_CLIENT = "SELECT * FROM client;";
     private static final String DELETE_CLIENT_SQL="DELETE FROM client WHERE client_id=?";
     private static final String INSERT_CLIENT_SQL = "INSERT INTO client (client_name, client_phone, client_address, client_email, client_account, client_password, status) VALUES (?,?,?,?,?,?,?);";
@@ -39,6 +42,23 @@ public class ClientService implements IClientService {
             printSQLException(e);
         }
         return clients;
+    }
+    public Client selectClient(int id){
+        Client client=null;
+        try(Connection connection=ConnectionCMS.getConnection();
+        PreparedStatement preparedStatement=connection.prepareStatement(SELECT_CLIENT_BY_ID);){
+            preparedStatement.setInt(1,id);
+            System.out.println(preparedStatement);
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while (resultSet.next()){
+                String account=resultSet.getString("client_account");
+                String password=resultSet.getString("client_password");
+                client=new Client(account,password);
+            }
+        }catch (SQLException e){
+            printSQLException(e);
+        }
+        return client;
     }
 
     @Override
@@ -96,6 +116,32 @@ public class ClientService implements IClientService {
     @Override
     public boolean edit(int id, Client t) throws SQLException {
         return false;
+    }
+    public boolean EditPassword(Client client)throws SQLException{
+        boolean rowEditPass;
+        try(Connection connection=ConnectionCMS.getConnection();
+        PreparedStatement preparedStatement=connection.prepareStatement(EDIT_CLIENT_PASSWORD_SQL);){
+            preparedStatement.setString(1,client.getPassword());
+            rowEditPass=preparedStatement.executeUpdate()>0;
+        }
+        return rowEditPass;
+    }
+    public boolean EditClient(Client client) throws SQLException {
+        boolean rowEdit;
+        try(Connection connection=ConnectionCMS.getConnection();
+        PreparedStatement preparedStatement=connection.prepareStatement(EDIT_CLIENT_SQL);){
+            preparedStatement.setString(1,client.getCode());
+            preparedStatement.setString(2,client.getName());
+            preparedStatement.setString(3,client.getPhone());
+            preparedStatement.setString(4,client.getAddress());
+            preparedStatement.setString(5,client.getEmail());
+            preparedStatement.setString(6,client.getAccount());
+            preparedStatement.setString(7,client.getPassword());
+            preparedStatement.setInt(8,client.getStatus());
+            preparedStatement.setInt(9,client.getId());
+            rowEdit=preparedStatement.executeUpdate()>0;
+        }
+        return rowEdit;
     }
 
     private void printSQLException(SQLException ex) {
