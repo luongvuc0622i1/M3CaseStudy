@@ -39,38 +39,34 @@ public class AdminServlet extends HttpServlet {
             action = "";
         }
 
-        try {
-            switch (action) {
-                case "showShop":
-                    showShop(request, response);
-                    break;
-                case "showClient":
-                    showClient(request, response);
-                    break;
-                case "deleteShop":
-                    deleteShop(request, response);
-                    break;
-                case "deleteClient":
-                    deleteClient(request, response);
-                    break;
-                case "blockShop":
-                    blockShop(request, response);
-                    break;
-                case "blockClient":
-                    blockClient(request, response);
-                    break;
-                case "unblockShop":
-                    unblockShop(request, response);
-                    break;
-                case "unblockClient":
-                    unblockClient(request, response);
-                    break;
-                default:
-                    showShop(request, response);
-                    break;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        switch (action) {
+            case "showShop":
+                showShop(request, response);
+                break;
+            case "showClient":
+                showClient(request, response);
+                break;
+//                case "deleteShop":
+//                    deleteShop(request, response);
+//                    break;
+//                case "deleteClient":
+//                    deleteClient(request, response);
+//                    break;
+            case "blockShop":
+                blockShop(request, response);
+                break;
+            case "blockClient":
+                blockClient(request, response);
+                break;
+            case "unblockShop":
+                unblockShop(request, response);
+                break;
+            case "unblockClient":
+                unblockClient(request, response);
+                break;
+            default:
+                showShop(request, response);
+                break;
         }
 
     }
@@ -84,28 +80,28 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("clients", clientService.fillAll());
     }
 
-    private void deleteClient(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        int client_id = Integer.parseInt(request.getParameter("client_id"));
-        clientService.delete(client_id);
-
-        List<Client> clients = clientService.fillAll();
-        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/adminHome.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    private void deleteShop(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        int shop_id = Integer.parseInt(request.getParameter("shop_id"));
-        shopService.delete(shop_id);
-
-        List<Shop> shops = shopService.fillAll();
-        request.setAttribute("shops", shops);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/adminHome.jsp");
-        dispatcher.forward(request, response);
-    }
+//    private void deleteClient(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+//        int client_id = Integer.parseInt(request.getParameter("client_id"));
+//        clientService.delete(client_id);
+//
+//        List<Client> clients = clientService.fillAll();
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/adminHome.jsp");
+//        dispatcher.forward(request, response);
+//    }
+//
+//    private void deleteShop(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+//        int shop_id = Integer.parseInt(request.getParameter("id"));
+//        shopService.delete(shop_id);
+//
+//        List<Shop> shops = shopService.fillAll();
+//        request.setAttribute("shops", shops);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin?action=showShop");
+//        dispatcher.forward(request, response);
+//    }
 
     private void showClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/clientManagement.jsp");
-        request.setAttribute("clients",clientService.fillAll());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/admin/userManagement.jsp");
+        request.setAttribute("clients",clientService.fillAllForAdmin());
         dispatcher.forward(request, response);
     }
 
@@ -131,18 +127,17 @@ public class AdminServlet extends HttpServlet {
 
     private void blockShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        shopService.blockShopById(id);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/admin/shopManagement.jsp");
+        Shop existingShop = shopService.blockShopById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin?action=showShop");
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("");
+        request.setAttribute("shop", existingShop);
         dispatcher.forward(request, response);
     }
 
     private void blockClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("client_id"));
-        Shop existingShop = clientService.blockClientById(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin?action=showShop");
-        request.setAttribute("shop", existingShop);
+        int id = Integer.parseInt(request.getParameter("id"));
+        Client existingShop = clientService.blockClientById(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin?action=showClient");
+        request.setAttribute("clients", existingShop);
         dispatcher.forward(request, response);
     }
 
@@ -155,10 +150,10 @@ public class AdminServlet extends HttpServlet {
     }
 
     private void unblockClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("client_id"));
-        Shop existingShop = clientService.unblockClientById(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin?action=showShop");
-        request.setAttribute("shop", existingShop);
+        int id = Integer.parseInt(request.getParameter("id"));
+        Client existingShop = clientService.unblockClientById(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin?action=showClient");
+        request.setAttribute("clients", existingShop);
         dispatcher.forward(request, response);
     }
 

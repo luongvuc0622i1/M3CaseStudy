@@ -228,10 +228,12 @@
                     </div>
                     <div class="form-search">
                         <div class="input-group">
-                            <h2>Tìm địa điểm, món ăn, địa chỉ...</h2>
-                            <a style="width:300px" href="/items?action=listItem">
-                                <button type="button" class="btn btn-search"><span class="fa fa-search"></span>
+
+                            <input type="text" name="searchFood" id="searchFood" placeholder="Tìm địa điểm, món ăn, địa chỉ... " style="color: black">
+                            <a style="width:300px" href="/home?action=listItem">
+                                <button type="button" class="btn btn-search btn-lg"><span class="fa fa-search"></span>
                                 </button>
+
                             </a>
                         </div>
                     </div>
