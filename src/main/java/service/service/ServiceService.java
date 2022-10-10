@@ -21,10 +21,10 @@ public class ServiceService implements IServiceService {
             PreparedStatement ps= c.prepareStatement(FIND_ALL_SERVICE);
             ResultSet rs= ps.executeQuery();
             while (rs.next()){
-                int id = rs.getInt("client_id");
-                int price = rs.getInt("client_code");
-                String name = rs.getString("client_name");
-                String description = rs.getString("client_phone");
+                int id = rs.getInt("service_id");
+                int price = rs.getInt("service_price");
+                String name = rs.getString("service_name");
+                String description = rs.getString("service_description");
                 Service service = new Service(id, price, name, description);
                 services.add(service);
             }
