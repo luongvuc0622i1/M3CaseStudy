@@ -89,6 +89,9 @@ public class ClientServlet extends HttpServlet {
             //showSearchFrom;
 //                    homeServlet.doGet(request,response);
 //                    break;
+            case "homeClient":
+                showHome(request, response);
+                break;
             default:
                 showHome(request, response);
                 break;
