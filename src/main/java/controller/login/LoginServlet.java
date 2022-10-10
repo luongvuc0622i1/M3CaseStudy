@@ -164,7 +164,7 @@ public class LoginServlet extends HttpServlet {
                     request.setAttribute("shop", shop);
                     List<Food> foodList = foodService.findAllFoodByIdShop(shop.getId());
                     request.setAttribute("foodList", foodList);
-                    dispatcher = request.getRequestDispatcher("/client/assets/page/shop/shopHome.jsp");
+                    dispatcher = request.getRequestDispatcher("/shop");
                     LoginServlet.checkLogin = true;
                     dispatcher.forward(request, response);
                 } else {
