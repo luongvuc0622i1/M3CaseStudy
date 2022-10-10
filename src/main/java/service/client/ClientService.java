@@ -119,6 +119,7 @@ public class ClientService implements IClientService {
 
         try (PreparedStatement preparedStatement = c.prepareStatement(BLOCK_CLIENT_BY_ID)) {
             preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
             System.out.println(preparedStatement);
 
         } catch (SQLException e) {
@@ -131,6 +132,7 @@ public class ClientService implements IClientService {
 
         try (PreparedStatement preparedStatement = c.prepareStatement(UNBLOCK_CLIENT_BY_ID)) {
             preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
             System.out.println(preparedStatement);
 
         } catch (SQLException e) {
