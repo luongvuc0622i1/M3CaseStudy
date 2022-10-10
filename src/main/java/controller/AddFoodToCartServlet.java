@@ -33,17 +33,6 @@ public class AddFoodToCartServlet extends HttpServlet {
     }
 
     private void addFood(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-//        double sum = 0;
-//        int quantity = 1;
-//        int id;
-//        request.setAttribute("account", LoginServlet.account);
-//
-//        id = Integer.parseInt(request.getParameter("id"));
-//        request.setAttribute("food",foodService.findById(id));
-//
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/client/clientCart.jsp");
-//        dispatcher.forward(request,response);
-
         double sum = 0;
         int quantity = 1;
         int id;
@@ -68,20 +57,21 @@ public class AddFoodToCartServlet extends HttpServlet {
                     session.setAttribute("total",sum);
                     session.setAttribute("order",order);
                     session.setAttribute("quantity",quantity);
-                } else {
+                }else {
                     Order order = (Order) session.getAttribute("order");
-                    List<Food> foods = order.getFood();
+                    List<Food> itemList = order.getFood();
                     boolean check = false;
-                    for (Food food1 : foods){
-                        if (food1.getId() == food.getId()){
+                    for (Food food2 : itemList){
+                        if (food2.getId() == id){
                             order.setQuantityFood(order.getQuantityFood() + quantity);
                             check = true;
                         }
                     }
                     if (check == false){
+                        Food food1 = foodService.findById(id);
                         order.setQuantityFood(quantity);
-                        Food food1 = new Food();
-                        foods.add(food1);
+//                        Food food1 = new Food();
+                        itemList.add(food1);
                     }
 
                     session.setAttribute("order",order);
@@ -89,11 +79,11 @@ public class AddFoodToCartServlet extends HttpServlet {
                 }
             }
             request.setAttribute("account", LoginServlet.account);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/client/clientCart.jsp");
+            RequestDispatcher dispatcher=request.getRequestDispatcher("client/assets/page/client/clientCart.jsp");
             dispatcher.forward(request,response);
         }else {
             request.setAttribute("account", LoginServlet.account);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/client/clientCart.jsp");
+            RequestDispatcher dispatcher=request.getRequestDispatcher("/client/assets/page/client/clientCart.jsp");
             dispatcher.forward(request,response);
         }
     }

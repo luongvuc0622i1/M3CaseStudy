@@ -418,34 +418,34 @@
                         </tr>
 <%--                        chac la loi o day--%>
 <%--                        <c:forEach var="order" items="order">--%>
-<%--                        <c:forEach var="food" items="${foods}">--%>
+                        <c:forEach var="food" items="${order.food}">
 
-                            <tr>
-                                <td>
-                                    <div class="col-auto item-restaurant-img">
-                                        <button class="inline">
-                                            <img src="../../../../img/${food.image}" alt="${food.name}" width="60" height="60">
-                                        </button>
-                                    </div>
-                                    <div class="col item-restaurant-info">
-                                        <h2 class="item-restaurant-name">${food.name}</h2>
-                                    </div>
-                                    <div class="col-auto item-restaurant-more">
-                                        <div class="row ">
-                                            <div class="col-auto product-price"><div class="current-price">${food.price}<span style="font-weight: 400;position: relative;top: -9px;font-size: 10px;right: 0;">đ</span>
-                                            </div>
-                                            </div></div></div>
-                                </td>
-                                <td>${food.quantity}</td>
-                                <td>(${food.price * food.quantity})</td>
-                                <td>
-                                    <a href="/addToCart?action=addFood&id=${food.id}" class="Sum" title="Sum" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                                </td>
-                                <td>
-                                    <a href="/addToCart?action=delete&id=${food.id}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                                </td>
-                            </tr>
-<%--                        </c:forEach>--%>
+                        <tr>
+                            <td>
+                                <div class="col-auto item-restaurant-img">
+                                    <button class="inline">
+                                        <img src="<c:out value="${food.image}"/>" alt="${food.name}" width="60" height="60">
+                                    </button>
+                                </div>
+                                <div class="col item-restaurant-info">
+                                    <h2 class="item-restaurant-name">${food.name}</h2>
+                                </div>
+                                <div class="col-auto item-restaurant-more">
+                                    <div class="row ">
+                                        <div class="col-auto product-price"><div class="current-price">${food.price}<span style="font-weight: 400;position: relative;top: -9px;font-size: 10px;right: 0;">đ</span>
+                                        </div>
+                                        </div></div></div>
+                            </td>
+                            <td>${order.quantityFood}</td>
+                            <td>(${food.price * order.quantityFood})</td>
+                            <td>
+                                <a href="/addToCart?action=addFood&id=${food.id}" class="Sum" title="Sum" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                            </td>
+                            <td>
+                                <a href="/addToCart?action=delete&id=${food.id}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                            </td>
+                        </tr>
+                        </c:forEach>
 
                             <tr>
                                 <td></td>
