@@ -464,8 +464,8 @@
                             </tr><tr>
                                 <td></td>
                                 <td></td>
-                                <td><a href="/homeClient?action=home"><button>Quay lại cửa hàng</button></a></td>
-                                <td></td>
+                                <td><a href="/client"><button>Quay lại cửa hàng</button></a></td>
+                                <td></td>g
                                 <td></td>
                             </tr>
 
