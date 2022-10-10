@@ -30,7 +30,7 @@ import java.util.List;
 
 @WebServlet(name="ClientServlet",value = "/client")
 public class ClientServlet extends HttpServlet {
-//    private static final String DELETE_CLIENT_SQL="DELETE FROM client WHERE id=?;";
+    //    private static final String DELETE_CLIENT_SQL="DELETE FROM client WHERE id=?;";
     private Connection connection= ConnectionCMS.getConnection();
 
     private HomeServlet homeServlet;
@@ -55,29 +55,29 @@ public class ClientServlet extends HttpServlet {
             action="";
         }
         try{
-        switch (action){
-            case "search":
-                searchCartClient.doGet(request,response);
-                //searchHome
-                break;
-            case "addClient":
-                addClient(request,response);
-                break;
-            case "addCart":
+            switch (action){
+                case "search":
+                    searchCartClient.doGet(request,response);
+                    //searchHome
+                    break;
+                case "addClient":
+                    addClient(request,response);
+                    break;
+                case "addCart":
                     addCart(request,response);
-                break;
-            case "edit":
-                editClientPass(request,response);
-            default:
-                showHome(request, response);
-                break;
-        }
+                    break;
+                case "edit":
+                    editClientPass(request,response);
+                default:
+                    showHome(request, response);
+                    break;
+            }
         }catch (SQLException e){
             throw new ServletException(e);
         }
     }
     private void editClientPass(HttpServletRequest request, HttpServletResponse response)
-        throws SQLException,IOException,ServletException{
+            throws SQLException,IOException,ServletException{
         String password=request.getParameter("client_password");
         Client client=new Client(password);
         clientService.EditClient(client);
@@ -91,44 +91,34 @@ public class ClientServlet extends HttpServlet {
             action = "";
         }
 //        try {
-            switch (action) {
-                case "edit":
-                    showEdit(request,response);
-                    break;
-                case "search":
+        switch (action) {
+            case "edit":
+                showEdit(request,response);
+                break;
+            case "search":
                 //showSearchFrom;
 //                    homeServlet.doGet(request,response);
 //                    break;
-<<<<<<< HEAD
-                case "addClient":
-                    showFormListClient(request,response);
-                default:
-                    showHome(request, response);
-                    break;
-            }
-//        }catch (SQLException e){
-//            throw new ServletException(e);
-//        }
-=======
-            case "homeClient":
-                showHome(request, response);
-                break;
+            case "addClient":
+                showFormListClient(request,response);
             default:
                 showHome(request, response);
                 break;
         }
->>>>>>> a13d76989b48bbe1c83ee7cf0a3e5d2dc94e096c
+//        }catch (SQLException e){
+//            throw new ServletException(e);
+//        }
     }
 
     private void showFormListClient(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException ,IOException{
+            throws ServletException ,IOException{
         RequestDispatcher dispatcher=request.getRequestDispatcher("client/assets/page/client/addClient");
         dispatcher.forward(request,response);
     }
     private void showEdit(HttpServletRequest request,HttpServletResponse response)
-        throws ServletException, IOException{
-       int id=Integer.parseInt(request.getParameter("id"));
-       Client client=clientService.selectClient(id);
+            throws ServletException, IOException{
+        int id=Integer.parseInt(request.getParameter("id"));
+        Client client=clientService.selectClient(id);
         RequestDispatcher dispatcher=request.getRequestDispatcher("client/assets/page/client/edit.jsp");
         request.setAttribute("client",client);
         dispatcher.forward(request,response);
@@ -179,7 +169,7 @@ public class ClientServlet extends HttpServlet {
         requestDispatcher.forward(request,response);
     }
     private void addClient(HttpServletRequest request,HttpServletResponse response)
-        throws SQLException , IOException,ServletException{
+            throws SQLException , IOException,ServletException{
         String code=request.getParameter("client_code");
         String name=request.getParameter("client_name");
         String phone =request.getParameter("client_phone");

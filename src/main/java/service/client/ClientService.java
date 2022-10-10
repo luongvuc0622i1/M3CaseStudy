@@ -1,11 +1,7 @@
 package service.client;
 
 import connection.ConnectionCMS;
-import model.Admin;
 import model.Client;
-import model.Service;
-import model.Shop;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +43,7 @@ public class ClientService implements IClientService {
     public Client selectClient(int id){
         Client client=null;
         try(Connection connection=ConnectionCMS.getConnection();
-        PreparedStatement preparedStatement=connection.prepareStatement(SELECT_CLIENT_BY_ID);){
+            PreparedStatement preparedStatement=connection.prepareStatement(SELECT_CLIENT_BY_ID);){
             preparedStatement.setInt(1,id);
             System.out.println(preparedStatement);
             ResultSet resultSet=preparedStatement.executeQuery();
@@ -128,7 +124,7 @@ public class ClientService implements IClientService {
     public boolean EditPassword(Client client)throws SQLException{
         boolean rowEditPass;
         try(Connection connection=ConnectionCMS.getConnection();
-        PreparedStatement preparedStatement=connection.prepareStatement(EDIT_CLIENT_PASSWORD_SQL);){
+            PreparedStatement preparedStatement=connection.prepareStatement(EDIT_CLIENT_PASSWORD_SQL);){
             preparedStatement.setString(1,client.getPassword());
             rowEditPass=preparedStatement.executeUpdate()>0;
         }
@@ -137,7 +133,7 @@ public class ClientService implements IClientService {
     public boolean EditClient(Client client) throws SQLException {
         boolean rowEdit;
         try(Connection connection=ConnectionCMS.getConnection();
-        PreparedStatement preparedStatement=connection.prepareStatement(EDIT_CLIENT_SQL);){
+            PreparedStatement preparedStatement=connection.prepareStatement(EDIT_CLIENT_SQL);){
             preparedStatement.setString(1,client.getCode());
             preparedStatement.setString(2,client.getName());
             preparedStatement.setString(3,client.getPhone());

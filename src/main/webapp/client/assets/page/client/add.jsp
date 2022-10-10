@@ -13,8 +13,8 @@
 </head>
 <body>
 <center>
-  <h1>ADD CART </h1>
-  <h2><a href="/bill_detail?addCart=add"> add </a></h2>
+    <h1>ADD CART </h1>
+    <h2><a href="/bill_detail?addCart=add"> add </a></h2>
 </center>
 <div align="center">
     <form method="post"></form>
