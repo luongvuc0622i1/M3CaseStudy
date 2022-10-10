@@ -59,7 +59,7 @@ import java.util.List;
                     Date lastUpdate = resultSet.getDate("food_lastupdate");
                     int status = resultSet.getInt("status");
                     List<Tag> tagList = tagService.findAllByFoodId(id);
-                    foodList.add(new Food(shop_id, tag_id, deal_id, name, description, image, price, cookTime, (java.sql.Date) dayCreate, (java.sql.Date) lastUpdate, status, tagList));
+                    foodList.add(new Food(id, shop_id, tag_id, deal_id, name, description, image, price, cookTime, (java.sql.Date) dayCreate, (java.sql.Date) lastUpdate, status, tagList));
 
                 }
             } catch (SQLException e) {

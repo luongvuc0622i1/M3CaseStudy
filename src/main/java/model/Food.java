@@ -85,6 +85,21 @@ public class Food {
         this.status = status;
     }
 
+    public Food(int id, int shop_id, int tag_id, int deal_id, String name, String description, String image, double price, Time cookTime, Date dayCreate, Date lastUpdate, int status, List<Tag> tag) {
+        this.id = id;
+        this.shop_id = shop_id;
+        this.tag_id = tag_id;
+        this.deal_id = deal_id;
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.price = price;
+        this.cookTime = cookTime;
+        this.dayCreate = dayCreate;
+        this.lastUpdate = lastUpdate;
+        this.status = status;
+    }
+
     public Food(int shop_id, int tag_id, int deal_id, String name, String description, String image, double price, Time cookTime, Date dayCreate, Date lastUpdate, int status) {
         this.shop_id = shop_id;
         this.tag_id = tag_id;
