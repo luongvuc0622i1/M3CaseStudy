@@ -100,8 +100,8 @@ public class AdminServlet extends HttpServlet {
 //    }
 
     private void showClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/admin/clientManagement.jsp");
-        request.setAttribute("clients",clientService.fillAll());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/admin/userManagement.jsp");
+        request.setAttribute("clients",clientService.fillAllForAdmin());
         dispatcher.forward(request, response);
     }
 
@@ -127,34 +127,33 @@ public class AdminServlet extends HttpServlet {
 
     private void blockShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        shopService.blockShopById(id);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/client/assets/page/admin/shopManagement.jsp");
+        Shop existingShop = shopService.blockShopById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin?action=showShop");
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin");
+        request.setAttribute("shop", existingShop);
         dispatcher.forward(request, response);
     }
 
     private void blockClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Shop existingShop = clientService.blockClientById(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin?action=showShop");
-        request.setAttribute("client", existingShop);
+        Client existingShop = clientService.blockClientById(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin?action=showClient");
+        request.setAttribute("clients", existingShop);
         dispatcher.forward(request, response);
     }
 
     private void unblockShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Shop existingShop = shopService.unblockShopById(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin?action=showClient");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin?action=showShop");
         request.setAttribute("shop", existingShop);
         dispatcher.forward(request, response);
     }
 
     private void unblockClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Shop existingShop = clientService.unblockClientById(id);
+        Client existingShop = clientService.unblockClientById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin?action=showClient");
-        request.setAttribute("client", existingShop);
+        request.setAttribute("clients", existingShop);
         dispatcher.forward(request, response);
     }
 

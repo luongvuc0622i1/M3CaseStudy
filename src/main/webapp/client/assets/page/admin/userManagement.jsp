@@ -282,9 +282,8 @@
                             </div>
                         </div>
 
-                        <div class="main-nav col"><a class="nav-item active" href="/admin?action=shopManagement">Shop</a><a
-                                class="nav-item " href="/admin?action=userManagement">User</a><a class="nav-item " href="/admin?action=dealManagement">Deal</a><a
-                                class="nav-item " href="/admin?action=categoryManagement">Category</a>
+                        <div class="main-nav col"><a
+                                class="nav-item " href="/admin?action=showShop">Cửa hàng</a><a class="nav-item active" href="/admin?action=showClient">Người dùng</a>
                             <%--                            <a class="nav-item "--%>
                             <%--                                                                                     href="/ha-noi/medicine">Thuốc</a><a class="nav-item " href="/ha-noi/pets">Thú--%>
                             <%--                            cưng</a>--%>
@@ -410,7 +409,7 @@
                     <div class="table-title">
                         <div class="row">
                             <div class="col-sm-5">
-                                <h2>User <b>Management</b></h2>
+                                <h2>Quản lý<b>Người dùng</b></h2>
                             </div>
                             <div class="col-sm-7">
                                 <%--                                <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>--%>
@@ -421,27 +420,46 @@
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>ShopName</th>
-                            <th>Dshop_code</th>
-                            <th>shop_email</th>
-                            <th>shop_phone</th>
-                            <th>shop_address</th>
+                            <th>ID</th>
+                            <th>CODE</th>
+                            <th>Tên</th>
+                            <th>Liên hệ</th>
+                            <th>Email</th>
+                            <th>Account</th>
+                            <th>Status</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="shop" items="${shops}">
+                        <c:forEach var="clients" items="${clients}">
                         <tr>
-                            <td>${shop.shop_id}</td>
-                            <td>${shop.shop_code}</td>
-                            <td>< href="#"><img src="" class="avatar" alt="Avatar"> ${shop.shop_name}></td>
-                            <td>${shop.shop_email}</td>
-                            <td>${shop.shop_phone}</td>
-                            <td>${shop.shop_address}</td>
+                            <td>${clients.id}</td>
+                            <td>${clients.code}</td>
+                            <td>${clients.name}</td>
+                            <td>${clients.phone}</td>
+                            <td>${clients.email}</td>
+                            <td>${clients.account}</td>
+                                <td><c:if test = "${clients.status == 1}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">
+                                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                    <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>
+                                </svg></c:if>
+                                    <c:if test = "${clients.status == 0}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg></c:if></td>
+
                                 <%--                                <td><span class="status text-success">&bull;</span> Active</td>--%>
                             <td>
-                                <a href="/admin?action=edit&id=${shop.shop_id}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                <a href="/admin?action=delete&id=${shop.shop_id}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                                <a href="/admin?action=blockClient&id=${clients.id}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+                                    <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                                </svg></a>
+                                <a href="/admin?action=unblockClient&id=${clients.id}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+                                    <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
+                                </svg></a>
+                                    <%--                                    <a href="/admin?action=deleteShop&id=${shops.id}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">--%>
+                                    <%--                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>--%>
+                                    <%--                                    </svg></a>--%>
                             </td>
                         </tr>
                         </c:forEach>

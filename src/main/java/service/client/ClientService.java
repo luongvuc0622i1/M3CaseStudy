@@ -3,6 +3,7 @@ package service.client;
 import connection.ConnectionCMS;
 import model.Admin;
 import model.Client;
+import model.Service;
 import model.Shop;
 
 import java.sql.*;
@@ -13,8 +14,8 @@ public class ClientService implements IClientService {
     private static final String FIND_ALL_CLIENT = "SELECT * FROM client;";
     private static final String DELETE_CLIENT_SQL="DELETE FROM client WHERE client_id=?";
     private static final String INSERT_CLIENT_SQL = "INSERT INTO client (client_name, client_phone, client_address, client_email, client_account, client_password, status) VALUES (?,?,?,?,?,?,?);";
-    private static final String BLOCK_CLIENT_BY_ID = "CALL blockShopById(?);";
-    private static final String UNBLOCK_CLIENT_BY_ID = "CALL unblockShopById(?);";
+    private static final String BLOCK_CLIENT_BY_ID = "CALL blockClientById(?);";
+    private static final String UNBLOCK_CLIENT_BY_ID = "CALL unblockClientById(?);";
     private Connection c = ConnectionCMS.getConnection();
     @Override
     public List<Client> fillAll() {
@@ -114,8 +115,8 @@ public class ClientService implements IClientService {
         }
     }
 
-    public Shop blockClientById(int id) {
-        Shop shop = null;
+    public Client blockClientById(int id) {
+        Client client = null;
 
         try (PreparedStatement preparedStatement = c.prepareStatement(BLOCK_CLIENT_BY_ID)) {
             preparedStatement.setInt(1, id);
@@ -124,11 +125,11 @@ public class ClientService implements IClientService {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } return shop;
+        } return client;
     }
 
-    public Shop unblockClientById(int id) {
-        Shop shop = null;
+    public Client unblockClientById(int id) {
+        Client client = null;
 
         try (PreparedStatement preparedStatement = c.prepareStatement(UNBLOCK_CLIENT_BY_ID)) {
             preparedStatement.setInt(1, id);
@@ -137,7 +138,31 @@ public class ClientService implements IClientService {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } return shop;
+        } return client;
     }
 
+    @Override
+    public List<Client> fillAllForAdmin() {
+        List<Client> clients = new ArrayList<>();
+        try {
+            PreparedStatement ps = c.prepareStatement(FIND_ALL_CLIENT);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("client_id");
+                String code = rs.getString("client_code");
+                String name = rs.getString("client_name");
+                String phone = rs.getString("client_phone");
+                String address = rs.getString("client_address");
+                String email = rs.getString("client_email");
+                String account = rs.getString("client_account");
+                String password = rs.getString("client_password");
+                int status = rs.getInt("status");
+                Client client = new Client(id, code, name, phone, address, email, account, password, status);
+                clients.add(client);
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return clients;
+    }
 }
