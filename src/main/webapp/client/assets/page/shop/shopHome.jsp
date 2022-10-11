@@ -76,7 +76,8 @@
                         <div class="card" style="position: static" >
                             <img class="card-img-top"  alt="err" src="<c:out value="${food.image}"/>" data-holder-rendered="true" style="height: 100px; width: 120px; display: block;position: center">
                             <div class="card-body">
-                                <p class="card-text"><c:out value="${food.description}"/></p>
+                                <h3 class="card-text"><c:out value="${food.name}"/></h3>
+                                <p class="card-text"><c:out value="Mô tả: ${food.description}"/></p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn">
                                         <a href="shop?action=edit&id=${food.id}">
