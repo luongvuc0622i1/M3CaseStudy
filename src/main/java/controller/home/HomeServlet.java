@@ -63,7 +63,9 @@ public class HomeServlet extends HttpServlet {
     }
 
     private void showFind(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("items", foodService.fillAll());
+        String searchFood = request.getParameter("search");
+        List<Food> foods = foodService.selectFoodByName(searchFood);
+        request.setAttribute("foods", foods);
         RequestDispatcher dispatcher = request.getRequestDispatcher("client/assets/page/find.jsp");
         dispatcher.forward(request, response);
     }
