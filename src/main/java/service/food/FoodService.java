@@ -261,7 +261,7 @@ import java.util.List;
                 while (resultSet.next()){
 
                     int shop_id = resultSet.getInt("shop_id");
-                    int tag_id = resultSet.getInt("tag_id");
+                    int tag_id = resultSet.getInt("tags_id");
                     int deal_id = resultSet.getInt("deal_id");
                     String name = resultSet.getString("food_name");
                     double price = resultSet.getDouble("food_price");

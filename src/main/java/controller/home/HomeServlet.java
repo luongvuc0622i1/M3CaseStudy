@@ -45,9 +45,9 @@ public class HomeServlet extends HttpServlet {
                 case "showByTag":
                     showByTag(request, response);
                     break;
-                case "listItem":
-                    listItem(request, response);
-                    break;
+//                case "listItem":
+//                    listItem(request, response);
+//                    break;
                 case "find":
                     showFind(request, response);
                     break;
@@ -113,6 +113,9 @@ public class HomeServlet extends HttpServlet {
                 break;
             case "find":
                 showFind(request, response);
+                break;
+            case "listItem":
+                listItem(request, response);
                 break;
             default:
                 showHome(request, response);
